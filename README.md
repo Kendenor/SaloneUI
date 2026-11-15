@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="docs/assets/logo.svg" alt="SaloneUI" width="280">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Kendenor/SaloneUI/main/docs/assets/logo-white.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Kendenor/SaloneUI/main/docs/assets/logo.svg">
+    <img src="https://raw.githubusercontent.com/Kendenor/SaloneUI/main/docs/assets/logo.svg" alt="SaloneUI" width="280">
+  </picture>
 </p>
 
 <p align="center">
@@ -10,7 +14,7 @@
   <a href="https://github.com/Kendenor/SaloneUI/stargazers"><img src="https://img.shields.io/github/stars/Kendenor/SaloneUI?style=flat&color=00A651" alt="Stars"></a>
   <a href="https://www.npmjs.com/package/salone-ui"><img src="https://img.shields.io/npm/v/salone-ui?style=flat&color=0072C6" alt="NPM Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License"></a>
-  <img src="https://img.shields.io/badge/size-21.7KB-success?style=flat" alt="Bundle Size">
+  <img src="https://img.shields.io/badge/size-%3C25KB-success?style=flat" alt="Bundle Size">
 </p>
 
 ---
@@ -27,7 +31,7 @@ For full documentation, interactive components, examples, and the live playgroun
 Drop one line into your `<head>` tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.min.css">
 ```
 
 ### Package Manager

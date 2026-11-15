@@ -1,6 +1,6 @@
 {
   "name": "salone-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A plain-English CSS framework for rapidly building modern, accessible user interfaces without configuration.",
   "main": "dist/salone-ui.css",
   "style": "dist/salone-ui.min.css",

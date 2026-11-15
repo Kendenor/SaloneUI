@@ -5,6 +5,12 @@
       <stop offset="55%" stop-color="#008F75" />
       <stop offset="100%" stop-color="#0072C6" />
     </linearGradient>
+    <style>
+      .brand-text { fill: #111827; }
+      @media (prefers-color-scheme: dark) {
+        .brand-text { fill: #FFFFFF; }
+      }
+    </style>
   </defs>
   <!-- Icon Mark -->
   <g transform="translate(2, 2)">
@@ -18,6 +24,6 @@
   </g>
   <!-- Wordmark -->
   <text x="56" y="32" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="27" font-weight="800" letter-spacing="-0.5px">
-    <tspan fill="#111827">Salone</tspan><tspan fill="#00A651">UI</tspan>
+    <tspan class="brand-text">Salone</tspan><tspan fill="#00A651">UI</tspan>
   </text>
 </svg>

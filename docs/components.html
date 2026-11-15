@@ -113,6 +113,7 @@
     <ul class="nav-links hide-mobile">
       <li><a href="index.html">Home</a></li>
       <li><a href="components.html" class="active">Components</a></li>
+      <li><a href="blocks.html">Blocks</a></li>
       <li><a href="playground.html">Playground</a></li>
       <li><a href="examples.html">Examples</a></li>
       <li><a href="download.html">Download</a></li>
@@ -123,13 +124,27 @@
       <a href="playground.html" class="button small green">Playground</a>
     </div>
   </nav>
+  <!-- LIVE THEME SWITCHER TOOLBAR -->
+  <div class="theme-bar" style="background: var(--salone-bg-subtle); border-bottom: 1px solid var(--salone-surface-border); padding: 0.5rem 1rem; font-size: 0.825rem;">
+    <div class="container space-between">
+      <div class="row gap-xs center" style="flex-wrap: wrap;">
+        <span style="font-weight: 700; color: var(--salone-text-muted); margin-right: 0.25rem;">Live Theme Switcher:</span>
+        <button class="button small green" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('')" id="btn-theme-default">Default (Emerald)</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-fintech')" id="btn-theme-fintech">Fintech</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-shop')" id="btn-theme-shop">Shop</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-school')" id="btn-theme-school">School</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('dark')" id="btn-theme-dark">Dark</button>
+      </div>
+      <span class="hide-mobile" style="color: var(--salone-text-muted); font-size: 0.75rem;">1-word class: <code>class="theme-..."</code></span>
+    </div>
+  </div>
 
   <!-- DOCS LAYOUT -->
   <div class="docs-layout">
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="search">
-        <input type="text" id="componentSearch" placeholder="Search 25 components..." onkeyup="filterComponents()">
+        <input type="text" id="componentSearch" placeholder="Search 26 components..." onkeyup="filterComponents()">
       </div>
       <ul class="sidebar-nav" id="sidebarList">
         <li><a href="#button">1. Button</a></li>
@@ -157,6 +172,7 @@
         <li><a href="#progress">23. Progress</a></li>
         <li><a href="#footer">24. Footer</a></li>
         <li><a href="#hero">25. Hero</a></li>
+        <li><a href="#accordion">26. Accordion</a></li>
       </ul>
     </aside>
 
@@ -374,6 +390,20 @@
               </ul>
               <button class="button small green">Log In</button>
             </nav>
+  <!-- LIVE THEME SWITCHER TOOLBAR -->
+  <div class="theme-bar" style="background: var(--salone-bg-subtle); border-bottom: 1px solid var(--salone-surface-border); padding: 0.5rem 1rem; font-size: 0.825rem;">
+    <div class="container space-between">
+      <div class="row gap-xs center" style="flex-wrap: wrap;">
+        <span style="font-weight: 700; color: var(--salone-text-muted); margin-right: 0.25rem;">Live Theme Switcher:</span>
+        <button class="button small green" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('')" id="btn-theme-default">Default (Emerald)</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-fintech')" id="btn-theme-fintech">Fintech</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-shop')" id="btn-theme-shop">Shop</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('theme-school')" id="btn-theme-school">School</button>
+        <button class="button small outline" style="padding: 0.2rem 0.65rem; font-size: 0.75rem;" onclick="setTheme('dark')" id="btn-theme-dark">Dark</button>
+      </div>
+      <span class="hide-mobile" style="color: var(--salone-text-muted); font-size: 0.75rem;">1-word class: <code>class="theme-..."</code></span>
+    </div>
+  </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-nav')">Copy</button>
@@ -841,6 +871,43 @@
         </div>
       </section>
 
+      <!-- 26. ACCORDION -->
+      <section id="accordion" class="component-box">
+        <h2>26. Accordion</h2>
+        <p style="color: var(--salone-text-muted);">Pure-CSS interactive expandable panels using semantic <code>&lt;details class="accordion"&gt;</code> with zero JavaScript.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <details class="accordion" open style="margin-bottom: 0.5rem;">
+              <summary>What is SaloneUI?</summary>
+              <div class="accordion-content">
+                A plain-English CSS framework engineered to build fast, beautiful, and accessible web interfaces.
+              </div>
+            </details>
+            <details class="accordion">
+              <summary>Does it need JavaScript?</summary>
+              <div class="accordion-content">
+                Zero JavaScript required. Accordions expand and collapse natively in all modern browsers.
+              </div>
+            </details>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-acc')">Copy</button>
+            <pre><code id="c-acc">&lt;details class="accordion" open&gt;
+  &lt;summary&gt;What is SaloneUI?&lt;/summary&gt;
+  &lt;div class="accordion-content"&gt;
+    A plain-English CSS framework with zero configuration.
+  &lt;/div&gt;
+&lt;/details&gt;
+
+&lt;details class="accordion"&gt;
+  &lt;summary&gt;Does it need JavaScript?&lt;/summary&gt;
+  &lt;div class="accordion-content"&gt;
+    Zero JavaScript required.
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -868,6 +935,43 @@
         li.style.display = text.includes(q) ? 'block' : 'none';
       });
     }
+
+    
+    function setTheme(theme) {
+      document.body.classList.remove('theme-fintech', 'theme-shop', 'theme-school', 'dark');
+      if (theme) {
+        document.body.classList.add(theme);
+      }
+      localStorage.setItem('salone-theme', theme);
+      updateThemeButtons(theme);
+    }
+
+    function updateThemeButtons(currentTheme) {
+      const themes = ['', 'theme-fintech', 'theme-shop', 'theme-school', 'dark'];
+      themes.forEach(t => {
+        const id = t ? 'btn-' + t : 'btn-theme-default';
+        const btn = document.getElementById(id);
+        if (btn) {
+          if (t === currentTheme) {
+            btn.classList.remove('outline');
+            btn.classList.add('green');
+          } else {
+            btn.classList.remove('green');
+            btn.classList.add('outline');
+          }
+        }
+      });
+    }
+
+    (function() {
+      const saved = localStorage.getItem('salone-theme') || '';
+      if (saved) {
+        document.body.classList.add(saved);
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        updateThemeButtons(saved);
+      });
+    })();
 
     function toggleTheme() {
       const isDark = document.body.classList.toggle('dark');

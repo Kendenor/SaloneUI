@@ -14,7 +14,6 @@
   --salone-green-light: #ECFDF5;
 
   --salone-emerald: #059669;
-  --salone-emerald-light: #D1FAE5;
 
   --salone-teal: #0D9488;
   --salone-teal-light: #CCFBF1;
@@ -56,12 +55,9 @@
   --salone-yellow-light: #FEFCE8;
 
   --salone-slate: #475569;
-  --salone-slate-light: #F1F5F9;
 
   --salone-black: #0F172A;
-  --salone-white: #FFFFFF;
   --salone-grey: #F8FAFC;
-  --salone-grey-light: #F1F5F9;
 
   /* Theme Defaults (Light) */
   --salone-primary: var(--salone-green);
@@ -267,6 +263,7 @@ img, svg, video {
 
 /* SMART PLAIN BUTTON */
 button,
+.button,
 input[type="button"],
 input[type="submit"],
 input[type="reset"] {
@@ -290,8 +287,10 @@ input[type="reset"] {
 }
 
 button:hover,
+.button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
+  filter: brightness(0.92);
   background-color: var(--salone-primary-hover);
   transform: translateY(-1px);
   box-shadow: var(--salone-shadow);
@@ -299,7 +298,9 @@ input[type="submit"]:hover {
 }
 
 button:active,
+.button:active,
 input[type="button"]:active {
+  filter: brightness(0.86);
   transform: scale(0.98);
 }
 
@@ -320,7 +321,8 @@ input[type="search"],
 input[type="url"],
 input[type="date"],
 textarea,
-select {
+select,
+.input {
   width: 100%;
   font-family: inherit;
   font-size: 0.95rem;
@@ -444,42 +446,9 @@ textarea::placeholder {
    ========================================================================== */
 
 /* 1. BUTTON */
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: inherit;
-  font-size: 0.925rem;
-  font-weight: 600;
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--salone-radius);
-  border: 1px solid transparent;
-  background-color: var(--salone-primary);
-  color: var(--salone-primary-contrast);
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: all var(--salone-transition);
-}
-
-.button:hover {
-  filter: brightness(0.92);
-  background-color: var(--salone-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--salone-shadow);
-  text-decoration: none;
-}
-
-.button:active {
-  filter: brightness(0.86);
-  transform: scale(0.98);
-}
 
 /* ALL BUTTON COLORS */
 .button.green,.button.emerald { background-color: var(--salone-green); color: #FFF; }
-.button.green:hover, 
-
 .button.teal { background-color: var(--salone-teal); color: #FFF; }
 
 
@@ -523,15 +492,11 @@ textarea::placeholder {
 
 
 .button.black, .button.dark { background-color: var(--salone-black); color: #FFF; }
-.button.black:hover, 
-
 .button.white, .button.light {
   background-color: #FFFFFF;
   color: var(--salone-text);
   border-color: var(--salone-surface-border);
 }
-.button.white:hover, 
-
 .button.outline {
   background-color: transparent;
   color: var(--salone-text);
@@ -587,23 +552,6 @@ textarea::placeholder {
 }
 
 /* 3. INPUT */
-.input {
-  width: 100%;
-  font-family: inherit;
-  font-size: 0.95rem;
-  padding: 0.7rem 0.95rem;
-  border-radius: var(--salone-radius);
-  border: 1px solid var(--salone-surface-border);
-  background-color: var(--salone-surface);
-  color: var(--salone-text);
-  outline: none;
-  transition: border-color var(--salone-transition), box-shadow var(--salone-transition);
-}
-
-.input:focus {
-  border-color: var(--salone-primary);
-  box-shadow: 0 0 0 3px var(--salone-primary-light);
-}
 
 .input.error {
   border-color: var(--salone-red);
@@ -1408,5 +1356,52 @@ details.modal[open] .modal-overlay,
   color: var(--salone-text-muted);
   max-width: 640px;
   margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* 26. ACCORDION */
+details.accordion {
+  background-color: var(--salone-surface);
+  border: 1px solid var(--salone-surface-border);
+  border-radius: var(--salone-radius);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: all var(--salone-transition);
+}
+
+details.accordion summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  user-select: none;
+}
+
+details.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+details.accordion summary::after {
+  content: "+";
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--salone-text-muted);
+}
+
+details.accordion[open] summary::after {
+  content: "\2212";
+  color: var(--salone-primary);
+}
+
+details.accordion .accordion-content,
+details.accordion > p,
+details.accordion > div:not(summary) {
+  padding: 0 1.25rem 1.25rem;
+  color: var(--salone-text-muted);
+  font-size: 0.95rem;
   line-height: 1.6;
 }
