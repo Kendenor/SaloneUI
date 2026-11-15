@@ -33,7 +33,7 @@ For AI coding assistants (ChatGPT, Claude, Gemini, Cursor, Copilot), see our mac
 Drop one line into your `<head>` tag:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.1/dist/salone-ui.min.css">
 ```
 
 ### Package Manager
