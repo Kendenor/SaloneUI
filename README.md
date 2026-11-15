@@ -1,105 +1,92 @@
-<div align="center">
-  <img src="docs/assets/logo.svg" alt="SaloneUI Logo" width="260" />
-  <p><strong>The Plain-English, Ultra-Lightweight CSS Framework.</strong></p>
-  <p>Made in Sierra Leone, for the World. Zero config. No cryptic abbreviations. Under 25KB.</p>
+<p align="center">
+  <img src="docs/assets/logo.svg" alt="SaloneUI" width="280">
+</p>
 
-  <p>
-    <a href="https://github.com/Kendenor/SaloneUI/stargazers"><img src="https://img.shields.io/github/stars/Kendenor/SaloneUI?style=for-the-badge&color=00A651" alt="Stars" /></a>
-    <a href="https://www.npmjs.com/package/salone-ui"><img src="https://img.shields.io/npm/v/salone-ui?style=for-the-badge&color=0072C6" alt="NPM Version" /></a>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-orange?style=for-the-badge" alt="License" /></a>
-    <img src="https://img.shields.io/badge/Size-21.7KB-success?style=for-the-badge" alt="Bundle Size" />
-  </p>
-</div>
+<p align="center">
+  A plain-English CSS framework for rapidly building modern, accessible user interfaces without configuration.
+</p>
+
+<p align="center">
+  <a href="https://github.com/Kendenor/SaloneUI/stargazers"><img src="https://img.shields.io/github/stars/Kendenor/SaloneUI?style=flat&color=00A651" alt="Stars"></a>
+  <a href="https://www.npmjs.com/package/salone-ui"><img src="https://img.shields.io/npm/v/salone-ui?style=flat&color=0072C6" alt="NPM Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License"></a>
+  <img src="https://img.shields.io/badge/size-21.7KB-success?style=flat" alt="Bundle Size">
+</p>
 
 ---
 
-## ⚡ 10-Second Demo
+## Documentation
 
-Forget memorizing hundreds of cryptic abbreviations like `btn`, `px-4`, `col-md-6`, or `d-flex`. In **SaloneUI**, you write real human English:
+For full documentation, interactive components, examples, and the live playground, visit [kendenor.github.io/SaloneUI](https://kendenor.github.io/SaloneUI/).
+
+---
+
+## Quick Start
+
+### CDN
+Drop one line into your `<head>` tag:
 
 ```html
-<!-- A stunning button -->
-<button class="button green big">Send Money</button>
-
-<!-- Automatic mobile-friendly responsive grid -->
-<div class="grid 3">
-  <div class="card">Item 1</div>
-  <div class="card">Item 2</div>
-  <div class="card">Item 3</div>
-</div>
-
-<!-- Built-in mobile fintech card -->
-<div class="money-card">
-  <div class="money-header">
-    <span>Main Balance</span>
-    <button class="eye-button">Hide</button>
-  </div>
-  <div class="money-balance">SLL 2,450,000</div>
-  <div class="money-footer">
-    <span>Orange Money / Afrimoney</span>
-    <span>Active</span>
-  </div>
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.min.css">
 ```
 
----
+### Package Manager
+Install with your preferred package manager:
 
-## 📦 Installation (Use ANY Package Manager You Like)
+```bash
+# npm
+npm install salone-ui
 
-SaloneUI works everywhere. Pick your favorite tool or use our zero-install CDN:
+# pnpm
+pnpm add salone-ui
 
-| Method | Command / Tag |
-| :--- | :--- |
-| **CDN (HTML)** | `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css">` |
-| **CDN (Minified)** | `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.min.css">` |
-| **NPM** | `npm install salone-ui` |
-| **PNPM** | `pnpm add salone-ui` |
-| **Yarn** | `yarn add salone-ui` |
-| **Bun** | `bun add salone-ui` |
-| **Deno** | `deno add npm:salone-ui` |
-| **Direct Download** | Grab `dist/salone-ui.css` or `dist/salone-ui.min.css` directly from this repository |
+# yarn
+yarn add salone-ui
 
-After installing with any package manager:
+# bun
+bun add salone-ui
+
+# deno
+deno add npm:salone-ui
+```
+
+Import into your project:
+
 ```javascript
 import 'salone-ui/dist/salone-ui.css';
 ```
-or in HTML:
+
+---
+
+## Example
+
 ```html
-<link rel="stylesheet" href="node_modules/salone-ui/dist/salone-ui.css">
+<button class="button green big">Send Money</button>
+
+<div class="grid 3">
+  <div class="card">First column</div>
+  <div class="card">Second column</div>
+  <div class="card">Third column</div>
+</div>
 ```
 
 ---
 
-## 🌟 Why SaloneUI?
+## Community
 
-1. **Plain English Only**: `class="button green"`, `class="card"`, `class="grid 2"`, `class="center"`.
-2. **Zero Config**: No `tailwind.config.js`, no PostCSS, no Node build pipeline needed.
-3. **Smart By Default**: A plain `<button>` or `<input>` with no class already looks modern, rounded, and tactile.
-4. **Under 25KB**: Fast loading on 3G and rural networks worldwide.
-5. **Fintech Ready**: First CSS framework with native `money-card`, `transaction`, and `pin-box` components.
-6. **One-Word Themes**: Switch your whole site with `<body class="theme-fintech">` or `<body class="dark">`.
-7. **Offline First**: System font stack with zero Google Fonts dependency.
+For help, discussions about best practices, or feature ideas:
+
+- [GitHub Discussions](https://github.com/Kendenor/SaloneUI/discussions)
+- [GitHub Issues](https://github.com/Kendenor/SaloneUI/issues)
 
 ---
 
-## 🎨 The 5 One-Word Magic Themes
+## Contributing
 
-Apply any theme directly to your `<body>` tag:
-
-- `theme-light` : Clean modern light palette (default)
-- `theme-dark` (or `dark`) : High-contrast, sleek dark mode
-- `theme-fintech` : Vibrant Sierra Leone green financial aesthetic
-- `theme-shop` : High-energy commercial orange palette
-- `theme-school` : Professional, focused academic blue palette
+If you're interested in contributing to SaloneUI, please read our [contributing docs](CONTRIBUTING.md) before submitting a pull request.
 
 ---
 
-## 🤝 Contributing
+## License
 
-Contributions of all kinds are warmly welcomed! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) to get started in less than 2 minutes.
-
----
-
-## 📄 License
-
-SaloneUI is open-source software licensed under the [MIT License](LICENSE).
+SaloneUI is open source software licensed under the [MIT license](LICENSE).

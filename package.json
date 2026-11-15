@@ -1,7 +1,7 @@
 {
   "name": "salone-ui",
   "version": "1.0.0",
-  "description": "SaloneUI - A simple CSS framework that uses plain English. Easier than Tailwind and Bootstrap. Made in Sierra Leone, for the World. No config, just copy and paste. Works with NPM, PNPM, Yarn, Bun, Deno, CDN or Download.",
+  "description": "A plain-English CSS framework for rapidly building modern, accessible user interfaces without configuration.",
   "main": "dist/salone-ui.css",
   "style": "dist/salone-ui.min.css",
   "files": [
@@ -12,10 +12,9 @@
     "framework",
     "ui",
     "simple",
-    "beginner",
+    "beginner-friendly",
     "salone-ui",
-    "sierra-leone",
-    "africa",
+    "zero-config",
     "plain-english"
   ],
   "license": "MIT",
@@ -24,5 +23,5 @@
     "type": "git",
     "url": "https://github.com/Kendenor/SaloneUI.git"
   },
-  "homepage": "https://saloneui.me"
+  "homepage": "https://kendenor.github.io/SaloneUI"
 }
