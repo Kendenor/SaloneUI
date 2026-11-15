@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salone Market — Authentic Goods & Fashion</title>
+  <link rel="icon" type="image/svg+xml" href="../docs/assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+</head>
+<body class="theme-shop">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="shop.html" class="nav-brand">
+      <span style="font-size: 1.5rem;">🛍️</span> SaloneMarket
+    </a>
+    <div class="search hide-mobile" style="max-width: 380px;">
+      <input type="text" placeholder="Search crafts, gara fabric, electronics...">
+    </div>
+    <div class="row gap-sm">
+      <button class="button small orange" onclick="alert('Cart has ' + cartCount + ' items')">
+        🛒 Cart (<span id="cartVal">0</span>)
+      </button>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+    <!-- CATEGORY TABS -->
+    <div class="tabs" style="margin-bottom: 2rem;">
+      <button class="active">All Products</button>
+      <button>Traditional Gara Fabric</button>
+      <button>Handmade Crafts</button>
+      <button>Coffee & Spices</button>
+      <button>Electronics</button>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="grid 3">
+      <!-- Item 1 -->
+      <div class="card elevated">
+        <div class="badge orange" style="margin-bottom: 0.75rem;">Bestseller</div>
+        <div style="height: 160px; background: linear-gradient(135deg, #FFE0B2, #FFCC80); border-radius: var(--salone-radius); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; margin-bottom: 1rem;">
+          👔
+        </div>
+        <h4>Hand-Dyed Gara Shirt</h4>
+        <p style="color: var(--salone-text-muted); font-size: 0.85rem;">Authentic 100% cotton traditional batik pattern made in Bo.</p>
+        <div class="space-between" style="margin-top: 1rem;">
+          <div class="price">
+            <span class="currency">SLL</span> 240,000
+          </div>
+          <button class="button small green" onclick="addToCart()">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="card elevated">
+        <div class="badge green" style="margin-bottom: 0.75rem;">Organic</div>
+        <div style="height: 160px; background: linear-gradient(135deg, #C8E6C9, #A5D6A7); border-radius: var(--salone-radius); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; margin-bottom: 1rem;">
+          ☕
+        </div>
+        <h4>Sierra Leone Highland Coffee</h4>
+        <p style="color: var(--salone-text-muted); font-size: 0.85rem;">Single origin arabica roasted beans from the Loma Mountains.</p>
+        <div class="space-between" style="margin-top: 1rem;">
+          <div class="price">
+            <span class="currency">SLL</span> 95,000
+          </div>
+          <button class="button small green" onclick="addToCart()">+ Add</button>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="card elevated">
+        <div class="badge blue" style="margin-bottom: 0.75rem;">Handmade</div>
+        <div style="height: 160px; background: linear-gradient(135deg, #BBDEFB, #90CAF9); border-radius: var(--salone-radius); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; margin-bottom: 1rem;">
+          🪵
+        </div>
+        <h4>Carved Ebony Wood Mask</h4>
+        <p style="color: var(--salone-text-muted); font-size: 0.85rem;">Intricate artisanal carving preserving cultural heritage.</p>
+        <div class="space-between" style="margin-top: 1rem;">
+          <div class="price">
+            <span class="currency">SLL</span> 380,000
+          </div>
+          <button class="button small green" onclick="addToCart()">+ Add</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container space-between">
+      <span>Salone Market Demo • Powered by SaloneUI</span>
+      <span>Freetown • Makeni • Bo • Kenema</span>
+    </div>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+    function addToCart() {
+      cartCount++;
+      document.getElementById('cartVal').innerText = cartCount;
+    }
+  </script>
+</body>
+</html>

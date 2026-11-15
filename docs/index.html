@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaloneUI — Build Beautiful Websites With Plain English</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    /* Documentation Enhancements */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .code-box {
+      position: relative;
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: var(--salone-radius);
+      padding: 1.25rem;
+      margin-top: 0.75rem;
+      font-family: var(--salone-font-mono);
+      font-size: 0.9rem;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+    }
+    .check-yes { color: var(--salone-green); font-weight: 700; }
+    .check-no { color: var(--salone-red); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="download.html">Download</a></li>
+      <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
+    </ul>
+    <div class="row gap-sm">
+      <span class="badge green">v1.0.0</span>
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme">🌙</button>
+      <a href="download.html" class="button small green hide-mobile">Download</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container center column">
+      <div class="badge green" style="margin-bottom: 1rem;">Sierra Leone 🇸🇱 to the World • Version 1.0</div>
+      <h1>Build Beautiful Websites With Plain English.</h1>
+      <p>No cryptic abbreviations. No complex build tools. Just plain words like <code>button green</code>, <code>card</code>, and <code>grid 3</code>. Under 25KB, beginner-proof, and lightning fast.</p>
+      
+      <div class="row center" style="margin-top: 0.5rem; margin-bottom: 2rem;">
+        <a href="components.html" class="button big green">Explore Components</a>
+        <button class="button big outline" onclick="copyHeroCdn()">📋 Copy CDN Link</button>
+        <a href="playground.html" class="button big orange">Try Live Playground</a>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="grid 4" style="max-width: 900px; margin-top: 1rem;">
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="margin: 0; color: var(--salone-green);">21.7 KB</h3>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Ultra-lightweight</span>
+        </div>
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="margin: 0; color: var(--salone-blue);">25+</h3>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Smart Components</span>
+        </div>
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="margin: 0; color: var(--salone-orange);">0 Config</h3>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Works instantly</span>
+        </div>
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="margin: 0; color: var(--salone-green);">100% Free</h3>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Open source MIT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN INSTALLATION SECTION -->
+  <section style="padding: 4rem 1.5rem; background: var(--salone-bg-subtle);">
+    <div class="container">
+      <div class="center column" style="margin-bottom: 2.5rem;">
+        <span class="badge blue">Instant Setup</span>
+        <h2 style="margin-top: 0.5rem;">Install in 10 Seconds</h2>
+        <p style="color: var(--salone-text-muted); max-width: 640px; text-align: center;">
+          Use <strong>ANY package manager you like</strong> — NPM, PNPM, Yarn, Bun, Deno — SaloneUI works seamlessly with all of them. Or drop 1 CDN link into your HTML with zero install at all.
+        </p>
+      </div>
+
+      <div class="card elevated" style="max-width: 820px; margin: 0 auto; padding: 2rem;">
+        <!-- Package Manager & CDN Tabs -->
+        <div class="tabs" id="installTabs">
+          <button class="active" onclick="switchInstallTab('cdn', this)">CDN (HTML)</button>
+          <button onclick="switchInstallTab('npm', this)">NPM</button>
+          <button onclick="switchInstallTab('pnpm', this)">PNPM</button>
+          <button onclick="switchInstallTab('yarn', this)">Yarn</button>
+          <button onclick="switchInstallTab('bun', this)">Bun</button>
+          <button onclick="switchInstallTab('deno', this)">Deno</button>
+          <button onclick="switchInstallTab('download', this)">Download</button>
+        </div>
+
+        <!-- TAB CONTENT: CDN -->
+        <div id="tab-cdn" class="tab-content active">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Add this line inside your <code>&lt;head&gt;</code> tag. No npm or terminal required:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'cdn-code')">Copy</button>
+            <code id="cdn-code">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css"&gt;</code>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--salone-text-muted); margin-top: 0.75rem;">
+            ⚡ Minified CDN link: <code>https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.min.css</code>
+          </p>
+        </div>
+
+        <!-- TAB CONTENT: NPM -->
+        <div id="tab-npm" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Install using NPM into your Node or modern frontend project:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'npm-code')">Copy</button>
+            <code id="npm-code">npm install salone-ui</code>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: PNPM -->
+        <div id="tab-pnpm" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Fast, disk-efficient install with PNPM:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'pnpm-code')">Copy</button>
+            <code id="pnpm-code">pnpm add salone-ui</code>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: YARN -->
+        <div id="tab-yarn" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Install with Yarn classic or modern:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'yarn-code')">Copy</button>
+            <code id="yarn-code">yarn add salone-ui</code>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: BUN -->
+        <div id="tab-bun" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Lightning-fast install with Bun:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'bun-code')">Copy</button>
+            <code id="bun-code">bun add salone-ui</code>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: DENO -->
+        <div id="tab-deno" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Add with Deno modern package manager:
+          </p>
+          <div class="code-box">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'deno-code')">Copy</button>
+            <code id="deno-code">deno add npm:salone-ui</code>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: DOWNLOAD -->
+        <div id="tab-download" class="tab-content">
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--salone-text-muted);">
+            Download standalone CSS files for offline usage:
+          </p>
+          <div class="row" style="margin-top: 1.25rem;">
+            <a href="../dist/salone-ui.css" download class="button green">Download salone-ui.css</a>
+            <a href="../dist/salone-ui.min.css" download class="button blue">Download salone-ui.min.css (21.7KB)</a>
+            <a href="download.html" class="button outline">Starter Kit Template</a>
+          </div>
+        </div>
+
+        <!-- Universal Usage note -->
+        <div style="margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--salone-surface-border);">
+          <span style="font-weight: 700; font-size: 0.9rem;">Universal Usage in Any JS App:</span>
+          <div class="code-box" style="margin-top: 0.5rem;">
+            <button class="button small green copy-btn" onclick="copySnippet(this, 'usage-code')">Copy</button>
+            <code id="usage-code">import 'salone-ui/dist/salone-ui.css';</code>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted); display: block; margin-top: 0.5rem;">
+            Or in plain HTML: <code>&lt;link rel="stylesheet" href="node_modules/salone-ui/dist/salone-ui.css"&gt;</code>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 KILLER FEATURES -->
+  <section style="padding: 5rem 1.5rem;">
+    <div class="container">
+      <div class="center column" style="margin-bottom: 3rem;">
+        <span class="badge green">Why People Love SaloneUI</span>
+        <h2 style="margin-top: 0.5rem;">7 Superpowers Tailwind & Bootstrap Don't Have</h2>
+        <p style="color: var(--salone-text-muted); max-width: 620px;">
+          Engineered for real-world projects, modern African and global fintech, and effortless developer happiness.
+        </p>
+      </div>
+
+      <div class="grid 3">
+        <!-- Feature 1 -->
+        <div class="card">
+          <div class="avatar" style="background-color: var(--salone-green-light); color: var(--salone-green); margin-bottom: 1rem;">1</div>
+          <h3>Magic 1-Word Themes</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            Switch your whole application by simply typing <code>class="theme-fintech"</code>, <code>class="theme-shop"</code>, or <code>class="theme-school"</code> on <code>&lt;body&gt;</code>.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card">
+          <div class="avatar" style="background-color: var(--salone-blue-light); color: var(--salone-blue); margin-bottom: 1rem;">2</div>
+          <h3>Smart Components</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            1 clean class does everything. No need for 15 utility classes just to style a button or balance widget.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card">
+          <div class="avatar" style="background-color: var(--salone-orange-light); color: var(--salone-orange); margin-bottom: 1rem;">3</div>
+          <h3>Auto-Layout Grids</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            <code>class="grid 2"</code> and <code>class="grid 3"</code> automatically collapse cleanly to 1 column on mobile phones and expand on laptops.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="card">
+          <div class="avatar" style="background-color: var(--salone-green-light); color: var(--salone-green); margin-bottom: 1rem;">4</div>
+          <h3>Built-in Fintech Ready</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            Native <code>money-card</code>, <code>transaction</code> lists, and 4-digit mobile money <code>pin-box</code> right out of the box.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="card">
+          <div class="avatar" style="background-color: #1e293b; color: #fff; margin-bottom: 1rem;">5</div>
+          <h3>Instant 1-Word Dark Mode</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            Just add <code>class="dark"</code> to <code>&lt;body&gt;</code>. Zero JavaScript needed, no PostCSS plugins, no configuration file.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="card">
+          <div class="avatar" style="background-color: var(--salone-blue-light); color: var(--salone-blue); margin-bottom: 1rem;">6</div>
+          <h3>Copy-to-Use Everywhere</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+            Every component in our documentation has a 1-click copy button. Copy the snippet, paste into your HTML, and you're done.
+          </p>
+        </div>
+
+        <!-- Feature 7 -->
+        <div class="card" style="grid-column: 1 / -1; background: linear-gradient(135deg, var(--salone-bg-subtle) 0%, var(--salone-surface) 100%);">
+          <div class="row space-between">
+            <div style="max-width: 600px;">
+              <span class="badge green">Feature 7</span>
+              <h3 style="margin-top: 0.5rem;">Live Interactive Playground + AI-Friendly</h3>
+              <p style="color: var(--salone-text-muted); font-size: 0.95rem;">
+                Experiment live in our browser sandbox. Plus, copy ready-made prompts for ChatGPT, Antigravity, and Claude to generate whole SaloneUI websites in seconds!
+              </p>
+            </div>
+            <a href="playground.html" class="button green big">Launch Playground →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section style="padding: 4rem 1.5rem; background: var(--salone-bg-subtle);">
+    <div class="container">
+      <div class="center column" style="margin-bottom: 2.5rem;">
+        <span class="badge blue">Honest Comparison</span>
+        <h2 style="margin-top: 0.5rem;">SaloneUI vs Tailwind CSS vs Bootstrap</h2>
+        <p style="color: var(--salone-text-muted); max-width: 600px; text-align: center;">
+          See why developers, students, and businesses are choosing plain-English SaloneUI.
+        </p>
+      </div>
+
+      <div class="card elevated" style="padding: 0; overflow: hidden;">
+        <div class="table-wrap">
+          <table class="table" style="margin: 0; border: none; box-shadow: none;">
+            <thead>
+              <tr>
+                <th style="width: 32%;">Feature</th>
+                <th style="width: 26%; background: var(--salone-green-light); color: var(--salone-green-dark); font-size: 0.9rem;">✨ SaloneUI</th>
+                <th style="width: 21%;">Tailwind CSS</th>
+                <th style="width: 21%;">Bootstrap 5</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Class Names</strong></td>
+                <td><span class="check-yes">Plain English</span> (<code>button green</code>)</td>
+                <td>Cryptic (<code>bg-blue-500 px-4</code>)</td>
+                <td>Old shorthand (<code>btn-primary</code>)</td>
+              </tr>
+              <tr>
+                <td><strong>Easy for Beginners?</strong></td>
+                <td><span class="check-yes">Yes</span> (10 mins to master)</td>
+                <td><span class="check-no">No</span> (Steep learning curve)</td>
+                <td>Moderate</td>
+              </tr>
+              <tr>
+                <td><strong>Configuration Needed?</strong></td>
+                <td><span class="check-yes">Zero Config</span> (1 CDN or install)</td>
+                <td><span class="check-no">Complex</span> (Node, PostCSS, config.js)</td>
+                <td>Moderate</td>
+              </tr>
+              <tr>
+                <td><strong>Minified Bundle Size</strong></td>
+                <td><span class="check-yes">21.7 KB</span></td>
+                <td>Varies (Requires PurgeCSS)</td>
+                <td><span class="check-no">~200 KB</span> (Heavy)</td>
+              </tr>
+              <tr>
+                <td><strong>Smart Default Elements</strong></td>
+                <td><span class="check-yes">Yes</span> (Plain <code>&lt;button&gt;</code> is styled)</td>
+                <td><span class="check-no">No</span> (Resets all to ugly raw)</td>
+                <td>Partial</td>
+              </tr>
+              <tr>
+                <td><strong>Fintech Components (Cards, PIN, Tx)</strong></td>
+                <td><span class="check-yes">Built-in Native</span></td>
+                <td><span class="check-no">None</span></td>
+                <td><span class="check-no">None</span></td>
+              </tr>
+              <tr>
+                <td><strong>1-Word Theming</strong></td>
+                <td><span class="check-yes">Yes</span> (5 instant themes)</td>
+                <td><span class="check-no">Complex setup</span></td>
+                <td><span class="check-no">Sass compile needed</span></td>
+              </tr>
+              <tr>
+                <td><strong>Offline & 3G Ready</strong></td>
+                <td><span class="check-yes">Ultra-fast system fonts</span></td>
+                <td>Depends</td>
+                <td>Slow on 3G</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section style="padding: 5rem 1.5rem; text-align: center;">
+    <div class="container center column">
+      <h2>Ready to Build with SaloneUI?</h2>
+      <p style="color: var(--salone-text-muted); max-width: 580px; margin-bottom: 2rem;">
+        Start building clean, high-performance web applications in minutes. Completely open source and free forever.
+      </p>
+      <div class="row center">
+        <a href="components.html" class="button big green">Browse All 25 Components</a>
+        <a href="download.html" class="button big outline">Download v1.0.0</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid 4" style="margin-bottom: 2.5rem;">
+        <div>
+          <img src="assets/logo.svg" alt="SaloneUI" height="32" style="margin-bottom: 1rem;">
+          <p style="font-size: 0.85rem; color: var(--salone-text-muted);">
+            The plain-English CSS framework. Made with pride in Sierra Leone for developers across the globe.
+          </p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem;">Framework</h4>
+          <p><a href="components.html">Components</a></p>
+          <p><a href="playground.html">Playground</a></p>
+          <p><a href="download.html">Download</a></p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem;">Templates</h4>
+          <p><a href="../examples/wallet.html">Wallet App</a></p>
+          <p><a href="../examples/shop.html">Online Shop</a></p>
+          <p><a href="../examples/school.html">School Portal</a></p>
+          <p><a href="../examples/dashboard.html">Admin Dashboard</a></p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem;">Community</h4>
+          <p><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub Repo</a></p>
+          <p><a href="https://github.com/Kendenor/SaloneUI/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a></p>
+          <p><a href="https://github.com/Kendenor/SaloneUI/blob/main/LICENSE" target="_blank">MIT License</a></p>
+        </div>
+      </div>
+      <div class="space-between" style="border-top: 1px solid var(--salone-surface-border); padding-top: 1.5rem; font-size: 0.85rem;">
+        <span>© 2026 SaloneUI. MIT License.</span>
+        <span>Made with ❤️ in Sierra Leone 🇸🇱</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE SCRIPTS -->
+  <script>
+    function switchInstallTab(tabId, btn) {
+      document.querySelectorAll('#installTabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+
+    function copySnippet(btn, elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.remove('green');
+        btn.classList.add('orange');
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove('orange');
+          btn.classList.add('green');
+        }, 2000);
+      });
+    }
+
+    function copyHeroCdn() {
+      const cdn = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css">';
+      navigator.clipboard.writeText(cdn).then(() => {
+        alert('CDN Link copied to clipboard:\n' + cdn);
+      });
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const isDark = body.classList.toggle('dark');
+      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>

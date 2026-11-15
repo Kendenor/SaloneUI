@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download — SaloneUI v1.0.0</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="download.html" class="active">Download</a></li>
+      <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
+    </ul>
+    <div class="row gap-sm">
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button small green">GitHub</a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top: 4rem; padding-bottom: 5rem; max-width: 860px;">
+    <div class="center column" style="margin-bottom: 3rem;">
+      <span class="badge green">Offline First • 100% Free</span>
+      <h1 style="margin-top: 0.5rem;">Download SaloneUI</h1>
+      <p style="color: var(--salone-text-muted); font-size: 1.1rem; max-width: 620px; text-align: center;">
+        Download standalone CSS files directly to your computer. Build responsive websites completely offline without an internet connection or package manager.
+      </p>
+    </div>
+
+    <!-- MAIN DOWNLOAD CARDS -->
+    <div class="grid 2" style="margin-bottom: 2rem;">
+      <div class="card elevated column space-between">
+        <div>
+          <div class="space-between" style="margin-bottom: 0.5rem;">
+            <h3>salone-ui.min.css</h3>
+            <span class="badge green">21.7 KB</span>
+          </div>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Production-ready minified build. Optimal for fast loading on 3G and rural cellular networks.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../dist/salone-ui.min.css" download="salone-ui.min.css" class="button green full big">Download Minified CSS</a>
+        </div>
+      </div>
+
+      <div class="card elevated column space-between">
+        <div>
+          <div class="space-between" style="margin-bottom: 0.5rem;">
+            <h3>salone-ui.css</h3>
+            <span class="badge blue">Uncompressed</span>
+          </div>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Fully formatted, readable source code with clean comments. Great for learning and customizing variables.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../dist/salone-ui.css" download="salone-ui.css" class="button blue full big">Download Source CSS</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STARTER HTML TEMPLATE -->
+    <div class="card elevated" style="margin-top: 2rem;">
+      <div class="space-between" style="margin-bottom: 1rem;">
+        <div>
+          <h3>Starter Template (HTML)</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.9rem; margin: 0;">
+            Copy this ready-to-run template into an <code>index.html</code> file on your computer.
+          </p>
+        </div>
+        <button class="button small green" onclick="copyStarterHtml(this)">Copy Starter HTML</button>
+      </div>
+
+      <div style="background: #0f172a; color: #f8fafc; border-radius: var(--salone-radius); padding: 1.25rem; font-family: var(--salone-font-mono); font-size: 0.82rem; overflow-x: auto; border: 1px solid #1e293b;">
+        <pre><code id="starterTemplateCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;My New SaloneUI Project&lt;/title&gt;
+  &lt;!-- CDN Link (or use local ./salone-ui.min.css) --&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navigation --&gt;
+  &lt;nav class="navbar"&gt;
+    &lt;a href="#" class="nav-brand"&gt;My App&lt;/a&gt;
+    &lt;button class="button small green"&gt;Get Started&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Content Container --&gt;
+  &lt;main class="container" style="padding: 3rem 1.5rem;"&gt;
+    &lt;div class="center column"&gt;
+      &lt;h1&gt;Built with Plain English&lt;/h1&gt;
+      &lt;p&gt;Edit this file to start creating something amazing!&lt;/p&gt;
+      &lt;button class="button big green"&gt;Click Me&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      </div>
+    </div>
+
+    <!-- OFFLINE EXPLANATION -->
+    <div class="alert info" style="margin-top: 2rem;">
+      <span>💡</span>
+      <div>
+        <strong>Works 100% Offline:</strong> SaloneUI does not require external font downloads or third-party web services. Once downloaded, you can build entire sites while disconnected from the internet.
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container space-between">
+      <span>SaloneUI v1.0.0 • Open Source</span>
+      <a href="index.html">Back to Home</a>
+    </div>
+  </footer>
+
+  <script>
+    function copyStarterHtml(btn) {
+      const code = document.getElementById('starterTemplateCode').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = orig, 2000);
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark');
+      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>

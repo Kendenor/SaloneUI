@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Playground — SaloneUI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    .playground-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      min-height: 520px;
+      margin-top: 1.5rem;
+    }
+    .editor-pane {
+      display: flex;
+      flex-direction: column;
+    }
+    .code-editor {
+      width: 100%;
+      height: 480px;
+      font-family: var(--salone-font-mono);
+      font-size: 0.9rem;
+      padding: 1.25rem;
+      background: #0f172a;
+      color: #38bdf8;
+      border-radius: var(--salone-radius);
+      border: 1px solid #1e293b;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .code-editor:focus {
+      outline: none;
+      border-color: var(--salone-primary);
+    }
+    .preview-frame {
+      width: 100%;
+      height: 480px;
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.5rem;
+      overflow-y: auto;
+      box-shadow: var(--salone-shadow-sm);
+    }
+    @media (max-width: 850px) {
+      .playground-split {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="playground.html" class="active">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="download.html">Download</a></li>
+      <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
+    </ul>
+    <div class="row gap-sm">
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <a href="download.html" class="button small green">Download</a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top: 2.5rem; padding-bottom: 5rem;">
+    <div class="space-between" style="flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <span class="badge green">Interactive Sandbox</span>
+        <h1 style="margin-top: 0.25rem;">Live SaloneUI Playground</h1>
+        <p style="color: var(--salone-text-muted); margin: 0;">Type plain English HTML classes below and preview changes in real time.</p>
+      </div>
+      <div class="row">
+        <button class="button small outline" onclick="loadExample('wallet')">Try: Wallet Card</button>
+        <button class="button small outline" onclick="loadExample('shop')">Try: Shop Card</button>
+        <button class="button small outline" onclick="resetEditor()">Reset</button>
+        <button class="button small green" onclick="copyEditorCode(this)">Copy Code</button>
+      </div>
+    </div>
+
+    <!-- SPLIT WORKSPACE -->
+    <div class="playground-split">
+      <!-- LEFT: CODE EDITOR -->
+      <div class="editor-pane">
+        <div class="space-between" style="margin-bottom: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">HTML Input</span>
+          <span style="font-size: 0.8rem; color: var(--salone-text-muted);">Real-time reactive</span>
+        </div>
+        <textarea id="htmlInput" class="code-editor" spellcheck="false" oninput="renderPreview()"></textarea>
+      </div>
+
+      <!-- RIGHT: LIVE PREVIEW -->
+      <div>
+        <div class="space-between" style="margin-bottom: 0.5rem;">
+          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">Live Browser Result</span>
+          <span class="badge green">Instant</span>
+        </div>
+        <div id="livePreview" class="preview-frame"></div>
+      </div>
+    </div>
+
+    <!-- AI PROMPT ASSISTANT SECTION -->
+    <div class="card elevated" style="margin-top: 3rem; background: linear-gradient(135deg, var(--salone-bg-subtle) 0%, var(--salone-surface) 100%);">
+      <div class="row space-between" style="margin-bottom: 1rem;">
+        <div>
+          <span class="badge blue">🤖 AI-Friendly Superpower</span>
+          <h3 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">Build with AI using SaloneUI</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem; margin: 0;">
+            Copy this master prompt and give it to ChatGPT, Antigravity, Claude, or Cursor to create entire production apps with SaloneUI.
+          </p>
+        </div>
+        <button class="button green" onclick="copyAiPrompt(this)">📋 Copy AI Master Prompt</button>
+      </div>
+
+      <div style="background: #0f172a; padding: 1.25rem; border-radius: var(--salone-radius); color: #e2e8f0; font-family: var(--salone-font-mono); font-size: 0.85rem; line-height: 1.6; border: 1px solid #1e293b;" id="aiPromptBox">
+You are an expert web developer building a modern web application with SaloneUI (v1.0.0), a plain-English CSS framework.
+Rules for SaloneUI:
+1. Use ONLY real words for classes:
+   - Buttons: class="button green big", "button orange", "button blue", "button outline"
+   - Layout: class="grid 2", "grid 3", "grid 4", "row", "column", "center", "space-between"
+   - Containers: class="card", "card flat", "card elevated"
+   - Fintech: class="money-card", class="transaction", class="pin-box", class="price"
+   - Navigation: class="navbar", class="bottom-bar"
+   - UI elements: class="badge green", class="avatar", class="alert success", class="toggle", class="loader", class="progress", class="tabs"
+2. Theming: Set &lt;body class="theme-fintech"&gt;, "theme-shop", "theme-school", or "dark" for instant aesthetic changes.
+3. Include the CDN link: &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css"&gt;
+4. Now, please generate a complete, responsive page for: [Describe your page here, e.g. a school fees portal / fintech dashboard]
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const starterTemplate = `<!-- Welcome to SaloneUI Playground! -->
+<div class="column">
+  <div class="space-between">
+    <h2>My Dashboard</h2>
+    <button class="button green small">+ Add Money</button>
+  </div>
+
+  <!-- Built-in Fintech Card -->
+  <div class="money-card">
+    <div class="money-header">
+      <span>Orange Money / Afrimoney</span>
+      <button class="eye-button">Hide</button>
+    </div>
+    <div class="money-balance">SLL 3,500,000</div>
+    <div class="money-footer">
+      <span>Sierra Leone</span>
+      <span>● Verified Account</span>
+    </div>
+  </div>
+
+  <!-- Grid of Actions -->
+  <div class="grid 2">
+    <div class="card center column">
+      <span style="font-size: 1.5rem;">💸</span>
+      <h4>Send Money</h4>
+      <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Instant mobile transfer</p>
+      <button class="button green full">Transfer</button>
+    </div>
+    <div class="card center column">
+      <span style="font-size: 1.5rem;">🛍️</span>
+      <h4>Pay Merchant</h4>
+      <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Scan QR or enter code</p>
+      <button class="button orange full">Pay Now</button>
+    </div>
+  </div>
+</div>`;
+
+    const walletExample = `<div class="card elevated">
+  <div class="money-card">
+    <div class="money-header">
+      <span>Total Balance</span>
+      <button class="eye-button">Show</button>
+    </div>
+    <div class="money-balance">SLL 8,920,000</div>
+    <div class="money-footer">
+      <span>Afrimoney • Freetown</span>
+      <span class="badge black">Tier 3</span>
+    </div>
+  </div>
+
+  <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Recent Transactions</h4>
+  <div class="transaction">
+    <div class="tx-left">
+      <div class="tx-icon">↓</div>
+      <div>
+        <div class="tx-title">Bank Deposit</div>
+        <div class="tx-time">Today, 10:14 AM</div>
+      </div>
+    </div>
+    <div class="tx-amount positive">+SLL 2,000,000</div>
+  </div>
+
+  <div class="transaction">
+    <div class="tx-left">
+      <div class="tx-icon" style="background-color: var(--salone-orange-light); color: var(--salone-orange);">↑</div>
+      <div>
+        <div class="tx-title">EDSA Electricity Token</div>
+        <div class="tx-time">Yesterday, 4:20 PM</div>
+      </div>
+    </div>
+    <div class="tx-amount negative">-SLL 150,000</div>
+  </div>
+</div>`;
+
+    const shopExample = `<div class="card">
+  <div class="badge orange" style="margin-bottom: 0.75rem;">Hot Deal</div>
+  <h3>Original Cotton Gara Shirt</h3>
+  <p style="color: var(--salone-text-muted); font-size: 0.9rem;">Handcrafted authentic Sierra Leone traditional fabric.</p>
+  
+  <div class="price" style="margin: 1rem 0;">
+    <span class="currency">SLL</span> 180,000
+  </div>
+
+  <div class="row">
+    <button class="button green full">Add to Cart</button>
+    <button class="button outline small">Wishlist</button>
+  </div>
+</div>`;
+
+    const editor = document.getElementById('htmlInput');
+    const preview = document.getElementById('livePreview');
+
+    function renderPreview() {
+      preview.innerHTML = editor.value;
+    }
+
+    function resetEditor() {
+      editor.value = starterTemplate;
+      renderPreview();
+    }
+
+    function loadExample(type) {
+      if (type === 'wallet') editor.value = walletExample;
+      if (type === 'shop') editor.value = shopExample;
+      renderPreview();
+    }
+
+    function copyEditorCode(btn) {
+      navigator.clipboard.writeText(editor.value).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = orig, 2000);
+      });
+    }
+
+    function copyAiPrompt(btn) {
+      const prompt = document.getElementById('aiPromptBox').innerText;
+      navigator.clipboard.writeText(prompt).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Prompt Copied!';
+        setTimeout(() => btn.innerText = orig, 2000);
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark');
+      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+    }
+
+    // Initialize
+    resetEditor();
+  </script>
+</body>
+</html>

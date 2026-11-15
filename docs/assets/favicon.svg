@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="saloneFavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00A651" />
+      <stop offset="55%" stop-color="#008F75" />
+      <stop offset="100%" stop-color="#0072C6" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#saloneFavGrad)" />
+  <!-- Dynamic River S shape -->
+  <path d="M 88 38 C 88 24, 44 24, 44 46 C 44 64, 84 62, 84 82 C 84 104, 40 104, 40 90" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="15" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        filter="url(#shadow)" />
+  <!-- Spark/river accent dot representing Sierra Leone star/forward flow -->
+  <circle cx="88" cy="38" r="4" fill="#FFFFFF" opacity="0.9" />
+  <circle cx="40" cy="90" r="4" fill="#FFFFFF" opacity="0.9" />
+</svg>

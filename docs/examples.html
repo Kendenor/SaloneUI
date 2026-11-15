@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-World Examples — SaloneUI</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    .example-card {
+      transition: transform var(--salone-transition), box-shadow var(--salone-transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .example-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--salone-shadow-lg);
+    }
+    .badge-bar {
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html" class="active">Examples</a></li>
+      <li><a href="download.html">Download</a></li>
+      <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
+    </ul>
+    <div class="row gap-sm">
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <a href="download.html" class="button small green">Download</a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top: 3.5rem; padding-bottom: 5rem;">
+    <div class="center column" style="margin-bottom: 3.5rem;">
+      <span class="badge green">Production Ready Templates</span>
+      <h1 style="margin-top: 0.5rem;">Built with SaloneUI</h1>
+      <p style="color: var(--salone-text-muted); max-width: 650px;">
+        Explore 6 production-grade starter templates built 100% with plain-English SaloneUI CSS. Open any example to see how fast you can build real projects.
+      </p>
+    </div>
+
+    <div class="grid 3">
+      <!-- 1. WALLET -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge green">Fintech</span>
+            <span class="badge grey">Mobile First</span>
+          </div>
+          <h3>1. Fintech Wallet App</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Orange Money, Afrimoney & Monime style mobile money wallet with money cards, balance toggle, and transaction history.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/wallet.html" target="_blank" class="button green full">Open Live App →</a>
+        </div>
+      </div>
+
+      <!-- 2. SHOP -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge orange">E-Commerce</span>
+            <span class="badge grey">theme-shop</span>
+          </div>
+          <h3>2. Online Shop</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Clean modern storefront with product grid, price tags, category tabs, and shopping cart overview.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/shop.html" target="_blank" class="button orange full">Open Live App →</a>
+        </div>
+      </div>
+
+      <!-- 3. SCHOOL -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge blue">Education</span>
+            <span class="badge grey">theme-school</span>
+          </div>
+          <h3>3. School Fees Portal</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Student fee payments, term tuition status, payment verification, and downloadable receipt summary.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/school.html" target="_blank" class="button blue full">Open Live App →</a>
+        </div>
+      </div>
+
+      <!-- 4. PORTFOLIO -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge black">Personal</span>
+            <span class="badge grey">Showcase</span>
+          </div>
+          <h3>4. Developer Portfolio</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Modern personal developer portfolio with profile banner, project cards, tech stack pills, and contact form.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/portfolio.html" target="_blank" class="button black full">Open Live App →</a>
+        </div>
+      </div>
+
+      <!-- 5. LOGIN -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge green">Auth</span>
+            <span class="badge grey">Security</span>
+          </div>
+          <h3>5. Clean Login & PIN</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Secure authentication screen supporting both email login and 4-digit mobile money PIN confirmation.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/login.html" target="_blank" class="button green full">Open Live App →</a>
+        </div>
+      </div>
+
+      <!-- 6. DASHBOARD -->
+      <div class="card elevated example-card">
+        <div>
+          <div class="badge-bar">
+            <span class="badge blue">SaaS</span>
+            <span class="badge grey">Admin</span>
+          </div>
+          <h3>6. Admin Dashboard</h3>
+          <p style="color: var(--salone-text-muted); font-size: 0.925rem;">
+            Business analytics overview with key metric cards, revenue progress bars, and recent customer table.
+          </p>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <a href="../examples/dashboard.html" target="_blank" class="button blue full">Open Live App →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container space-between">
+      <span>SaloneUI Examples • 100% Pure CSS Framework</span>
+      <a href="index.html">Back to Home</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark');
+      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>

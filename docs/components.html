@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components — SaloneUI Documentation</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 65px);
+    }
+    .sidebar {
+      position: sticky;
+      top: 65px;
+      height: calc(100vh - 65px);
+      overflow-y: auto;
+      background-color: var(--salone-bg-subtle);
+      border-right: 1px solid var(--salone-surface-border);
+      padding: 1.5rem 1rem;
+    }
+    .sidebar-nav {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .sidebar-nav a {
+      display: block;
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--salone-radius-sm);
+      color: var(--salone-text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      background-color: var(--salone-primary-light);
+      color: var(--salone-primary);
+    }
+    .content-area {
+      padding: 2.5rem 2rem 5rem;
+      max-width: 960px;
+    }
+    .component-box {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 80px;
+    }
+    .preview-code-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      align-items: stretch;
+      margin-top: 1rem;
+    }
+    .preview-box {
+      background-color: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 140px;
+    }
+    .code-box-small {
+      position: relative;
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: var(--salone-radius);
+      padding: 1.25rem 1rem 1rem;
+      font-family: var(--salone-font-mono);
+      font-size: 0.82rem;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .copy-code-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.72rem;
+    }
+    @media (max-width: 900px) {
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+      .preview-code-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html" class="active">Components</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+      <li><a href="download.html">Download</a></li>
+      <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
+    </ul>
+    <div class="row gap-sm">
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <a href="playground.html" class="button small green">Playground</a>
+    </div>
+  </nav>
+
+  <!-- DOCS LAYOUT -->
+  <div class="docs-layout">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="search">
+        <input type="text" id="componentSearch" placeholder="Search 25 components..." onkeyup="filterComponents()">
+      </div>
+      <ul class="sidebar-nav" id="sidebarList">
+        <li><a href="#button">1. Button</a></li>
+        <li><a href="#card">2. Card</a></li>
+        <li><a href="#input">3. Input</a></li>
+        <li><a href="#money-card">4. Money Card</a></li>
+        <li><a href="#transaction">5. Transaction</a></li>
+        <li><a href="#pin-box">6. PIN Box</a></li>
+        <li><a href="#navbar">7. Navbar</a></li>
+        <li><a href="#bottom-bar">8. Bottom Bar</a></li>
+        <li><a href="#modal">9. Modal</a></li>
+        <li><a href="#alert">10. Alert</a></li>
+        <li><a href="#badge">11. Badge</a></li>
+        <li><a href="#avatar">12. Avatar</a></li>
+        <li><a href="#table">13. Table</a></li>
+        <li><a href="#form">14. Form</a></li>
+        <li><a href="#grid">15. Grid</a></li>
+        <li><a href="#helpers">16. Helpers</a></li>
+        <li><a href="#toggle">17. Toggle</a></li>
+        <li><a href="#loader">18. Loader</a></li>
+        <li><a href="#price">19. Price</a></li>
+        <li><a href="#profile">20. Profile</a></li>
+        <li><a href="#search">21. Search</a></li>
+        <li><a href="#tabs">22. Tabs</a></li>
+        <li><a href="#progress">23. Progress</a></li>
+        <li><a href="#footer">24. Footer</a></li>
+        <li><a href="#hero">25. Hero</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+      <div style="margin-bottom: 2.5rem;">
+        <span class="badge green">25 Core Components</span>
+        <h1 style="margin-top: 0.5rem;">All Components</h1>
+        <p style="color: var(--salone-text-muted);">
+          Every component in SaloneUI uses simple, plain English words. No cryptic acronyms. Click any copy button to immediately paste into your code.
+        </p>
+      </div>
+
+      <!-- 1. BUTTON -->
+      <section id="button" class="component-box">
+        <h2>1. Button</h2>
+        <p style="color: var(--salone-text-muted);">Colors: <code>green</code>, <code>orange</code>, <code>blue</code>, <code>red</code>, <code>black</code>, <code>white</code>, <code>outline</code>. Sizes: <code>small</code>, <code>medium</code>, <code>big</code>, <code>full</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="row">
+              <button class="button green">Send Money</button>
+              <button class="button blue">Continue</button>
+              <button class="button orange">Order Now</button>
+              <button class="button red">Delete</button>
+              <button class="button outline">Cancel</button>
+            </div>
+            <div class="row" style="margin-top: 1rem;">
+              <button class="button green small">Small</button>
+              <button class="button green big">Big Button</button>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-btn')">Copy</button>
+            <pre><code id="c-btn">&lt;button class="button green"&gt;Send Money&lt;/button&gt;
+&lt;button class="button blue"&gt;Continue&lt;/button&gt;
+&lt;button class="button orange"&gt;Order Now&lt;/button&gt;
+&lt;button class="button red"&gt;Delete&lt;/button&gt;
+&lt;button class="button outline"&gt;Cancel&lt;/button&gt;
+&lt;button class="button green small"&gt;Small&lt;/button&gt;
+&lt;button class="button green big"&gt;Big Button&lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. CARD -->
+      <section id="card" class="component-box">
+        <h2>2. Card</h2>
+        <p style="color: var(--salone-text-muted);">Modern card surface with smooth 12px border radius and soft shadows.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="card">
+              <h4>Modern Card</h4>
+              <p style="color: var(--salone-text-muted); font-size: 0.9rem; margin-bottom: 1rem;">This is a clean, versatile container for any content.</p>
+              <button class="button green small">Action</button>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-card')">Copy</button>
+            <pre><code id="c-card">&lt;div class="card"&gt;
+  &lt;h4&gt;Modern Card&lt;/h4&gt;
+  &lt;p&gt;This is a clean, versatile container for any content.&lt;/p&gt;
+  &lt;button class="button green small"&gt;Action&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. INPUT -->
+      <section id="input" class="component-box">
+        <h2>3. Input</h2>
+        <p style="color: var(--salone-text-muted);">Standard inputs plus <code>input error</code> and <code>input success</code> states.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label class="label">Phone Number</label>
+              <input class="input" placeholder="e.g. +232 76 123456">
+            </div>
+            <div class="form-group">
+              <label class="label">Success State</label>
+              <input class="input success" value="Valid Account Verified">
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-inp')">Copy</button>
+            <pre><code id="c-inp">&lt;label class="label"&gt;Phone Number&lt;/label&gt;
+&lt;input class="input" placeholder="e.g. +232 76 123456"&gt;
+
+&lt;label class="label"&gt;Success State&lt;/label&gt;
+&lt;input class="input success" value="Valid Account Verified"&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. MONEY CARD -->
+      <section id="money-card" class="component-box">
+        <h2>4. Money Card</h2>
+        <p style="color: var(--salone-text-muted);">Built-in financial card widget with gradient background and balance toggle.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0; background: transparent; border: none;">
+            <div class="money-card">
+              <div class="money-header">
+                <span>Available Balance</span>
+                <button class="eye-button" onclick="alert('Balance toggle clicked')">Hide</button>
+              </div>
+              <div class="money-balance">SLL 4,850,000</div>
+              <div class="money-footer">
+                <span>Monime / Orange Money</span>
+                <span>Active • Verified</span>
+              </div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-mcard')">Copy</button>
+            <pre><code id="c-mcard">&lt;div class="money-card"&gt;
+  &lt;div class="money-header"&gt;
+    &lt;span&gt;Available Balance&lt;/span&gt;
+    &lt;button class="eye-button"&gt;Hide&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="money-balance"&gt;SLL 4,850,000&lt;/div&gt;
+  &lt;div class="money-footer"&gt;
+    &lt;span&gt;Monime / Orange Money&lt;/span&gt;
+    &lt;span&gt;Active • Verified&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. TRANSACTION -->
+      <section id="transaction" class="component-box">
+        <h2>5. Transaction</h2>
+        <p style="color: var(--salone-text-muted);">List item for financial transaction logs.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="transaction">
+              <div class="tx-left">
+                <div class="tx-icon">↓</div>
+                <div>
+                  <div class="tx-title">Salary Received</div>
+                  <div class="tx-time">Today, 2:30 PM</div>
+                </div>
+              </div>
+              <div class="tx-amount positive">+SLL 1,200,000</div>
+            </div>
+            <div class="transaction">
+              <div class="tx-left">
+                <div class="tx-icon" style="background-color: var(--salone-orange-light); color: var(--salone-orange);">↑</div>
+                <div>
+                  <div class="tx-title">Supermarket Payment</div>
+                  <div class="tx-time">Yesterday, 6:15 PM</div>
+                </div>
+              </div>
+              <div class="tx-amount negative">-SLL 185,000</div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-tx')">Copy</button>
+            <pre><code id="c-tx">&lt;div class="transaction"&gt;
+  &lt;div class="tx-left"&gt;
+    &lt;div class="tx-icon"&gt;↓&lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class="tx-title"&gt;Salary Received&lt;/div&gt;
+      &lt;div class="tx-time"&gt;Today, 2:30 PM&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="tx-amount positive"&gt;+SLL 1,200,000&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. PIN BOX -->
+      <section id="pin-box" class="component-box">
+        <h2>6. PIN Box</h2>
+        <p style="color: var(--salone-text-muted);">4-box PIN verification for mobile money security workflows.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box center column">
+            <label class="label">Enter 4-Digit Secret PIN</label>
+            <div class="pin-box">
+              <input type="password" maxlength="1" value="1">
+              <input type="password" maxlength="1" value="2">
+              <input type="password" maxlength="1" value="3">
+              <input type="password" maxlength="1" value="">
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-pin')">Copy</button>
+            <pre><code id="c-pin">&lt;div class="pin-box"&gt;
+  &lt;input type="password" maxlength="1"&gt;
+  &lt;input type="password" maxlength="1"&gt;
+  &lt;input type="password" maxlength="1"&gt;
+  &lt;input type="password" maxlength="1"&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. NAVBAR -->
+      <section id="navbar" class="component-box">
+        <h2>7. Navbar</h2>
+        <p style="color: var(--salone-text-muted);">Sticky, responsive top navigation header.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0;">
+            <nav class="navbar" style="position: static;">
+              <span class="nav-brand">SaloneUI</span>
+              <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+              </ul>
+              <button class="button small green">Log In</button>
+            </nav>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-nav')">Copy</button>
+            <pre><code id="c-nav">&lt;nav class="navbar"&gt;
+  &lt;a href="#" class="nav-brand"&gt;AppName&lt;/a&gt;
+  &lt;ul class="nav-links"&gt;
+    &lt;li&gt;&lt;a href="#" class="active"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Explore&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;button class="button small green"&gt;Log In&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. BOTTOM BAR -->
+      <section id="bottom-bar" class="component-box">
+        <h2>8. Bottom Bar</h2>
+        <p style="color: var(--salone-text-muted);">App-style bottom navigation bar for mobile devices.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0;">
+            <div class="bottom-bar" style="position: static;">
+              <a href="#" class="active"><span>🏠</span>Home</a>
+              <a href="#"><span>💳</span>Cards</a>
+              <a href="#"><span>💸</span>Send</a>
+              <a href="#"><span>⚙️</span>Settings</a>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-bbar')">Copy</button>
+            <pre><code id="c-bbar">&lt;div class="bottom-bar"&gt;
+  &lt;a href="#" class="active"&gt;&lt;span&gt;🏠&lt;/span&gt;Home&lt;/a&gt;
+  &lt;a href="#"&gt;&lt;span&gt;💳&lt;/span&gt;Cards&lt;/a&gt;
+  &lt;a href="#"&gt;&lt;span&gt;💸&lt;/span&gt;Send&lt;/a&gt;
+  &lt;a href="#"&gt;&lt;span&gt;⚙️&lt;/span&gt;Settings&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. MODAL -->
+      <section id="modal" class="component-box">
+        <h2>9. Modal (Popup)</h2>
+        <p style="color: var(--salone-text-muted);">Zero-JavaScript dialog popup using native semantic <code>&lt;details&gt;</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box center">
+            <details class="modal">
+              <summary class="button green">Open Zero-JS Modal</summary>
+              <div class="modal-overlay">
+                <div class="modal-content">
+                  <h3>Modal Title</h3>
+                  <p style="color: var(--salone-text-muted);">This popup works completely without JavaScript! Click outside or close to dismiss.</p>
+                  <div class="row" style="margin-top: 1rem; justify-content: flex-end;">
+                    <button class="button outline small" onclick="this.closest('details').removeAttribute('open')">Close</button>
+                    <button class="button green small" onclick="this.closest('details').removeAttribute('open')">Confirm</button>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-modal')">Copy</button>
+            <pre><code id="c-modal">&lt;details class="modal"&gt;
+  &lt;summary class="button green"&gt;Open Modal&lt;/summary&gt;
+  &lt;div class="modal-overlay"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;h3&gt;Payment Successful&lt;/h3&gt;
+      &lt;p&gt;Transaction reference #992812.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/details&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. ALERT -->
+      <section id="alert" class="component-box">
+        <h2>10. Alert</h2>
+        <p style="color: var(--salone-text-muted);">Feedback alerts: <code>success</code>, <code>error</code>, <code>warning</code>, <code>info</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="alert success">✓ Transaction completed successfully!</div>
+            <div class="alert error">✕ Network connection error.</div>
+            <div class="alert warning">⚠ Your account balance is low.</div>
+            <div class="alert info">ℹ New update available.</div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-alert')">Copy</button>
+            <pre><code id="c-alert">&lt;div class="alert success"&gt;✓ Transaction completed!&lt;/div&gt;
+&lt;div class="alert error"&gt;✕ Network error.&lt;/div&gt;
+&lt;div class="alert warning"&gt;⚠ Account balance low.&lt;/div&gt;
+&lt;div class="alert info"&gt;ℹ New update available.&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. BADGE -->
+      <section id="badge" class="component-box">
+        <h2>11. Badge</h2>
+        <p style="color: var(--salone-text-muted);">Status pills in <code>green</code>, <code>orange</code>, <code>blue</code>, <code>red</code>, <code>black</code>, <code>grey</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="row">
+              <span class="badge green">Completed</span>
+              <span class="badge blue">In Progress</span>
+              <span class="badge orange">Pending</span>
+              <span class="badge red">Failed</span>
+              <span class="badge black">Pro</span>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-bdg')">Copy</button>
+            <pre><code id="c-bdg">&lt;span class="badge green"&gt;Completed&lt;/span&gt;
+&lt;span class="badge blue"&gt;In Progress&lt;/span&gt;
+&lt;span class="badge orange"&gt;Pending&lt;/span&gt;
+&lt;span class="badge red"&gt;Failed&lt;/span&gt;
+&lt;span class="badge black"&gt;Pro&lt;/span&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. AVATAR -->
+      <section id="avatar" class="component-box">
+        <h2>12. Avatar</h2>
+        <p style="color: var(--salone-text-muted);">User initials circle or profile photo.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="row">
+              <div class="avatar small">M</div>
+              <div class="avatar">S</div>
+              <div class="avatar big" style="background-color: var(--salone-blue);">K</div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-ava')">Copy</button>
+            <pre><code id="c-ava">&lt;div class="avatar small"&gt;M&lt;/div&gt;
+&lt;div class="avatar"&gt;S&lt;/div&gt;
+&lt;div class="avatar big"&gt;K&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. TABLE -->
+      <section id="table" class="component-box">
+        <h2>13. Table</h2>
+        <p style="color: var(--salone-text-muted);">Clean data tables with responsive wrapper.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0;">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mohamed K.</td>
+                    <td><span class="badge green">Paid</span></td>
+                    <td>SLL 500,000</td>
+                  </tr>
+                  <tr>
+                    <td>Aminata B.</td>
+                    <td><span class="badge orange">Pending</span></td>
+                    <td>SLL 250,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-tbl')">Copy</button>
+            <pre><code id="c-tbl">&lt;div class="table-wrap"&gt;
+  &lt;table class="table"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th&gt;User&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Amount&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Mohamed K.&lt;/td&gt;
+        &lt;td&gt;&lt;span class="badge green"&gt;Paid&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;SLL 500,000&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14. FORM -->
+      <section id="form" class="component-box">
+        <h2>14. Form</h2>
+        <p style="color: var(--salone-text-muted);">Vertical layout rhythm for form fields.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <form class="form" onsubmit="event.preventDefault()">
+              <div class="form-group">
+                <label class="label">Full Name</label>
+                <input class="input" placeholder="Enter your full name">
+              </div>
+              <button class="button green" type="submit">Submit Form</button>
+            </form>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-frm')">Copy</button>
+            <pre><code id="c-frm">&lt;form class="form"&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label class="label"&gt;Full Name&lt;/label&gt;
+    &lt;input class="input" placeholder="Enter name"&gt;
+  &lt;/div&gt;
+  &lt;button class="button green"&gt;Submit Form&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. GRID -->
+      <section id="grid" class="component-box">
+        <h2>15. Grid</h2>
+        <p style="color: var(--salone-text-muted);">Auto-responsive layout: <code>grid 2</code>, <code>grid 3</code>, <code>grid 4</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="grid 3">
+              <div class="card center">Col 1</div>
+              <div class="card center">Col 2</div>
+              <div class="card center">Col 3</div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-grd')">Copy</button>
+            <pre><code id="c-grd">&lt;div class="grid 3"&gt;
+  &lt;div class="card"&gt;Col 1&lt;/div&gt;
+  &lt;div class="card"&gt;Col 2&lt;/div&gt;
+  &lt;div class="card"&gt;Col 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16. HELPERS -->
+      <section id="helpers" class="component-box">
+        <h2>16. Helpers</h2>
+        <p style="color: var(--salone-text-muted);">Plain English positioning: <code>center</code>, <code>row</code>, <code>column</code>, <code>space-between</code>.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="space-between card">
+              <span>Left Text</span>
+              <button class="button small green">Right Button</button>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-hlp')">Copy</button>
+            <pre><code id="c-hlp">&lt;div class="space-between"&gt;
+  &lt;span&gt;Left Item&lt;/span&gt;
+  &lt;button class="button green"&gt;Right Item&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="center"&gt;Centered Content&lt;/div&gt;
+&lt;div class="row"&gt;...items side by side...&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17. TOGGLE -->
+      <section id="toggle" class="component-box">
+        <h2>17. Toggle</h2>
+        <p style="color: var(--salone-text-muted);">iOS-style sleek switch toggle.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="row">
+              <label class="toggle">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+                <span>SMS Alerts Enabled</span>
+              </label>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-tog')">Copy</button>
+            <pre><code id="c-tog">&lt;label class="toggle"&gt;
+  &lt;input type="checkbox" checked&gt;
+  &lt;span class="slider"&gt;&lt;/span&gt;
+  &lt;span&gt;SMS Alerts&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18. LOADER -->
+      <section id="loader" class="component-box">
+        <h2>18. Loader</h2>
+        <p style="color: var(--salone-text-muted);">Pure CSS smooth spinner ring.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box center">
+            <div class="loader"></div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-ldr')">Copy</button>
+            <pre><code id="c-ldr">&lt;div class="loader"&gt;&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19. PRICE -->
+      <section id="price" class="component-box">
+        <h2>19. Price</h2>
+        <p style="color: var(--salone-text-muted);">Bold typographic price tag for commerce.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="price">
+              <span class="currency">SLL</span> 50,000 <span class="period">/ month</span>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-prc')">Copy</button>
+            <pre><code id="c-prc">&lt;div class="price"&gt;
+  &lt;span class="currency"&gt;SLL&lt;/span&gt; 50,000 &lt;span class="period"&gt;/ month&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 20. PROFILE -->
+      <section id="profile" class="component-box">
+        <h2>20. Profile Header</h2>
+        <p style="color: var(--salone-text-muted);">User identity widget with avatar and actions.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="profile">
+              <div class="avatar big">FK</div>
+              <div class="profile-details">
+                <div class="profile-name">
+                  Foday Kamara <span class="badge green">Verified</span>
+                </div>
+                <div class="profile-bio">Freetown, Sierra Leone • Joined 2026</div>
+              </div>
+              <button class="button small outline">Edit</button>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-prf')">Copy</button>
+            <pre><code id="c-prf">&lt;div class="profile"&gt;
+  &lt;div class="avatar big"&gt;FK&lt;/div&gt;
+  &lt;div class="profile-details"&gt;
+    &lt;div class="profile-name"&gt;
+      Foday Kamara &lt;span class="badge green"&gt;Verified&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="profile-bio"&gt;Freetown, Sierra Leone&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="button small outline"&gt;Edit&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 21. SEARCH -->
+      <section id="search" class="component-box">
+        <h2>21. Search Bar</h2>
+        <p style="color: var(--salone-text-muted);">Pill-shaped input with built-in search icon.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="search">
+              <input type="text" placeholder="Search orders or merchants...">
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-src')">Copy</button>
+            <pre><code id="c-src">&lt;div class="search"&gt;
+  &lt;input type="text" placeholder="Search orders or merchants..."&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 22. TABS -->
+      <section id="tabs" class="component-box">
+        <h2>22. Tabs</h2>
+        <p style="color: var(--salone-text-muted);">Segmented tab switcher.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="tabs">
+              <button class="active">Daily</button>
+              <button>Weekly</button>
+              <button>Monthly</button>
+              <button>All-Time</button>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-tbs')">Copy</button>
+            <pre><code id="c-tbs">&lt;div class="tabs"&gt;
+  &lt;button class="active"&gt;Daily&lt;/button&gt;
+  &lt;button&gt;Weekly&lt;/button&gt;
+  &lt;button&gt;Monthly&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 23. PROGRESS -->
+      <section id="progress" class="component-box">
+        <h2>23. Progress</h2>
+        <p style="color: var(--salone-text-muted);">Smooth gradient progress bar.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box">
+            <div class="progress">
+              <div class="bar" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-prg')">Copy</button>
+            <pre><code id="c-prg">&lt;div class="progress"&gt;
+  &lt;div class="bar" style="width: 75%;"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 24. FOOTER -->
+      <section id="footer" class="component-box">
+        <h2>24. Footer</h2>
+        <p style="color: var(--salone-text-muted);">Structured page bottom container.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0;">
+            <footer class="footer" style="margin: 0; padding: 1.5rem;">
+              <div class="space-between">
+                <span>© 2026 SaloneUI</span>
+                <a href="#">Back to top ↑</a>
+              </div>
+            </footer>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-ftr')">Copy</button>
+            <pre><code id="c-ftr">&lt;footer class="footer"&gt;
+  &lt;div class="space-between"&gt;
+    &lt;span&gt;© 2026 MyProject&lt;/span&gt;
+    &lt;a href="#"&gt;Back to top ↑&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 25. HERO -->
+      <section id="hero" class="component-box">
+        <h2>25. Hero</h2>
+        <p style="color: var(--salone-text-muted);">Engaging top-level showcase section with background glow.</p>
+        <div class="preview-code-grid">
+          <div class="preview-box" style="padding: 0;">
+            <section class="hero" style="padding: 2rem 1rem;">
+              <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Awesome Product</h2>
+              <p style="font-size: 0.95rem; margin-bottom: 1rem;">Built using plain English CSS.</p>
+              <button class="button green small">Get Started</button>
+            </section>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-hro')">Copy</button>
+            <pre><code id="c-hro">&lt;section class="hero"&gt;
+  &lt;h1&gt;Awesome Product&lt;/h1&gt;
+  &lt;p&gt;Built using plain English CSS.&lt;/p&gt;
+  &lt;button class="button green"&gt;Get Started&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function copyFromEl(btn, elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.remove('green');
+        btn.classList.add('orange');
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.classList.remove('orange');
+          btn.classList.add('green');
+        }, 2000);
+      });
+    }
+
+    function filterComponents() {
+      const q = document.getElementById('componentSearch').value.toLowerCase();
+      const links = document.querySelectorAll('#sidebarList li');
+      links.forEach(li => {
+        const text = li.innerText.toLowerCase();
+        li.style.display = text.includes(q) ? 'block' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark');
+      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>

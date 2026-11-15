@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SalonePay Wallet — Orange Money / Afrimoney Style</title>
+  <link rel="icon" type="image/svg+xml" href="../docs/assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    body {
+      padding-bottom: 70px;
+    }
+  </style>
+</head>
+<body class="theme-fintech">
+
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <div class="row gap-sm">
+      <div class="avatar small" style="background-color: var(--salone-green);">M</div>
+      <div>
+        <div style="font-weight: 700; font-size: 0.95rem;">Mohamed Sesay</div>
+        <div style="font-size: 0.75rem; color: var(--salone-text-muted);">+232 76 991234</div>
+      </div>
+    </div>
+    <div class="row gap-sm">
+      <span class="badge green">Tier 3</span>
+      <button class="button small outline" onclick="alert('Notifications')">🔔</button>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width: 520px; padding-top: 1.5rem;">
+    <!-- SALONE MONEY CARD -->
+    <div class="money-card">
+      <div class="money-header">
+        <span>Available Balance (SLL)</span>
+        <button class="eye-button" onclick="toggleBalance(this)">Hide</button>
+      </div>
+      <div class="money-balance" id="balanceAmount">SLL 5,840,000</div>
+      <div class="money-footer">
+        <span>Orange Money / Afrimoney</span>
+        <span>Active & Verified</span>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="grid 4" style="margin-top: 1.25rem;">
+      <div class="card center column" style="padding: 0.9rem; cursor: pointer;" onclick="openTransfer()">
+        <span style="font-size: 1.4rem;">💸</span>
+        <span style="font-size: 0.8rem; font-weight: 600;">Send</span>
+      </div>
+      <div class="card center column" style="padding: 0.9rem; cursor: pointer;">
+        <span style="font-size: 1.4rem;">📥</span>
+        <span style="font-size: 0.8rem; font-weight: 600;">Receive</span>
+      </div>
+      <div class="card center column" style="padding: 0.9rem; cursor: pointer;">
+        <span style="font-size: 1.4rem;">💡</span>
+        <span style="font-size: 0.8rem; font-weight: 600;">EDSA Power</span>
+      </div>
+      <div class="card center column" style="padding: 0.9rem; cursor: pointer;">
+        <span style="font-size: 1.4rem;">📶</span>
+        <span style="font-size: 0.8rem; font-weight: 600;">Data</span>
+      </div>
+    </div>
+
+    <!-- RECENT TRANSACTIONS -->
+    <div style="margin-top: 2rem;">
+      <div class="space-between" style="margin-bottom: 0.75rem;">
+        <h4 style="margin: 0;">Recent Activity</h4>
+        <a href="#" style="font-size: 0.85rem;">See All</a>
+      </div>
+
+      <div class="transaction">
+        <div class="tx-left">
+          <div class="tx-icon">↓</div>
+          <div>
+            <div class="tx-title">Received from Aminata K.</div>
+            <div class="tx-time">Today, 2:45 PM • Afrimoney</div>
+          </div>
+        </div>
+        <div class="tx-amount positive">+SLL 650,000</div>
+      </div>
+
+      <div class="transaction">
+        <div class="tx-left">
+          <div class="tx-icon" style="background-color: var(--salone-orange-light); color: var(--salone-orange);">↑</div>
+          <div>
+            <div class="tx-title">EDSA Electricity Prepaid</div>
+            <div class="tx-time">Yesterday, 9:20 AM • Token #8812</div>
+          </div>
+        </div>
+        <div class="tx-amount negative">-SLL 200,000</div>
+      </div>
+
+      <div class="transaction">
+        <div class="tx-left">
+          <div class="tx-icon">↓</div>
+          <div>
+            <div class="tx-title">Bank Transfer from Rokel</div>
+            <div class="tx-time">Nov 12, 11:30 AM</div>
+          </div>
+        </div>
+        <div class="tx-amount positive">+SLL 2,500,000</div>
+      </div>
+
+      <div class="transaction">
+        <div class="tx-left">
+          <div class="tx-icon" style="background-color: var(--salone-orange-light); color: var(--salone-orange);">↑</div>
+          <div>
+            <div class="tx-title">Supermarket Groceries</div>
+            <div class="tx-time">Nov 10, 5:15 PM • Lumley Beach</div>
+          </div>
+        </div>
+        <div class="tx-amount negative">-SLL 420,000</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="bottom-bar">
+    <a href="#" class="active"><span>🏠</span>Home</a>
+    <a href="#"><span>💳</span>Cards</a>
+    <a href="#"><span>📊</span>Stats</a>
+    <a href="#"><span>⚙️</span>Profile</a>
+  </div>
+
+  <script>
+    let hidden = false;
+    const realAmount = 'SLL 5,840,000';
+
+    function toggleBalance(btn) {
+      hidden = !hidden;
+      const el = document.getElementById('balanceAmount');
+      if (hidden) {
+        el.innerText = 'SLL •••••••';
+        btn.innerText = 'Show';
+      } else {
+        el.innerText = realAmount;
+        btn.innerText = 'Hide';
+      }
+    }
+
+    function openTransfer() {
+      const recipient = prompt('Enter recipient phone number (e.g. +232 76 123456):');
+      if (recipient) {
+        const amount = prompt('Enter amount in SLL:');
+        if (amount) {
+          alert('Successfully sent SLL ' + amount + ' to ' + recipient + '!');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
