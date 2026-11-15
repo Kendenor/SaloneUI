@@ -76,7 +76,7 @@ import 'salone-ui/dist/salone-ui.css';
 
 For help, discussions about best practices, or feature ideas:
 
-- [GitHub Discussions](https://github.com/Kendenor/SaloneUI/discussions)
+- [Discuss SaloneUI on GitHub](https://github.com/Kendenor/SaloneUI/discussions)
 - [GitHub Issues](https://github.com/Kendenor/SaloneUI/issues)
 
 ---
