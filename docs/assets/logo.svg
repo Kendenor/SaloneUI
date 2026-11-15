@@ -6,9 +6,9 @@
       <stop offset="100%" stop-color="#0072C6" />
     </linearGradient>
     <style>
-      .brand-text { fill: #111827; }
+      .brand-text { fill: #0072C6; }
       @media (prefers-color-scheme: dark) {
-        .brand-text { fill: #FFFFFF; }
+        .brand-text { fill: #38BDF8; }
       }
     </style>
   </defs>

@@ -448,6 +448,7 @@ textarea::placeholder {
 /* 1. BUTTON */
 
 /* ALL BUTTON COLORS */
+.button.primary { background-color: var(--salone-primary); color: var(--salone-primary-contrast); }
 .button.green,.button.emerald { background-color: var(--salone-green); color: #FFF; }
 .button.teal { background-color: var(--salone-teal); color: #FFF; }
 
@@ -1014,6 +1015,7 @@ details.modal[open] .modal-overlay,
   border: 1px solid var(--salone-surface-border);
 }
 
+.badge.primary { background-color: var(--salone-primary-light); color: var(--salone-primary); }
 .badge.green, .badge.emerald { background-color: var(--salone-green-light); color: var(--salone-green-dark);  }
 .badge.teal { background-color: var(--salone-teal-light); color: var(--salone-teal-dark);  }
 .badge.cyan { background-color: var(--salone-cyan-light); color: var(--salone-cyan-dark);  }

@@ -5,7 +5,6 @@
 ## Canonical Resources
 
 - Documentation: https://kendenor.github.io/SaloneUI/
-- Website Blocks: https://kendenor.github.io/SaloneUI/blocks.html
 - Component Showcase: https://kendenor.github.io/SaloneUI/components.html
 - Interactive Playground: https://kendenor.github.io/SaloneUI/playground.html
 - GitHub Repository: https://github.com/Kendenor/SaloneUI
@@ -188,4 +187,3 @@ Apply on `<body>`:
 3. **6-Card Feature Grid**: Responsive `grid 3` containing icon badges and feature descriptions.
 4. **Newsletter Waitlist Banner**: `card elevated` with inline `<input type="email">` and `<button class="button green">` plus avatar social proof stack.
 
-Full copyable block HTML: https://kendenor.github.io/SaloneUI/blocks.html

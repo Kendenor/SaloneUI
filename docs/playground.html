@@ -62,19 +62,20 @@
     <ul class="nav-links hide-mobile">
       <li><a href="index.html">Home</a></li>
       <li><a href="components.html">Components</a></li>
-      <li><a href="blocks.html">Blocks</a></li>
       <li><a href="playground.html" class="active">Playground</a></li>
       <li><a href="examples.html">Examples</a></li>
-      <li><a href="download.html">Download</a></li>
     </ul>
     <div class="row gap-sm">
-      <button class="button small outline" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme" aria-label="Toggle Theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </button>
+      <select id="themeSelector" onchange="setSiteTheme(this.value)" class="button small outline" style="padding: 0.35rem 0.65rem; font-size: 0.8rem; cursor: pointer;" title="Select Theme">
+        <option value="">Theme: Emerald</option>
+        <option value="theme-fintech">Theme: Fintech</option>
+        <option value="theme-shop">Theme: Shop</option>
+        <option value="theme-school">Theme: School</option>
+        <option value="dark">Theme: Dark</option>
+      </select>
       <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button small outline" title="GitHub" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-      <a href="download.html" class="button small green">Download</a>
-    </div>
-  </nav>
+      <a href="download.html" class="button small hide-mobile">Download</a>
+    </div></nav>
 
   <div class="container" style="padding-top: 2.5rem; padding-bottom: 5rem;">
     <div class="space-between" style="flex-wrap: wrap; gap: 1rem;">
@@ -106,9 +107,27 @@
 
       <!-- RIGHT: LIVE PREVIEW -->
       <div>
-        <div class="space-between" style="margin-bottom: 0.5rem;">
-          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">Live Rendered Component</span>
-          <span class="badge green">Interactive</span>
+        <div class="space-between" style="margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div class="row gap-xs center">
+            <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">Live Preview</span>
+            <span class="badge green">Interactive</span>
+          </div>
+          <!-- Live Color & Theme Controls -->
+          <div class="row gap-xs center" style="flex-wrap: wrap;">
+            <select id="previewThemeSelect" onchange="changePreviewTheme(this.value)" class="button small outline" style="padding: 0.2rem 0.5rem; font-size: 0.78rem; cursor: pointer;">
+              <option value="">Theme: Emerald</option>
+              <option value="theme-fintech">Theme: Fintech</option>
+              <option value="theme-shop">Theme: Shop</option>
+              <option value="theme-school">Theme: School</option>
+              <option value="dark">Theme: Dark</option>
+            </select>
+            <label style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; font-weight: 600; color: var(--salone-text-muted); cursor: pointer; margin-left: 0.25rem;">
+              Edit Color:
+              <input type="color" id="primaryColorPicker" value="#00A651" oninput="changePrimaryColor(this.value)" style="width: 26px; height: 24px; padding: 0; border: 1px solid var(--salone-surface-border); border-radius: 4px; cursor: pointer;">
+            </label>
+            <span id="colorHexLabel" style="font-family: var(--salone-font-mono); font-size: 0.75rem; color: var(--salone-text-muted);">#00A651</span>
+            <button class="button small outline" onclick="resetPrimaryColor()" style="padding: 0.2rem 0.45rem; font-size: 0.72rem;">Reset</button>
+          </div>
         </div>
         <div id="livePreview" class="preview-frame"></div>
       </div>
@@ -184,7 +203,7 @@ Rules for SaloneUI:
       <div class="price" id="playgroundBalance" style="margin: 0.15rem 0;"><span class="currency">$</span> 18,450.00</div>
     </div>
     <div class="row" style="gap: 0.5rem;">
-      <button class="button green small">+ Add Money</button>
+      <button class="button small">+ Add Money</button>
       <button class="button outline small">Send</button>
     </div>
   </div>
@@ -301,7 +320,7 @@ Rules for SaloneUI:
     </div>
 
     <div class="grid 2">
-      <button class="button green full big">Add to Cart</button>
+      <button class="button full big">Add to Cart</button>
       <button class="button outline full big">Buy Now</button>
     </div>
   </div>
@@ -394,6 +413,54 @@ Rules for SaloneUI:
 
     const editor = document.getElementById('htmlInput');
     const preview = document.getElementById('livePreview');
+
+    
+    function changePrimaryColor(hex) {
+      document.getElementById('colorHexLabel').innerText = hex;
+      const preview = document.getElementById('livePreview');
+      preview.style.setProperty('--salone-primary', hex);
+      preview.style.setProperty('--salone-primary-hover', hex);
+      preview.style.setProperty('--salone-primary-light', hex + '26');
+    }
+
+    function resetPrimaryColor() {
+      const preview = document.getElementById('livePreview');
+      preview.style.removeProperty('--salone-primary');
+      preview.style.removeProperty('--salone-primary-hover');
+      preview.style.removeProperty('--salone-primary-light');
+      document.getElementById('primaryColorPicker').value = '#00A651';
+      document.getElementById('colorHexLabel').innerText = '#00A651';
+    }
+
+    function changePreviewTheme(theme) {
+      const preview = document.getElementById('livePreview');
+      preview.classList.remove('theme-fintech', 'theme-shop', 'theme-school', 'dark');
+      if (theme) {
+        preview.classList.add(theme);
+      }
+    }
+
+    function setSiteTheme(theme) {
+      document.body.classList.remove('theme-fintech', 'theme-shop', 'theme-school', 'dark');
+      if (theme) {
+        document.body.classList.add(theme);
+      }
+      localStorage.setItem('salone-theme', theme);
+      const sel = document.getElementById('themeSelector');
+      if (sel) sel.value = theme || '';
+    }
+
+    // Init saved theme
+    (function() {
+      const saved = localStorage.getItem('salone-theme') || '';
+      if (saved) {
+        document.body.classList.add(saved);
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const sel = document.getElementById('themeSelector');
+        if (sel) sel.value = saved;
+      });
+    })();
 
     function renderPreview() {
       preview.innerHTML = editor.value;
