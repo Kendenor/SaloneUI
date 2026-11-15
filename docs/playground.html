@@ -11,7 +11,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
-      min-height: 520px;
+      min-height: 560px;
       margin-top: 1.5rem;
     }
     .editor-pane {
@@ -20,16 +20,16 @@
     }
     .code-editor {
       width: 100%;
-      height: 480px;
+      height: 520px;
       font-family: var(--salone-font-mono);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       padding: 1.25rem;
       background: #0f172a;
       color: #38bdf8;
       border-radius: var(--salone-radius);
       border: 1px solid #1e293b;
       resize: vertical;
-      line-height: 1.5;
+      line-height: 1.55;
     }
     .code-editor:focus {
       outline: none;
@@ -37,11 +37,11 @@
     }
     .preview-frame {
       width: 100%;
-      height: 480px;
+      height: 520px;
       background: var(--salone-surface);
       border: 1px solid var(--salone-surface-border);
       border-radius: var(--salone-radius);
-      padding: 1.5rem;
+      padding: 1.75rem;
       overflow-y: auto;
       box-shadow: var(--salone-shadow-sm);
     }
@@ -68,7 +68,9 @@
       <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
     </ul>
     <div class="row gap-sm">
-      <button class="button small outline" onclick="toggleTheme()" id="themeBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn" title="Toggle Theme" aria-label="Toggle Theme">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
       <a href="download.html" class="button small green">Download</a>
     </div>
   </nav>
@@ -77,12 +79,14 @@
     <div class="space-between" style="flex-wrap: wrap; gap: 1rem;">
       <div>
         <span class="badge green">Interactive Sandbox</span>
-        <h1 style="margin-top: 0.25rem;">Live SaloneUI Playground</h1>
-        <p style="color: var(--salone-text-muted); margin: 0;">Type plain English HTML classes below and preview changes in real time.</p>
+        <h1 style="margin-top: 0.25rem;">Live Playground</h1>
+        <p style="color: var(--salone-text-muted); margin: 0;">Type plain English HTML classes below and preview your design in real time.</p>
       </div>
-      <div class="row">
-        <button class="button small outline" onclick="loadExample('wallet')">Try: Wallet Card</button>
-        <button class="button small outline" onclick="loadExample('shop')">Try: Shop Card</button>
+      <div class="row" style="flex-wrap: wrap;">
+        <button class="button small outline" onclick="loadExample('wallet')">Wallet Card</button>
+        <button class="button small outline" onclick="loadExample('shop')">Product Card</button>
+        <button class="button small outline" onclick="loadExample('saas')">SaaS Metrics</button>
+        <button class="button small outline" onclick="loadExample('colors')">All Colors</button>
         <button class="button small outline" onclick="resetEditor()">Reset</button>
         <button class="button small green" onclick="copyEditorCode(this)">Copy Code</button>
       </div>
@@ -93,8 +97,8 @@
       <!-- LEFT: CODE EDITOR -->
       <div class="editor-pane">
         <div class="space-between" style="margin-bottom: 0.5rem;">
-          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">HTML Input</span>
-          <span style="font-size: 0.8rem; color: var(--salone-text-muted);">Real-time reactive</span>
+          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">HTML Source</span>
+          <span style="font-size: 0.8rem; color: var(--salone-text-muted);">Real-time reactive editor</span>
         </div>
         <textarea id="htmlInput" class="code-editor" spellcheck="false" oninput="renderPreview()"></textarea>
       </div>
@@ -102,8 +106,8 @@
       <!-- RIGHT: LIVE PREVIEW -->
       <div>
         <div class="space-between" style="margin-bottom: 0.5rem;">
-          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">Live Browser Result</span>
-          <span class="badge green">Instant</span>
+          <span style="font-weight: 700; font-size: 0.85rem; color: var(--salone-text-muted); text-transform: uppercase;">Live Rendered Component</span>
+          <span class="badge green">Interactive</span>
         </div>
         <div id="livePreview" class="preview-frame"></div>
       </div>
@@ -111,12 +115,12 @@
 
     <!-- AI PROMPT ASSISTANT SECTION -->
     <div class="card elevated" style="margin-top: 3rem; background: linear-gradient(135deg, var(--salone-bg-subtle) 0%, var(--salone-surface) 100%);">
-      <div class="row space-between" style="margin-bottom: 1rem;">
+      <div class="row space-between" style="margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
         <div>
           <span class="badge blue">AI-Friendly Workflow</span>
           <h3 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">Build with AI using SaloneUI</h3>
           <p style="color: var(--salone-text-muted); font-size: 0.925rem; margin: 0;">
-            Copy this master prompt and give it to ChatGPT, Antigravity, Claude, or Cursor to create entire production apps with SaloneUI.
+            Copy this master prompt and give it to ChatGPT, Antigravity, Claude, or Cursor to create entire web applications with SaloneUI.
           </p>
         </div>
         <button class="button green" onclick="copyAiPrompt(this)">Copy AI Master Prompt</button>
@@ -125,107 +129,244 @@
       <div style="background: #0f172a; padding: 1.25rem; border-radius: var(--salone-radius); color: #e2e8f0; font-family: var(--salone-font-mono); font-size: 0.85rem; line-height: 1.6; border: 1px solid #1e293b;" id="aiPromptBox">
 You are an expert web developer building a modern web application with SaloneUI (v1.0.0), a plain-English CSS framework.
 Rules for SaloneUI:
-1. Use ONLY real words for classes:
-   - Buttons: class="button green big", "button orange", "button blue", "button outline"
+1. Use real words for classes:
+   - Buttons: class="button green", "button indigo", "button purple", "button blue", "button orange", "button red", "button slate", "button outline"
+   - Badges: class="badge green", "badge blue", "badge purple", "badge orange", "badge red"
    - Layout: class="grid 2", "grid 3", "grid 4", "row", "column", "center", "space-between"
    - Containers: class="card", "card flat", "card elevated"
-   - Fintech: class="money-card", class="transaction", class="pin-box", class="price"
+   - Financial: class="money-card" (with card-chip, money-header, money-balance, money-footer), class="transaction", class="pin-box", class="price"
    - Navigation: class="navbar", class="bottom-bar"
-   - UI elements: class="badge green", class="avatar", class="alert success", class="toggle", class="loader", class="progress", class="tabs"
+   - UI elements: class="avatar", class="alert success", class="toggle", class="loader", class="progress", class="tabs"
 2. Theming: Set &lt;body class="theme-fintech"&gt;, "theme-shop", "theme-school", or "dark" for instant aesthetic changes.
 3. Include the CDN link: &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.0.0/dist/salone-ui.css"&gt;
-4. Now, please generate a complete, responsive page for: [Describe your page here, e.g. a school fees portal / fintech dashboard]
+4. Now, generate a complete, responsive page for: [Describe your page here, e.g. a fintech wallet dashboard / product showcase]
       </div>
     </div>
   </div>
 
   <script>
-    const starterTemplate = `<!-- Welcome to SaloneUI Playground! -->
-<div class="column">
+    const starterTemplate = `<!-- Modern Financial Card & Activity -->
+<div class="column" style="gap: 1.25rem;">
   <div class="space-between">
-    <h2>My Dashboard</h2>
+    <div>
+      <h3 style="margin: 0;">Premium Account</h3>
+      <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Active Debit & Vault</span>
+    </div>
     <button class="button green small">+ Add Money</button>
   </div>
 
-  <!-- Built-in Fintech Card -->
+  <!-- Realistic Financial Money Card -->
   <div class="money-card">
     <div class="money-header">
-      <span>Orange Money / Afrimoney</span>
-      <button class="eye-button">Hide</button>
+      <div class="card-chip"></div>
+      <button class="eye-button" onclick="toggleBalance(this)">Hide</button>
     </div>
-    <div class="money-balance">SLL 3,500,000</div>
+    <div>
+      <div style="font-size: 0.85rem; letter-spacing: 0.15em; opacity: 0.85; margin-bottom: 0.35rem;">•••• •••• •••• 8842</div>
+      <div class="money-balance" id="playgroundBalance">$24,850.00</div>
+    </div>
     <div class="money-footer">
-      <span>Sierra Leone</span>
-      <span>● Verified Account</span>
+      <div>
+        <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase;">Cardholder</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">ALEXANDER WRIGHT</div>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase;">Expires</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">09/29</div>
+      </div>
     </div>
   </div>
 
-  <!-- Grid of Actions -->
+  <!-- Quick Action Buttons Palette -->
+  <div class="grid 4">
+    <button class="button green full">Transfer</button>
+    <button class="button indigo full">Deposit</button>
+    <button class="button purple full">Virtual Card</button>
+    <button class="button outline full">Analytics</button>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="card elevated" style="padding: 1rem 1.25rem;">
+    <div class="space-between" style="margin-bottom: 0.75rem;">
+      <span style="font-weight: 700; font-size: 0.9rem;">Recent Activity</span>
+      <span class="badge green">Live Sync</span>
+    </div>
+
+    <div class="transaction" style="margin-bottom: 0.5rem;">
+      <div class="tx-left">
+        <div class="tx-icon" style="background-color: var(--salone-emerald-light); color: var(--salone-emerald);">&darr;</div>
+        <div>
+          <div class="tx-title">Client Wire Transfer</div>
+          <div class="tx-time">Today, 2:40 PM • Stripe Invoice</div>
+        </div>
+      </div>
+      <div class="tx-amount positive">+$4,200.00</div>
+    </div>
+
+    <div class="transaction" style="margin-bottom: 0;">
+      <div class="tx-left">
+        <div class="tx-icon" style="background-color: var(--salone-indigo-light); color: var(--salone-indigo);">&uarr;</div>
+        <div>
+          <div class="tx-title">Cloud Infrastructure Service</div>
+          <div class="tx-time">Yesterday, 11:15 AM • Monthly Subscription</div>
+        </div>
+      </div>
+      <div class="tx-amount negative">-$189.00</div>
+    </div>
+  </div>
+</div>`;
+
+    const walletExample = `<!-- Obsidian Executive Card Preset -->
+<div class="column" style="gap: 1.25rem;">
+  <div class="money-card dark">
+    <div class="money-header">
+      <div class="card-chip"></div>
+      <span class="badge black" style="border: 1px solid rgba(255,255,255,0.2);">Obsidian Black</span>
+    </div>
+    <div style="margin: 0.75rem 0;">
+      <div style="font-size: 0.85rem; letter-spacing: 0.15em; opacity: 0.75; margin-bottom: 0.25rem;">•••• •••• •••• 9914</div>
+      <div class="money-balance">$142,680.50</div>
+    </div>
+    <div class="money-footer">
+      <div>
+        <div style="font-size: 0.72rem; opacity: 0.7; text-transform: uppercase;">Executive Account</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">VICTORIA STERLING</div>
+      </div>
+      <span class="badge blue">Worldwide Active</span>
+    </div>
+  </div>
+
   <div class="grid 2">
-    <div class="card center column">
-      <span class="badge green">Transfer</span>
-      <h4>Send Money</h4>
-      <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Instant mobile transfer</p>
-      <button class="button green full">Transfer</button>
+    <div class="card elevated center column" style="padding: 1.25rem;">
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Daily Spending Limit</span>
+      <div class="price" style="margin: 0.25rem 0;"><span class="currency">$</span> 10,000</div>
+      <div class="progress" style="margin-top: 0.5rem;"><div class="bar" style="width: 32%;"></div></div>
     </div>
-    <div class="card center column">
-      <span class="badge orange">Commerce</span>
-      <h4>Pay Merchant</h4>
-      <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Scan QR or enter code</p>
-      <button class="button orange full">Pay Now</button>
+    <div class="card elevated center column" style="padding: 1.25rem;">
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Monthly Cashback</span>
+      <div class="price" style="margin: 0.25rem 0;"><span class="currency">$</span> 1,420</div>
+      <span class="badge green">3% Return Tier</span>
     </div>
   </div>
 </div>`;
 
-    const walletExample = `<div class="card elevated">
-  <div class="money-card">
-    <div class="money-header">
-      <span>Total Balance</span>
-      <button class="eye-button">Show</button>
-    </div>
-    <div class="money-balance">SLL 8,920,000</div>
-    <div class="money-footer">
-      <span>Afrimoney • Freetown</span>
-      <span class="badge black">Tier 3</span>
-    </div>
+    const shopExample = `<!-- Realistic E-Commerce Showcase -->
+<div class="card elevated" style="max-width: 420px; margin: 0 auto; overflow: hidden; padding: 0;">
+  <!-- Product Image Header -->
+  <div style="height: 190px; background: radial-gradient(circle at 50% 50%, #3B82F6 0%, #1E3A8A 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FFF; position: relative;">
+    <span class="badge orange" style="position: absolute; top: 1rem; left: 1rem;">Limited Edition</span>
+    <span class="badge black" style="position: absolute; top: 1rem; right: 1rem;">Free Shipping</span>
+    <div style="font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;">Acoustic Pro X</div>
+    <div style="font-size: 0.85rem; opacity: 0.85;">Wireless Noise-Canceling Headphones</div>
   </div>
 
-  <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Recent Transactions</h4>
-  <div class="transaction">
-    <div class="tx-left">
-      <div class="tx-icon">↓</div>
-      <div>
-        <div class="tx-title">Bank Deposit</div>
-        <div class="tx-time">Today, 10:14 AM</div>
+  <div style="padding: 1.5rem;">
+    <div class="space-between" style="margin-bottom: 0.5rem;">
+      <h3 style="margin: 0;">Acoustic Pro X</h3>
+      <div class="price">
+        <span class="currency">$</span> 299 <span class="period">USD</span>
       </div>
     </div>
-    <div class="tx-amount positive">+SLL 2,000,000</div>
-  </div>
 
-  <div class="transaction">
-    <div class="tx-left">
-      <div class="tx-icon" style="background-color: var(--salone-orange-light); color: var(--salone-orange);">↑</div>
-      <div>
-        <div class="tx-title">EDSA Electricity Token</div>
-        <div class="tx-time">Yesterday, 4:20 PM</div>
-      </div>
+    <p style="color: var(--salone-text-muted); font-size: 0.88rem; line-height: 1.5;">
+      Custom tuned 40mm drivers, 60 hours continuous battery playback, lossless Bluetooth 5.4, and ultra-plush memory foam cushions.
+    </p>
+
+    <div class="row" style="margin: 1.25rem 0 1.5rem; gap: 0.5rem;">
+      <span class="badge purple">Midnight Black</span>
+      <span class="badge blue">Silver Platinum</span>
+      <span class="badge emerald">In Stock</span>
     </div>
-    <div class="tx-amount negative">-SLL 150,000</div>
+
+    <div class="grid 2">
+      <button class="button green full big">Add to Cart</button>
+      <button class="button outline full big">Buy Now</button>
+    </div>
   </div>
 </div>`;
 
-    const shopExample = `<div class="card">
-  <div class="badge orange" style="margin-bottom: 0.75rem;">Hot Deal</div>
-  <h3>Original Cotton Gara Shirt</h3>
-  <p style="color: var(--salone-text-muted); font-size: 0.9rem;">Handcrafted authentic Sierra Leone traditional fabric.</p>
-  
-  <div class="price" style="margin: 1rem 0;">
-    <span class="currency">SLL</span> 180,000
+    const saasExample = `<!-- Modern SaaS Analytics Dashboard Card -->
+<div class="column" style="gap: 1.25rem;">
+  <div class="grid 3">
+    <div class="card elevated">
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Monthly Recurring Revenue</span>
+      <div class="price" style="margin: 0.35rem 0;"><span class="currency">$</span> 84,250</div>
+      <span class="badge green">&uarr; +18.4% MoM</span>
+    </div>
+    <div class="card elevated">
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Active Subscriptions</span>
+      <div style="font-size: 1.75rem; font-weight: 800; margin: 0.35rem 0;">3,420</div>
+      <span class="badge blue">&uarr; +142 this week</span>
+    </div>
+    <div class="card elevated">
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">API Server Health</span>
+      <div style="font-size: 1.75rem; font-weight: 800; margin: 0.35rem 0; color: var(--salone-green);">99.99%</div>
+      <span class="badge emerald">All Systems Normal</span>
+    </div>
   </div>
 
-  <div class="row">
-    <button class="button green full">Add to Cart</button>
-    <button class="button outline small">Wishlist</button>
+  <div class="card elevated">
+    <div class="space-between" style="margin-bottom: 1rem;">
+      <div>
+        <h4 style="margin: 0;">Quarterly Revenue Milestone</h4>
+        <span style="font-size: 0.825rem; color: var(--salone-text-muted);">$84,250 achieved of $100,000 goal</span>
+      </div>
+      <span class="badge indigo">84.2% Completed</span>
+    </div>
+    <div class="progress"><div class="bar" style="width: 84.2%;"></div></div>
+  </div>
+</div>`;
+
+    const colorsExample = `<!-- Complete SaloneUI Modern Color Palette -->
+<div class="column" style="gap: 1.25rem;">
+  <div>
+    <h3 style="margin-bottom: 0.25rem;">All Real-Word Color Buttons</h3>
+    <span style="color: var(--salone-text-muted); font-size: 0.85rem;">Every real-word color has built-in tactile hover and active states.</span>
+  </div>
+
+  <div class="row" style="gap: 0.65rem;">
+    <button class="button green">Green</button>
+    <button class="button emerald">Emerald</button>
+    <button class="button teal">Teal</button>
+    <button class="button cyan">Cyan</button>
+    <button class="button blue">Blue</button>
+    <button class="button sky">Sky</button>
+    <button class="button indigo">Indigo</button>
+    <button class="button violet">Violet</button>
+    <button class="button purple">Purple</button>
+    <button class="button pink">Pink</button>
+    <button class="button rose">Rose</button>
+    <button class="button red">Red</button>
+    <button class="button orange">Orange</button>
+    <button class="button amber">Amber</button>
+    <button class="button slate">Slate</button>
+    <button class="button dark">Dark</button>
+    <button class="button outline">Outline</button>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <h4 style="margin-bottom: 0.5rem;">Status Badges</h4>
+    <div class="row" style="gap: 0.5rem;">
+      <span class="badge green">Green</span>
+      <span class="badge blue">Blue</span>
+      <span class="badge sky">Sky</span>
+      <span class="badge indigo">Indigo</span>
+      <span class="badge purple">Purple</span>
+      <span class="badge pink">Pink</span>
+      <span class="badge orange">Orange</span>
+      <span class="badge amber">Amber</span>
+      <span class="badge red">Red</span>
+      <span class="badge dark">Dark</span>
+      <span class="badge slate">Slate</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <h4 style="margin-bottom: 0.5rem;">Alert Notifications</h4>
+    <div class="alert success">Success: Operation finished with zero errors.</div>
+    <div class="alert info">Information: New API version 1.0.0 is now live.</div>
+    <div class="alert warning">Warning: Your monthly usage quota is at 85%.</div>
+    <div class="alert error">Error: Unable to establish database connection.</div>
   </div>
 </div>`;
 
@@ -244,6 +385,8 @@ Rules for SaloneUI:
     function loadExample(type) {
       if (type === 'wallet') editor.value = walletExample;
       if (type === 'shop') editor.value = shopExample;
+      if (type === 'saas') editor.value = saasExample;
+      if (type === 'colors') editor.value = colorsExample;
       renderPreview();
     }
 
@@ -266,7 +409,26 @@ Rules for SaloneUI:
 
     function toggleTheme() {
       const isDark = document.body.classList.toggle('dark');
-      document.getElementById('themeBtn').innerHTML = isDark ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>' : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      const themeBtn = document.getElementById('themeBtn');
+      if (isDark) {
+        themeBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+      } else {
+        themeBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      }
+    }
+
+    let isBalanceHidden = false;
+    function toggleBalance(btn) {
+      const bal = document.getElementById('playgroundBalance');
+      if (!bal) return;
+      isBalanceHidden = !isBalanceHidden;
+      if (isBalanceHidden) {
+        bal.innerText = '$••••••••';
+        btn.innerText = 'Show';
+      } else {
+        bal.innerText = '$24,850.00';
+        btn.innerText = 'Hide';
+      }
     }
 
     // Initialize
