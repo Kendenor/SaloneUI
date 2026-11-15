@@ -68,7 +68,7 @@
       <li><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub</a></li>
     </ul>
     <div class="row gap-sm">
-      <button class="button small outline" onclick="toggleTheme()" id="themeBtn">🌙</button>
+      <button class="button small outline" onclick="toggleTheme()" id="themeBtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
       <a href="download.html" class="button small green">Download</a>
     </div>
   </nav>
@@ -113,13 +113,13 @@
     <div class="card elevated" style="margin-top: 3rem; background: linear-gradient(135deg, var(--salone-bg-subtle) 0%, var(--salone-surface) 100%);">
       <div class="row space-between" style="margin-bottom: 1rem;">
         <div>
-          <span class="badge blue">🤖 AI-Friendly Superpower</span>
+          <span class="badge blue">AI-Friendly Workflow</span>
           <h3 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">Build with AI using SaloneUI</h3>
           <p style="color: var(--salone-text-muted); font-size: 0.925rem; margin: 0;">
             Copy this master prompt and give it to ChatGPT, Antigravity, Claude, or Cursor to create entire production apps with SaloneUI.
           </p>
         </div>
-        <button class="button green" onclick="copyAiPrompt(this)">📋 Copy AI Master Prompt</button>
+        <button class="button green" onclick="copyAiPrompt(this)">Copy AI Master Prompt</button>
       </div>
 
       <div style="background: #0f172a; padding: 1.25rem; border-radius: var(--salone-radius); color: #e2e8f0; font-family: var(--salone-font-mono); font-size: 0.85rem; line-height: 1.6; border: 1px solid #1e293b;" id="aiPromptBox">
@@ -163,13 +163,13 @@ Rules for SaloneUI:
   <!-- Grid of Actions -->
   <div class="grid 2">
     <div class="card center column">
-      <span style="font-size: 1.5rem;">💸</span>
+      <span class="badge green">Transfer</span>
       <h4>Send Money</h4>
       <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Instant mobile transfer</p>
       <button class="button green full">Transfer</button>
     </div>
     <div class="card center column">
-      <span style="font-size: 1.5rem;">🛍️</span>
+      <span class="badge orange">Commerce</span>
       <h4>Pay Merchant</h4>
       <p style="font-size: 0.85rem; color: var(--salone-text-muted);">Scan QR or enter code</p>
       <button class="button orange full">Pay Now</button>
@@ -266,7 +266,7 @@ Rules for SaloneUI:
 
     function toggleTheme() {
       const isDark = document.body.classList.toggle('dark');
-      document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+      document.getElementById('themeBtn').innerHTML = isDark ? '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>' : '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
     }
 
     // Initialize
