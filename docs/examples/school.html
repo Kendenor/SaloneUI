@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Fees & Tuition Portal — SaloneUI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+</head>
+<body class="theme-school">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand">
+      <span style="font-size: 1.5rem;">🎓</span> Fourah Bay College Portal
+    </a>
+    <div class="row gap-sm">
+      <span class="badge blue">Academic Year 2026/2027</span>
+      <button class="button small outline">Logout</button>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 2.5rem; padding-bottom: 5rem; max-width: 860px;">
+    <!-- STUDENT PROFILE HEADER -->
+    <div class="profile" style="margin-bottom: 2rem;">
+      <div class="avatar big" style="background-color: var(--salone-blue);">IS</div>
+      <div class="profile-details">
+        <div class="profile-name">
+          Ibrahim S. Mansaray <span class="badge green">Enrolled</span>
+        </div>
+        <div class="profile-bio">BSc Computer Science • Level 300 • ID #FBC-CS-2024-889</div>
+      </div>
+      <button class="button small outline hide-mobile" onclick="window.print()">🖨️ Print Statement</button>
+    </div>
+
+    <!-- TUITION PROGRESS CARD -->
+    <div class="card elevated" style="margin-bottom: 2rem;">
+      <div class="space-between" style="margin-bottom: 0.75rem;">
+        <div>
+          <h4 style="margin: 0;">Annual Tuition Payment Progress</h4>
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted);">SLL 3,750,000 of SLL 5,000,000 Paid (75%)</span>
+        </div>
+        <span class="badge orange">Outstanding: SLL 1,250,000</span>
+      </div>
+      <div class="progress">
+        <div class="bar" style="width: 75%;"></div>
+      </div>
+    </div>
+
+    <!-- FEE BREAKDOWN TABLE -->
+    <div class="card elevated" style="margin-bottom: 2rem; padding: 0; overflow: hidden;">
+      <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--salone-surface-border);">
+        <h4 style="margin: 0;">Fee Breakdown by Term</h4>
+      </div>
+      <div class="table-wrap">
+        <table class="table" style="border: none; box-shadow: none;">
+          <thead>
+            <tr>
+              <th>Term / Item</th>
+              <th>Due Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Semester 1 Tuition</td>
+              <td>15 Oct 2026</td>
+              <td>SLL 2,500,000</td>
+              <td><span class="badge green">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Computer Lab & Library Fee</td>
+              <td>15 Oct 2026</td>
+              <td>SLL 1,250,000</td>
+              <td><span class="badge green">Paid</span></td>
+            </tr>
+            <tr>
+              <td>Semester 2 Tuition</td>
+              <td>20 Feb 2027</td>
+              <td>SLL 1,250,000</td>
+              <td><span class="badge orange">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- QUICK PAYMENT SECTION -->
+    <div class="card">
+      <h3>Pay Remaining Balance</h3>
+      <p style="color: var(--salone-text-muted); font-size: 0.9rem;">
+        Select your mobile money or bank provider to clear outstanding balance immediately:
+      </p>
+
+      <div class="grid 3" style="margin: 1.25rem 0;">
+        <label class="card center column" style="cursor: pointer; border: 2px solid var(--salone-primary);">
+          <input type="radio" name="payMethod" checked style="margin-bottom: 0.5rem;">
+          <span style="font-weight: 700;">Orange Money</span>
+        </label>
+        <label class="card center column" style="cursor: pointer;">
+          <input type="radio" name="payMethod" style="margin-bottom: 0.5rem;">
+          <span style="font-weight: 700;">Afrimoney</span>
+        </label>
+        <label class="card center column" style="cursor: pointer;">
+          <input type="radio" name="payMethod" style="margin-bottom: 0.5rem;">
+          <span style="font-weight: 700;">Monime / Bank</span>
+        </label>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 1rem;">
+        <label class="label">Payer Mobile Number</label>
+        <input class="input" placeholder="e.g. +232 78 554433" value="+232 76 991234">
+      </div>
+
+      <button class="button big blue full" onclick="completePayment()">Pay SLL 1,250,000 Now</button>
+    </div>
+  </main>
+
+  <script>
+    function completePayment() {
+      alert('Payment authorization prompt sent to phone. Enter your 4-digit PIN to confirm tuition clearance.');
+    }
+  </script>
+</body>
+</html>

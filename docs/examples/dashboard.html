@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — SaloneUI Analytics</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    .dash-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+    .dash-sidebar {
+      background-color: var(--salone-surface);
+      border-right: 1px solid var(--salone-surface-border);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dash-menu {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .dash-menu a {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--salone-radius-sm);
+      color: var(--salone-text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .dash-menu a:hover,
+    .dash-menu a.active {
+      background-color: var(--salone-primary-light);
+      color: var(--salone-primary);
+    }
+    .dash-main {
+      padding: 2rem;
+      background-color: var(--salone-bg-subtle);
+      overflow-y: auto;
+    }
+    @media (max-width: 850px) {
+      .dash-layout {
+        grid-template-columns: 1fr;
+      }
+      .dash-sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dash-layout">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <div>
+        <a href="../docs/index.html" class="row gap-sm" style="text-decoration: none;">
+          <img src="../assets/logo.svg" alt="SaloneUI" height="32">
+        </a>
+        <ul class="dash-menu">
+          <li><a href="#" class="active"><span>📊</span> Overview</a></li>
+          <li><a href="#"><span>💳</span> Transactions</a></li>
+          <li><a href="#"><span>👥</span> Customers</a></li>
+          <li><a href="#"><span>🛍️</span> Products</a></li>
+          <li><a href="#"><span>📈</span> Reports</a></li>
+          <li><a href="#"><span>⚙️</span> Settings</a></li>
+        </ul>
+      </div>
+
+      <div class="card flat" style="padding: 0.75rem; background: var(--salone-bg-subtle);">
+        <div class="row gap-sm">
+          <div class="avatar small">AD</div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.85rem;">Admin User</div>
+            <div style="font-size: 0.75rem; color: var(--salone-text-muted);">admin@salone.sl</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="dash-main">
+      <!-- TOP HEADER -->
+      <div class="space-between" style="margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 style="margin: 0;">Business Dashboard</h2>
+          <span style="color: var(--salone-text-muted); font-size: 0.875rem;">Freetown Merchant Headquarters • Real-time stats</span>
+        </div>
+        <div class="row gap-sm">
+          <div class="search" style="width: 240px;">
+            <input type="text" placeholder="Search orders...">
+          </div>
+          <button class="button green small" onclick="alert('Exporting data report...')">📥 Export CSV</button>
+        </div>
+      </div>
+
+      <!-- METRIC STAT CARDS -->
+      <div class="grid 4" style="margin-bottom: 2rem;">
+        <div class="card elevated">
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted); font-weight: 600;">Total Revenue</span>
+          <div class="price" style="margin: 0.5rem 0;">
+            <span class="currency">SLL</span> 48.2M
+          </div>
+          <span class="badge green">↑ +14.2% this week</span>
+        </div>
+
+        <div class="card elevated">
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted); font-weight: 600;">Active Customers</span>
+          <div style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;">2,840</div>
+          <span class="badge blue">↑ +88 new today</span>
+        </div>
+
+        <div class="card elevated">
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted); font-weight: 600;">Transactions</span>
+          <div style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;">14,921</div>
+          <span class="badge green">99.8% Success Rate</span>
+        </div>
+
+        <div class="card elevated">
+          <span style="font-size: 0.85rem; color: var(--salone-text-muted); font-weight: 600;">Monthly Target</span>
+          <div style="font-size: 1.75rem; font-weight: 800; margin: 0.5rem 0;">82%</div>
+          <div class="progress" style="margin-top: 0.5rem;">
+            <div class="bar" style="width: 82%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECENT ORDERS TABLE -->
+      <div class="card elevated" style="padding: 0; overflow: hidden;">
+        <div class="space-between" style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--salone-surface-border);">
+          <h4 style="margin: 0;">Recent Transactions & Orders</h4>
+          <span class="badge grey">Live Feed</span>
+        </div>
+        <div class="table-wrap">
+          <table class="table" style="border: none; box-shadow: none;">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Payment Channel</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#SL-9821</td>
+                <td>Mohamed Bangura</td>
+                <td>Orange Money</td>
+                <td><strong>SLL 750,000</strong></td>
+                <td><span class="badge green">Completed</span></td>
+                <td>Just now</td>
+              </tr>
+              <tr>
+                <td>#SL-9820</td>
+                <td>Fatima Koroma</td>
+                <td>Afrimoney</td>
+                <td><strong>SLL 340,000</strong></td>
+                <td><span class="badge green">Completed</span></td>
+                <td>12 mins ago</td>
+              </tr>
+              <tr>
+                <td>#SL-9819</td>
+                <td>David Conteh</td>
+                <td>Monime Checkout</td>
+                <td><strong>SLL 1,200,000</strong></td>
+                <td><span class="badge orange">Processing</span></td>
+                <td>35 mins ago</td>
+              </tr>
+              <tr>
+                <td>#SL-9818</td>
+                <td>Mariama Jalloh</td>
+                <td>Bank Transfer</td>
+                <td><strong>SLL 450,000</strong></td>
+                <td><span class="badge green">Completed</span></td>
+                <td>1 hour ago</td>
+              </tr>
+              <tr>
+                <td>#SL-9817</td>
+                <td>Alhaji Sesay</td>
+                <td>Orange Money</td>
+                <td><strong>SLL 190,000</strong></td>
+                <td><span class="badge red">Cancelled</span></td>
+                <td>3 hours ago</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

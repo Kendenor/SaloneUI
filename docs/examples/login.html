@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — SaloneUI Security</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../dist/salone-ui.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--salone-bg-subtle);
+      padding: 1.5rem;
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 440px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card elevated auth-card">
+    <div class="center column" style="margin-bottom: 1.75rem;">
+      <img src="../assets/logo.svg" alt="SaloneUI" height="40" style="margin-bottom: 0.75rem;">
+      <h2 style="margin: 0; font-size: 1.5rem;">Welcome Back</h2>
+      <p style="color: var(--salone-text-muted); font-size: 0.875rem; margin-top: 0.25rem;">
+        Sign in to your account with password or mobile PIN
+      </p>
+    </div>
+
+    <!-- TABS: Email or Mobile PIN -->
+    <div class="tabs" style="margin-bottom: 1.5rem;">
+      <button class="active" id="tabEmailBtn" onclick="showAuthTab('email')">Email Login</button>
+      <button id="tabPinBtn" onclick="showAuthTab('pin')">4-Digit Mobile PIN</button>
+    </div>
+
+    <!-- FORM 1: EMAIL & PASSWORD -->
+    <form class="form" id="emailForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="label">Email Address</label>
+        <input class="input" type="email" placeholder="name@company.sl" required>
+      </div>
+
+      <div class="form-group">
+        <div class="space-between">
+          <label class="label">Password</label>
+          <a href="#" style="font-size: 0.8rem;">Forgot?</a>
+        </div>
+        <input class="input" type="password" placeholder="••••••••" required>
+      </div>
+
+      <div class="space-between" style="font-size: 0.875rem;">
+        <label class="toggle">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+          <span>Remember me</span>
+        </label>
+      </div>
+
+      <button class="button green full big" type="submit">Sign In</button>
+    </form>
+
+    <!-- FORM 2: 4-DIGIT PIN -->
+    <form class="form" id="pinForm" style="display: none;" onsubmit="handlePinLogin(event)">
+      <div class="form-group">
+        <label class="label">Registered Mobile Number</label>
+        <input class="input" type="tel" placeholder="+232 76 000000" value="+232 76 123456" required>
+      </div>
+
+      <div class="center column" style="margin-top: 0.5rem;">
+        <label class="label">Enter 4-Digit Security PIN</label>
+        <div class="pin-box">
+          <input type="password" maxlength="1" class="pin-digit" autofocus>
+          <input type="password" maxlength="1" class="pin-digit">
+          <input type="password" maxlength="1" class="pin-digit">
+          <input type="password" maxlength="1" class="pin-digit">
+        </div>
+      </div>
+
+      <button class="button green full big" type="submit" style="margin-top: 0.5rem;">Authorize & Log In</button>
+    </form>
+
+    <div class="center" style="margin-top: 1.5rem; font-size: 0.875rem; color: var(--salone-text-muted);">
+      Don't have an account?&nbsp;<a href="#">Register here</a>
+    </div>
+  </div>
+
+  <script>
+    function showAuthTab(mode) {
+      const emailForm = document.getElementById('emailForm');
+      const pinForm = document.getElementById('pinForm');
+      const tabEmailBtn = document.getElementById('tabEmailBtn');
+      const tabPinBtn = document.getElementById('tabPinBtn');
+
+      if (mode === 'email') {
+        emailForm.style.display = 'flex';
+        pinForm.style.display = 'none';
+        tabEmailBtn.classList.add('active');
+        tabPinBtn.classList.remove('active');
+      } else {
+        emailForm.style.display = 'none';
+        pinForm.style.display = 'flex';
+        tabEmailBtn.classList.remove('active');
+        tabPinBtn.classList.add('active');
+        document.querySelector('.pin-digit').focus();
+      }
+    }
+
+    // Auto-advance PIN inputs
+    const pinInputs = document.querySelectorAll('.pin-digit');
+    pinInputs.forEach((inp, idx) => {
+      inp.addEventListener('input', (e) => {
+        if (inp.value && idx < pinInputs.length - 1) {
+          pinInputs[idx + 1].focus();
+        }
+      });
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !inp.value && idx > 0) {
+          pinInputs[idx - 1].focus();
+        }
+      });
+    });
+
+    function handleLogin(e) {
+      e.preventDefault();
+      alert('Sign-in successful! Redirecting to dashboard...');
+      window.location.href = 'dashboard.html';
+    }
+
+    function handlePinLogin(e) {
+      e.preventDefault();
+      alert('PIN verified! Access granted.');
+      window.location.href = 'wallet.html';
+    }
+  </script>
+</body>
+</html>
