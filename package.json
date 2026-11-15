@@ -21,7 +21,7 @@
   "author": "SaloneUI Team",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kendenor/SaloneUI.git"
+    "url": "git+https://github.com/Kendenor/SaloneUI.git"
   },
   "homepage": "https://kendenor.github.io/SaloneUI"
 }
