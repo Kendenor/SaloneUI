@@ -85,8 +85,8 @@
   --salone-radius-lg: 18px;
   --salone-radius-full: 9999px;
 
-  --salone-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --salone-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --salone-font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --salone-font-mono: ui-monospace, Menlo, Consolas, monospace;
 
   /* Modern Refined Shadows */
   --salone-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -191,9 +191,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--salone-text);
 }
 
-h1 { font-size: 2.25rem; letter-spacing: -0.03em; }
-h2 { font-size: 1.875rem; letter-spacing: -0.025em; }
-h3 { font-size: 1.5rem; letter-spacing: -0.015em; }
+h1 { font-size: 2.25rem;  }
+h2 { font-size: 1.875rem;  }
+h3 { font-size: 1.5rem;  }
 h4 { font-size: 1.25rem; }
 h5 { font-size: 1.125rem; }
 h6 { font-size: 1rem; }
@@ -284,7 +284,7 @@ input[type="reset"] {
   color: var(--salone-primary-contrast);
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all var(--salone-transition);
   user-select: none;
 }
@@ -356,9 +356,7 @@ textarea::placeholder {
   width: 100%;
 }
 
-.grid,
-.grid.\31 ,
-.grid[class*="1"] {
+.grid {
   grid-template-columns: 1fr;
 }
 
@@ -461,7 +459,7 @@ textarea::placeholder {
   color: var(--salone-primary-contrast);
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transition: all var(--salone-transition);
 }
 
@@ -479,7 +477,7 @@ textarea::placeholder {
 }
 
 /* ALL BUTTON COLORS */
-.button.green, .button.emerald { background-color: var(--salone-green); color: #FFF; }
+.button.green,.button.emerald { background-color: var(--salone-green); color: #FFF; }
 .button.green:hover, 
 
 .button.teal { background-color: var(--salone-teal); color: #FFF; }
@@ -631,114 +629,154 @@ textarea::placeholder {
   color: var(--salone-text);
 }
 
-/* 4. MONEY CARD (REALISTIC FINANCIAL CARDS) */
+
+/* 4. REALISTIC FINANCIAL MONEY CARD */
 .money-card {
-  background: linear-gradient(135deg, #059669 0%, #0D9488 50%, #2563EB 100%);
+  background: linear-gradient(135deg, #059669 0%, #0D9488 45%, #2563EB 100%);
   color: #FFFFFF;
   border-radius: 18px;
-  padding: 1.75rem;
-  box-shadow: 0 12px 28px -4px rgba(5, 150, 105, 0.35);
+  padding: 1.5rem 1.65rem;
+  box-shadow: 0 20px 35px -10px rgba(5, 150, 105, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 200px;
+  min-height: 205px;
+  max-width: 380px;
+  aspect-ratio: 1.586 / 1;
 }
 
 .money-card.dark {
   background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-  box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
 }
 
 .money-card.purple {
   background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #2563EB 100%);
-  box-shadow: 0 12px 28px -4px rgba(124, 58, 237, 0.35);
+  box-shadow: 0 20px 35px -10px rgba(124, 58, 237, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
 }
 
 .money-card.gold {
-  background: linear-gradient(135deg, #D97706 0%, #EA580C 100%);
-  box-shadow: 0 12px 28px -4px rgba(217, 119, 6, 0.35);
+  background: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
+  box-shadow: 0 20px 35px -10px rgba(217, 119, 6, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
 }
 
 .money-card::before {
-  content: "";
+  content: ";
   position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  inset: 0;
+  background: linear-gradient(125deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 40%, transparent 60%, rgba(255,255,255,0.08) 100%);
   pointer-events: none;
-}
-
-.money-card::after {
-  content: "";
-  position: absolute;
-  bottom: -50px;
-  left: 25%;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.07);
-  pointer-events: none;
+  border-radius: inherit;
 }
 
 .money-card .card-chip {
-  width: 40px;
-  height: 30px;
-  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%);
+  width: 44px;
+  height: 32px;
+  background: linear-gradient(135deg, #FFE57F 0%, #FFC107 50%, #FFA000 100%);
   border-radius: 6px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), 0 2px 4px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #D48800;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+}
+
+.money-card .card-chip::before {
+  content: ";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  border-radius: 3px;
+}
+
+.money-card .card-chip::after {
+  content: ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.money-card .card-network {
+  display: flex;
+  align-items: center;
+}
+.money-card .card-network .circle-1 {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #EB001B;
+  opacity: 0.92;
+}
+.money-card .card-network .circle-2 {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #F79E1B;
+  margin-left: -12px;
+  opacity: 0.92;
 }
 
 .money-card .money-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.85rem;
-  opacity: 0.92;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.money-card .card-number {
+  font-family: var(--salone-font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  margin: 0.65rem 0 0.25rem;
+  position: relative;
+  z-index: 1;
 }
 
 .money-card .money-balance {
-  font-size: 2.15rem;
+  font-size: 1.85rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0.65rem 0;
+  
+  margin: 0.25rem 0 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  position: relative;
+  z-index: 1;
 }
 
 .money-card .money-footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  font-size: 0.875rem;
-  opacity: 0.94;
+  font-size: 0.85rem;
+  opacity: 0.95;
+  position: relative;
+  z-index: 1;
 }
 
 .money-card .eye-button {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
   padding: 0.3rem 0.65rem;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.725rem;
   font-weight: 600;
   cursor: pointer;
   box-shadow: none;
   backdrop-filter: blur(4px);
 }
 .money-card .eye-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 /* 5. TRANSACTION */
@@ -1204,7 +1242,7 @@ details.modal[open] .modal-overlay,
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--salone-text);
-  letter-spacing: -0.02em;
+  
   display: inline-flex;
   align-items: baseline;
   gap: 0.25rem;

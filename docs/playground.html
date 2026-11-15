@@ -145,73 +145,87 @@ Rules for SaloneUI:
   </div>
 
   <script>
-    const starterTemplate = `<!-- Modern Financial Card & Activity -->
+    const starterTemplate = `<!-- Realistic Executive Debit Card -->
 <div class="column" style="gap: 1.25rem;">
-  <div class="space-between">
-    <div>
-      <h3 style="margin: 0;">Premium Account</h3>
-      <span style="font-size: 0.85rem; color: var(--salone-text-muted);">Active Debit & Vault</span>
-    </div>
-    <button class="button green small">+ Add Money</button>
-  </div>
-
-  <!-- Realistic Financial Money Card -->
   <div class="money-card">
     <div class="money-header">
-      <div class="card-chip"></div>
-      <button class="eye-button" onclick="toggleBalance(this)">Hide</button>
+      <div class="row" style="gap: 0.75rem;">
+        <div class="card-chip"></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"><path d="M5 9c2.5-2.5 6.5-2.5 9 0M2 6c4.5-4.5 11.5-4.5 16 0M8 12c1.2-1.2 3.2-1.2 4.4 0"/></svg>
+      </div>
+      <div class="card-network">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+      </div>
     </div>
-    <div>
-      <div style="font-size: 0.85rem; letter-spacing: 0.15em; opacity: 0.85; margin-bottom: 0.35rem;">•••• •••• •••• 8842</div>
-      <div class="money-balance" id="playgroundBalance">$24,850.00</div>
-    </div>
+    
+    <div class="card-number">4532 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 9821</div>
+
     <div class="money-footer">
       <div>
-        <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase;">Cardholder</div>
-        <div style="font-weight: 700; font-size: 0.95rem;">ALEXANDER WRIGHT</div>
+        <div style="font-size: 0.68rem; text-transform: uppercase; opacity: 0.75; letter-spacing: 0.05em;">Cardholder</div>
+        <div style="font-weight: 700; font-size: 0.95rem; letter-spacing: 0.05em;">ALEXANDER WRIGHT</div>
       </div>
       <div>
-        <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase;">Expires</div>
-        <div style="font-weight: 700; font-size: 0.95rem;">09/29</div>
+        <div style="font-size: 0.68rem; text-transform: uppercase; opacity: 0.75; letter-spacing: 0.05em;">Expires</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">08/29</div>
+      </div>
+      <div>
+        <button class="eye-button" onclick="toggleBalance(this)">Hide</button>
       </div>
     </div>
   </div>
 
-  <!-- Quick Action Buttons Palette -->
-  <div class="grid 4">
-    <button class="button green full">Transfer</button>
-    <button class="button indigo full">Deposit</button>
-    <button class="button purple full">Virtual Card</button>
-    <button class="button outline full">Analytics</button>
+  <!-- Real Balance & Quick Actions -->
+  <div class="space-between card" style="padding: 1.15rem 1.4rem;">
+    <div>
+      <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Available Balance</span>
+      <div class="price" id="playgroundBalance" style="margin: 0.15rem 0;"><span class="currency">$</span> 18,450.00</div>
+    </div>
+    <div class="row" style="gap: 0.5rem;">
+      <button class="button green small">+ Add Money</button>
+      <button class="button outline small">Send</button>
+    </div>
   </div>
 
-  <!-- Recent Activity -->
-  <div class="card elevated" style="padding: 1rem 1.25rem;">
-    <div class="space-between" style="margin-bottom: 0.75rem;">
+  <!-- Real-World Transaction Activity -->
+  <div class="card elevated" style="padding: 1.25rem;">
+    <div class="space-between" style="margin-bottom: 0.85rem;">
       <span style="font-weight: 700; font-size: 0.9rem;">Recent Activity</span>
-      <span class="badge green">Live Sync</span>
+      <span class="badge emerald">Verified</span>
     </div>
 
-    <div class="transaction" style="margin-bottom: 0.5rem;">
+    <div class="transaction">
       <div class="tx-left">
-        <div class="tx-icon" style="background-color: var(--salone-emerald-light); color: var(--salone-emerald);">&darr;</div>
+        <div class="tx-icon" style="background-color: var(--salone-green-light); color: var(--salone-green);">&darr;</div>
         <div>
-          <div class="tx-title">Client Wire Transfer</div>
-          <div class="tx-time">Today, 2:40 PM • Stripe Invoice</div>
+          <div class="tx-title">Stripe Payout Transfer</div>
+          <div class="tx-time">Today, 2:15 PM &bull; Direct Deposit</div>
         </div>
       </div>
-      <div class="tx-amount positive">+$4,200.00</div>
+      <div class="tx-amount positive">+$2,450.00</div>
     </div>
 
-    <div class="transaction" style="margin-bottom: 0;">
+    <div class="transaction">
       <div class="tx-left">
         <div class="tx-icon" style="background-color: var(--salone-indigo-light); color: var(--salone-indigo);">&uarr;</div>
         <div>
-          <div class="tx-title">Cloud Infrastructure Service</div>
-          <div class="tx-time">Yesterday, 11:15 AM • Monthly Subscription</div>
+          <div class="tx-title">Apple Store Downtown</div>
+          <div class="tx-time">Yesterday, 5:30 PM &bull; Contactless</div>
         </div>
       </div>
-      <div class="tx-amount negative">-$189.00</div>
+      <div class="tx-amount negative">-$129.00</div>
+    </div>
+
+    <div class="transaction">
+      <div class="tx-left">
+        <div class="tx-icon" style="background-color: var(--salone-purple-light); color: var(--salone-purple);">&uarr;</div>
+        <div>
+          <div class="tx-title">Netflix Premium Subscription</div>
+          <div class="tx-time">Nov 12, 10:00 AM &bull; Monthly Auto-pay</div>
+        </div>
+      </div>
+      <div class="tx-amount negative">-$19.99</div>
     </div>
   </div>
 </div>`;
@@ -220,19 +234,26 @@ Rules for SaloneUI:
 <div class="column" style="gap: 1.25rem;">
   <div class="money-card dark">
     <div class="money-header">
-      <div class="card-chip"></div>
-      <span class="badge black" style="border: 1px solid rgba(255,255,255,0.2);">Obsidian Black</span>
+      <div class="row" style="gap: 0.75rem;">
+        <div class="card-chip"></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.8"><path d="M5 9c2.5-2.5 6.5-2.5 9 0M2 6c4.5-4.5 11.5-4.5 16 0M8 12c1.2-1.2 3.2-1.2 4.4 0"/></svg>
+      </div>
+      <div class="card-network">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+      </div>
     </div>
-    <div style="margin: 0.75rem 0;">
-      <div style="font-size: 0.85rem; letter-spacing: 0.15em; opacity: 0.75; margin-bottom: 0.25rem;">•••• •••• •••• 9914</div>
-      <div class="money-balance">$142,680.50</div>
-    </div>
+    <div class="card-number">5184 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4410</div>
     <div class="money-footer">
       <div>
-        <div style="font-size: 0.72rem; opacity: 0.7; text-transform: uppercase;">Executive Account</div>
+        <div style="font-size: 0.68rem; opacity: 0.7; text-transform: uppercase;">Executive Account</div>
         <div style="font-weight: 700; font-size: 0.95rem;">VICTORIA STERLING</div>
       </div>
-      <span class="badge blue">Worldwide Active</span>
+      <div>
+        <div style="font-size: 0.68rem; opacity: 0.7; text-transform: uppercase;">Valid Thru</div>
+        <div style="font-weight: 700; font-size: 0.95rem;">11/30</div>
+      </div>
+      <span class="badge blue">Tier 1</span>
     </div>
   </div>
 
@@ -245,7 +266,7 @@ Rules for SaloneUI:
     <div class="card elevated center column" style="padding: 1.25rem;">
       <span style="font-size: 0.8rem; color: var(--salone-text-muted); font-weight: 600;">Monthly Cashback</span>
       <div class="price" style="margin: 0.25rem 0;"><span class="currency">$</span> 1,420</div>
-      <span class="badge green">3% Return Tier</span>
+      <span class="badge emerald">3% Return Tier</span>
     </div>
   </div>
 </div>`;
