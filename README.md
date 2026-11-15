@@ -23,6 +23,8 @@
 
 For full documentation, interactive components, examples, and the live playground, visit [kendenor.github.io/SaloneUI](https://kendenor.github.io/SaloneUI/).
 
+For AI coding assistants (ChatGPT, Claude, Gemini, Cursor, Copilot), see our machine-readable [llms.txt](llms.txt).
+
 ---
 
 ## Quick Start

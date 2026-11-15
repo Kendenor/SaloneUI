@@ -1,0 +1,191 @@
+# SaloneUI
+
+> SaloneUI is a plain-English, ultra-lightweight (<25KB) CSS framework engineered for rapidly building modern, accessible user interfaces without configuration, build tools, or cryptic abbreviations.
+
+## Canonical Resources
+
+- Documentation: https://kendenor.github.io/SaloneUI/
+- Website Blocks: https://kendenor.github.io/SaloneUI/blocks.html
+- Component Showcase: https://kendenor.github.io/SaloneUI/components.html
+- Interactive Playground: https://kendenor.github.io/SaloneUI/playground.html
+- GitHub Repository: https://github.com/Kendenor/SaloneUI
+- NPM Package: https://www.npmjs.com/package/salone-ui
+
+## Quick Start
+
+### 1. Zero-Install CDN (Drop into `<head>`)
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.min.css">
+```
+
+### 2. Package Managers
+```bash
+npm install salone-ui
+pnpm add salone-ui
+yarn add salone-ui
+bun add salone-ui
+deno add npm:salone-ui
+```
+
+### 3. JavaScript / Framework Import
+```javascript
+import 'salone-ui/dist/salone-ui.min.css';
+```
+
+---
+
+## Instructions for AI Models & Code Generators
+
+When writing code that uses SaloneUI, strictly follow these rules:
+
+1. **Plain English Class Names Only**:
+   - Use real English words: `button green`, `card elevated`, `grid 3`, `center`, `row gap-sm`.
+   - **NEVER** use cryptic utility abbreviations like `btn`, `bg-blue-500`, `px-4`, `py-2`, `d-flex`, `col-md-6`, or `flex-col`.
+2. **Smart by Default**:
+   - Plain `<button>` and `<input>` elements look styled automatically. Only add classes when customizing color, size, or variant.
+3. **1-Word Theme Switching**:
+   - Apply themes to `<body>` using single classes: `class="theme-fintech"`, `class="theme-shop"`, `class="theme-school"`, or `class="dark"`.
+4. **Auto-Collapsing Grids**:
+   - `grid 2`, `grid 3`, and `grid 4` automatically collapse to 1 single column on mobile screens (<768px). Do not add custom media queries for basic column stacking.
+5. **Zero JavaScript for Interactive Components**:
+   - Pure-CSS Accordion: `<details class="accordion"><summary>Title</summary><div class="accordion-content">Content</div></details>`
+   - Pure-CSS Modal: `<details class="modal"><summary class="button">Open</summary><div class="modal-overlay"><div class="modal-content">...</div></div></details>`
+
+---
+
+## 26 Core Components Quick Reference
+
+### 1. Buttons
+- Elements: `<button>`, `<input type="button">`, `<a class="button">`
+- Colors: `green`, `emerald`, `teal`, `cyan`, `blue`, `sky`, `indigo`, `violet`, `purple`, `pink`, `rose`, `red`, `orange`, `amber`, `slate`, `black`, `dark`, `white`, `light`, `outline`
+- Sizes: `small`, `medium`, `big`, `full`
+- Example: `<button class="button green big">Get Started</button>`
+
+### 2. Cards
+- Base: `<div class="card">...</div>`
+- Modifiers: `flat`, `elevated`
+- Example: `<div class="card elevated"><h3>Title</h3><p>Content</p></div>`
+
+### 3. Inputs & Forms
+- Elements: `<input type="text">`, `<input type="email">`, `<textarea>`, `<select>`
+- Modifiers: `input error`, `input success`, `<label class="label">`
+- Example:
+  ```html
+  <label class="label">Work Email</label>
+  <input type="email" placeholder="you@company.com">
+  ```
+
+### 4. Realistic Financial Money Card
+- Aspect ratio 1.586:1 debit/credit card with gold EMV chip, contactless waves, and embossed card number.
+- Colors: default (green/teal), `dark`, `purple`, `gold`
+- Example:
+  ```html
+  <div class="money-card">
+    <div class="space-between">
+      <span class="card-bank">SaloneBank</span>
+      <div class="card-contactless"></div>
+    </div>
+    <div class="card-chip"></div>
+    <div class="card-number">4532 •••• •••• 8892</div>
+    <div class="space-between">
+      <div>
+        <span class="card-label">Cardholder</span>
+        <span class="card-holder">JOHN DOE</span>
+      </div>
+      <div>
+        <span class="card-label">Expires</span>
+        <span class="card-holder">09/28</span>
+      </div>
+    </div>
+  </div>
+  ```
+
+### 5. Transactions
+- Example:
+  ```html
+  <div class="transaction">
+    <div class="avatar" style="background: var(--salone-green-light); color: var(--salone-green);">↓</div>
+    <div class="transaction-info">
+      <h4>Client Payment</h4>
+      <p>Today, 2:45 PM</p>
+    </div>
+    <div class="transaction-amount positive">+$1,450.00</div>
+  </div>
+  ```
+
+### 6. PIN Box
+- 4-digit mobile money PIN widget:
+  ```html
+  <div class="pin-box">
+    <input type="password" maxlength="1" autofocus>
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+  </div>
+  ```
+
+### 7. Navigation & Bottom Bar
+- Navbar: `<nav class="navbar"><a class="nav-brand">Logo</a><ul class="nav-links">...</ul></nav>`
+- Bottom bar for mobile apps: `<div class="bottom-bar"><a class="active">Home</a><a>Cards</a><a>Send</a></div>`
+
+### 8. Modal (Pure CSS)
+- `<details class="modal"><summary class="button">Open</summary><div class="modal-overlay"><div class="modal-content">...</div></div></details>`
+
+### 9. Alerts
+- `<div class="alert success">Saved successfully!</div>`
+- Types: `success`, `error`, `warning`, `info`
+
+### 10. Badges
+- `<span class="badge green">Live</span>`
+- Colors: `green`, `blue`, `orange`, `purple`, `teal`, `red`, `slate`, `dark`
+
+### 11. Avatars
+- `<div class="avatar">KD</div>`
+- Modifiers: `small`, `big`
+
+### 12. Tables
+- `<div class="table-wrap"><table class="table"><thead><tr><th>Name</th>...</tr></thead>...</table></div>`
+
+### 13. Grid & Layout Helpers
+- Grids: `grid 2`, `grid 3`, `grid 4`
+- Flex helpers: `row`, `column`, `center`, `space-between`
+- Gap helpers: `gap-xs`, `gap-sm`, `gap-md`, `gap-lg`
+- Container: `container`
+- Visibility: `hide-mobile`, `show-mobile`
+
+### 14. Toggle Switch
+- `<label class="toggle"><input type="checkbox"><span class="slider"></span></label>`
+
+### 15. Loaders
+- Spinner: `<div class="loader"></div>`
+- Pulsing dots: `<div class="dots-loader"><span></span><span></span><span></span></div>`
+
+### 16. Price
+- `<div class="price"><span class="currency">$</span><span class="price-val">29</span><span class="period">/ month</span></div>`
+
+### 17. Accordion / FAQ (Pure CSS)
+- `<details class="accordion" open><summary>Question?</summary><div class="accordion-content">Answer</div></details>`
+
+### 18. Hero Section
+- `<section class="hero"><h1>Title</h1><p>Subtitle</p><button class="button green">Action</button></section>`
+
+---
+
+## 1-Word Themes Reference
+
+Apply on `<body>`:
+- `theme-fintech`: Emerald green accents (#10B981) + soft mint borders (#D1FAE5)
+- `theme-shop`: Vibrant orange accents (#EA580C) + warm cream background (#FFFDF9)
+- `theme-school`: Royal blue accents (#2563EB) + sky tint borders (#DBEAFE)
+- `dark`: Obsidian dark mode (#090D16 background, #131C31 surface, crisp white text)
+
+---
+
+## Pre-Built Production Blocks
+
+1. **SaaS Pricing Table**: 3 responsive cards (`grid 3`) with Starter, Pro (`card elevated` with Most Popular badge), and Enterprise tiers.
+2. **FAQ Accordion**: Stacked `<details class="accordion">` elements that expand/collapse without JS.
+3. **6-Card Feature Grid**: Responsive `grid 3` containing icon badges and feature descriptions.
+4. **Newsletter Waitlist Banner**: `card elevated` with inline `<input type="email">` and `<button class="button green">` plus avatar social proof stack.
+
+Full copyable block HTML: https://kendenor.github.io/SaloneUI/blocks.html

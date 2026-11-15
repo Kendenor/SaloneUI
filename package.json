@@ -5,7 +5,8 @@
   "main": "dist/salone-ui.css",
   "style": "dist/salone-ui.min.css",
   "files": [
-    "dist"
+    "dist",
+    "llms.txt"
   ],
   "keywords": [
     "css",
