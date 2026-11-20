@@ -12,46 +12,60 @@
   /* Complete Modern Color Palette */
   --salone-green: #10B981;
   --salone-green-light: #ECFDF5;
+  --salone-green-dark: #047857;
 
   --salone-emerald: #059669;
 
   --salone-teal: #0D9488;
+  --salone-teal-dark: #0F766E;
   --salone-teal-light: #CCFBF1;
 
   --salone-cyan: #0891B2;
+  --salone-cyan-dark: #0E7490;
   --salone-cyan-light: #CFFAFE;
 
   --salone-blue: #2563EB;
+  --salone-blue-dark: #1D4ED8;
   --salone-blue-light: #EFF6FF;
 
   --salone-sky: #0284C7;
+  --salone-sky-dark: #0369A1;
   --salone-sky-light: #E0F2FE;
 
   --salone-indigo: #4F46E5;
+  --salone-indigo-dark: #4338CA;
   --salone-indigo-light: #EEF2FF;
 
   --salone-violet: #7C3AED;
+  --salone-violet-dark: #6D28D9;
   --salone-violet-light: #F5F3FF;
 
   --salone-purple: #9333EA;
+  --salone-purple-dark: #7E22CE;
   --salone-purple-light: #FAF5FF;
 
   --salone-pink: #DB2777;
+  --salone-pink-dark: #BE185D;
   --salone-pink-light: #FDF2F8;
 
   --salone-rose: #E11D48;
+  --salone-rose-dark: #BE123C;
   --salone-rose-light: #FFF1F2;
 
   --salone-red: #DC2626;
+  --salone-red-dark: #B91C1C;
   --salone-red-light: #FEF2F2;
 
   --salone-orange: #EA580C;
+  --salone-orange-dark: #C2410C;
   --salone-orange-light: #FFF7ED;
 
   --salone-amber: #D97706;
+  --salone-amber-dark: #B45309;
   --salone-amber-light: #FFFBEB;
 
   --salone-yellow: #CA8A04;
+  --salone-yellow-dark: #A16207;
   --salone-yellow-light: #FEFCE8;
 
   --salone-slate: #475569;
@@ -1407,3 +1421,179 @@ details.accordion > div:not(summary) {
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
+/* 27. TOAST */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--salone-text);
+  color: var(--salone-bg);
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--salone-radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--salone-shadow-xl);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--salone-transition), transform var(--salone-transition);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.success { background-color: var(--salone-green); color: #fff; }
+.toast.error   { background-color: var(--salone-red); color: #fff; }
+.toast.info    { background-color: var(--salone-blue); color: #fff; }
+
+/* 28. STEPS / PROGRESS STEPPER */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.steps .step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--salone-text-muted);
+}
+
+.steps .step .step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--salone-bg-subtle);
+  border: 2px solid var(--salone-surface-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.steps .step .step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--salone-surface-border);
+}
+
+.steps .step.done {
+  color: var(--salone-text);
+}
+
+.steps .step.done .step-dot {
+  background-color: var(--salone-primary);
+  border-color: var(--salone-primary);
+  color: var(--salone-primary-contrast);
+}
+
+.steps .step.active {
+  color: var(--salone-primary);
+}
+
+.steps .step.active .step-dot {
+  background-color: var(--salone-primary-light);
+  border-color: var(--salone-primary);
+}
+
+/* 29. TOOLTIP */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background-color: var(--salone-text);
+  color: var(--salone-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--salone-radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--salone-transition), transform var(--salone-transition);
+  z-index: 500;
+}
+
+.tooltip .tip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--salone-text);
+}
+
+.tooltip:hover .tip,
+.tooltip:focus-within .tip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* 30. DIVIDER */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--salone-text-subtle);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--salone-surface-border);
+}
+
+/* 31. STATUS PILL */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--salone-radius-full);
+  background-color: var(--salone-bg-subtle);
+  color: var(--salone-text-muted);
+  border: 1px solid var(--salone-surface-border);
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--salone-text-subtle);
+}
+
+.status.online .dot   { background: var(--salone-green); box-shadow: 0 0 0 3px var(--salone-green-light); }
+.status.online        { color: var(--salone-green-dark); background: var(--salone-green-light); }
+.status.busy .dot     { background: var(--salone-amber); box-shadow: 0 0 0 3px var(--salone-amber-light); }
+.status.busy          { color: var(--salone-amber-dark); background: var(--salone-amber-light); }
+.status.offline .dot  { background: var(--salone-text-subtle); }
+

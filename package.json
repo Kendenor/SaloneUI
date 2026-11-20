@@ -24,5 +24,9 @@
     "type": "git",
     "url": "git+https://github.com/Kendenor/SaloneUI.git"
   },
-  "homepage": "https://saloneui.dev"
+  "homepage": "https://saloneui.dev",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "prepare": "node scripts/build.js"
+  }
 }
