@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheat Sheet — Every Word in SaloneUI</title>
+  <meta name="description" content="A plain-English cheat sheet of every class word in SaloneUI. Say the word, get the style.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="dist/salone-ui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <script src="assets/docs.js" defer></script>
+  <style>
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .cheat-card { padding: 1.1rem 1.25rem; }
+    .cheat-card h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
+    .cheat-card h3 code { font-size: .95rem; color: var(--salone-primary); }
+    .cheat-card p { margin: 0; font-size: .85rem; color: var(--salone-text-muted); }
+    .cheat-card .mods { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .3rem; }
+    .cheat-card .mods code { font-size: .72rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="cheatsheet.html" class="active">Cheat Sheet</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="download.html" class="button small hide-mobile" style="height: 36px; padding: 0.4rem 0.95rem;">Download</a>
+      <button class="nav-control-btn mobile-menu-btn" onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Toggle Menu">
+        <svg class="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="close-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="closeMobileDrawerOnBackdrop(event)">
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="index.html" class="mobile-nav-item"><span>Home</span></a>
+        <a href="components.html" class="mobile-nav-item"><span>Components</span></a>
+        <a href="cheatsheet.html" class="mobile-nav-item"><span>Cheat Sheet</span></a>
+        <a href="playground.html" class="mobile-nav-item"><span>Playground</span></a>
+        <a href="examples.html" class="mobile-nav-item"><span>Examples</span></a>
+        <a href="download.html" class="mobile-nav-item"><span>Download</span></a>
+      </div>
+    </div>
+  </div>
+
+  <main class="content-area" style="padding: 2.5rem 1.5rem;">
+    <div class="row" style="margin-bottom: 1.5rem;">
+      <span class="badge green">Plain English</span>
+      <h1 style="margin: 0; font-size: 2rem;">The Cheat Sheet</h1>
+    </div>
+    <p style="color: var(--salone-text-muted); max-width: 640px; margin-bottom: 2rem;">
+      You don't need to memorize long class names. Say the word you want and add the color
+      or size you like. This page lists every word SaloneUI understands.
+    </p>
+
+    <h2 style="font-size: 1.25rem;">Components</h2>
+    <div class="cheat-grid" style="margin-bottom: 2rem;">
+      <div class="cheat-card card flat"><h3><code>button</code></h3><p>A tappable action.</p>
+        <div class="mods"><code>green</code><code>blue</code><code>red</code><code>outline</code><code>small</code><code>big</code><code>full</code></div></div>
+      <div class="cheat-card card flat"><h3><code>card</code></h3><p>A bordered content box.</p>
+        <div class="mods"><code>flat</code><code>elevated</code></div></div>
+      <div class="cheat-card card flat"><h3><code>input</code></h3><p>A text field.</p>
+        <div class="mods"><code>error</code><code>success</code></div></div>
+      <div class="cheat-card card flat"><h3><code>money-card</code></h3><p>A realistic bank-card visual.</p>
+        <div class="mods"><code>dark</code><code>purple</code><code>gold</code></div></div>
+      <div class="cheat-card card flat"><h3><code>transaction</code></h3><p>A single line-item with an amount.</p></div>
+      <div class="cheat-card card flat"><h3><code>pin-box</code></h3><p>A 4-digit PIN entry row.</p></div>
+      <div class="cheat-card card flat"><h3><code>navbar</code></h3><p>A sticky top bar with brand + links.</p></div>
+      <div class="cheat-card card flat"><h3><code>bottom-bar</code></h3><p>A fixed app-style bottom nav.</p></div>
+      <div class="cheat-card card flat"><h3><code>modal</code></h3><p>A centered dialog (use <code>&lt;details class="modal"&gt;</code>).</p></div>
+      <div class="cheat-card card flat"><h3><code>alert</code></h3><p>An inline notification banner.</p>
+        <div class="mods"><code>success</code><code>error</code><code>warning</code><code>info</code></div></div>
+      <div class="cheat-card card flat"><h3><code>badge</code></h3><p>A tiny uppercase label pill.</p>
+        <div class="mods"><code>green</code><code>red</code><code>blue</code><code>black</code><code>grey</code></div></div>
+      <div class="cheat-card card flat"><h3><code>avatar</code></h3><p>A round image or initials circle.</p>
+        <div class="mods"><code>small</code><code>big</code></div></div>
+      <div class="cheat-card card flat"><h3><code>table</code></h3><p>A data table (wrap in <code>table-wrap</code>).</p></div>
+      <div class="cheat-card card flat"><h3><code>form</code></h3><p>A vertical form container.</p>
+        <div class="mods"><code>form-group</code><code>label</code><code>form-help</code></div></div>
+      <div class="cheat-card card flat"><h3><code>toggle</code></h3><p>A switch-style checkbox.</p></div>
+      <div class="cheat-card card flat"><h3><code>loader</code></h3><p>A spinning circle.</p></div>
+      <div class="cheat-card card flat"><h3><code>price</code></h3><p>A big number with currency + period.</p></div>
+      <div class="cheat-card card flat"><h3><code>profile</code></h3><p>Avatar + name + bio block.</p></div>
+      <div class="cheat-card card flat"><h3><code>search</code></h3><p>A rounded input with a search icon.</p></div>
+      <div class="cheat-card card flat"><h3><code>tabs</code></h3><p>A segmented tab bar.</p></div>
+      <div class="cheat-card card flat"><h3><code>progress</code></h3><p>A thin fill bar (put <code>.bar</code> inside).</p></div>
+      <div class="cheat-card card flat"><h3><code>footer</code></h3><p>A padded bottom-of-page section.</p></div>
+      <div class="cheat-card card flat"><h3><code>hero</code></h3><p>A big centered intro section.</p></div>
+      <div class="cheat-card card flat"><h3><code>accordion</code></h3><p>Expandable panel (use <code>&lt;details class="accordion"&gt;</code>).</p></div>
+      <div class="cheat-card card flat"><h3><code>toast</code></h3><p>A floating bottom notification.</p>
+        <div class="mods"><code>success</code><code>error</code><code>info</code><code>show</code></div></div>
+      <div class="cheat-card card flat"><h3><code>steps</code></h3><p>A horizontal progress stepper.</p>
+        <div class="mods"><code>done</code><code>active</code></div></div>
+      <div class="cheat-card card flat"><h3><code>tooltip</code></h3><p>A hover label that floats above.</p></div>
+      <div class="cheat-card card flat"><h3><code>divider</code></h3><p>A labeled horizontal rule.</p></div>
+      <div class="cheat-card card flat"><h3><code>status</code></h3><p>A dot pill for online/busy/offline.</p>
+        <div class="mods"><code>online</code><code>busy</code><code>offline</code></div></div>
+    </div>
+
+    <h2 style="font-size: 1.25rem;">Layout &amp; Helpers</h2>
+    <div class="cheat-grid">
+      <div class="cheat-card card flat"><h3><code>container</code></h3><p>Centers content to a 1140px width.</p></div>
+      <div class="cheat-card card flat"><h3><code>grid</code></h3><p>A CSS grid. Add <code>2</code>, <code>3</code> or <code>4</code> for columns on desktop.</p></div>
+      <div class="cheat-card card flat"><h3><code>row</code></h3><p>A wrapping flex row.</p></div>
+      <div class="cheat-card card flat"><h3><code>column</code></h3><p>A flex column with gap.</p></div>
+      <div class="cheat-card card flat"><h3><code>center</code></h3><p>Everything centered.</p></div>
+      <div class="cheat-card card flat"><h3><code>space-between</code></h3><p>Flex row, items pushed to the edges.</p></div>
+      <div class="cheat-card card flat"><h3><code>gap-sm / gap-md / gap-lg</code></h3><p>Control the space between items.</p></div>
+      <div class="cheat-card card flat"><h3><code>hide-mobile / show-mobile</code></h3><p>Toggle visibility on small screens.</p></div>
+    </div>
+
+    <h2 style="font-size: 1.25rem;">Themes (one word on <code>&lt;body&gt;</code>)</h2>
+    <div class="cheat-grid">
+      <div class="cheat-card card flat"><h3><code>theme-fintech</code></h3><p>Green / emerald palette.</p></div>
+      <div class="cheat-card card flat"><h3><code>theme-shop</code></h3><p>Warm orange palette.</p></div>
+      <div class="cheat-card card flat"><h3><code>theme-school</code></h3><p>Blue palette.</p></div>
+      <div class="cheat-card card flat"><h3><code>dark</code></h3><p>Dark mode. Drop it on <code>&lt;body&gt;</code> or <code>&lt;html&gt;</code>.</p></div>
+    </div>
+  </main>
+
+</body>
+</html>
