@@ -4,9 +4,9 @@
 
 ## Canonical Resources
 
-- Documentation: https://kendenor.github.io/SaloneUI/
-- Component Showcase: https://kendenor.github.io/SaloneUI/components.html
-- Interactive Playground: https://kendenor.github.io/SaloneUI/playground.html
+- Documentation: https://saloneui.dev/
+- Component Showcase: https://saloneui.dev/components.html
+- Interactive Playground: https://saloneui.dev/playground.html
 - GitHub Repository: https://github.com/Kendenor/SaloneUI
 - NPM Package: https://www.npmjs.com/package/salone-ui
 

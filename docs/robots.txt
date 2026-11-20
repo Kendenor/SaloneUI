@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kendenor.github.io/SaloneUI/sitemap.xml
+Sitemap: https://saloneui.dev/sitemap.xml
