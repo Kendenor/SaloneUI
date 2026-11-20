@@ -1,12 +1,15 @@
 /* ==========================================================================
    SaloneUI Documentation & Mobile Optimization Stylesheet
-   Designed for all devices: Mobile (320px+), Tablet, and Desktop
+   Bulletproof responsive system for Mobile (320px+), Tablet, and Desktop
    ========================================================================== */
 
-/* Universal Mobile Safety: Prevent horizontal blowout */
+/* Universal Mobile Safety: Prevent horizontal blowout across all devices */
 html, body {
   overflow-x: hidden;
   max-width: 100vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -30,7 +33,9 @@ html, body {
   overflow-x: auto;
   border: 1px solid #1e293b;
   box-sizing: border-box;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
 }
 
 .copy-btn {
@@ -40,7 +45,7 @@ html, body {
   padding: 0.35rem 0.75rem;
   font-size: 0.8rem;
   cursor: pointer;
-  z-index: 2;
+  z-index: 5;
 }
 
 /* Unified Navbar Controls */
@@ -199,10 +204,121 @@ html, body {
   border-top: 1px solid var(--salone-surface-border);
 }
 
+/* ==========================================================================
+   Components Page Layout & Code Box Protection
+   ========================================================================== */
+
+.docs-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  min-height: calc(100vh - 65px);
+  width: 100%;
+  max-width: 100vw;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.content-area {
+  padding: 2.5rem 2rem 5rem;
+  max-width: 960px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.component-box {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 80px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.preview-code-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.preview-box {
+  background-color: var(--salone-surface);
+  border: 1px solid var(--salone-surface-border);
+  border-radius: var(--salone-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 140px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-box-small {
+  position: relative;
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: var(--salone-radius);
+  padding: 2.4rem 1rem 1rem;
+  font-family: var(--salone-font-mono);
+  font-size: 0.82rem;
+  border: 1px solid #1e293b;
+  margin: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.code-box-small pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  display: block;
+}
+
+.code-box-small pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  white-space: pre;
+}
+
+.copy-code-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
 /* Components Page Mobile Picker */
 .mobile-comp-bar {
   display: none;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .mobile-comp-trigger {
@@ -252,13 +368,53 @@ html, body {
 }
 
 /* ==========================================================================
-   Mobile-First Responsive Adjustments (< 768px & < 480px)
+   Mobile-First Responsive Adjustments (< 900px, < 768px, < 480px)
    ========================================================================== */
+
+@media (max-width: 900px) {
+  .docs-layout {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  .sidebar {
+    display: none !important;
+  }
+  .content-area {
+    padding: 1.25rem 0.85rem 4rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .preview-code-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  .preview-box {
+    padding: 1.15rem 0.85rem !important;
+    min-height: auto !important;
+  }
+  .code-box-small {
+    padding: 2.25rem 0.85rem 0.85rem !important;
+  }
+  .component-box {
+    margin-bottom: 2.5rem !important;
+  }
+  .mobile-comp-bar {
+    display: block !important;
+  }
+}
 
 @media (max-width: 768px) {
   /* Show hamburger button on mobile */
   .mobile-menu-btn {
     display: inline-flex !important;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+  .show-mobile {
+    display: block !important;
   }
 
   /* Compact Navbar */
@@ -394,21 +550,6 @@ html, body {
     justify-content: center !important;
   }
 
-  /* Components Page */
-  .mobile-comp-bar {
-    display: block !important;
-  }
-  .sidebar {
-    display: none !important;
-  }
-  .content-area {
-    padding: 1.25rem 0.85rem 3.5rem !important;
-    max-width: 100% !important;
-  }
-  .preview-code-grid {
-    grid-template-columns: 1fr !important;
-  }
-
   /* Footer */
   .footer-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -432,5 +573,35 @@ html, body {
   }
   .footer-grid {
     grid-template-columns: 1fr !important;
+  }
+  
+  /* Money card on small screens */
+  .money-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    aspect-ratio: auto !important;
+    padding: 1.15rem 1rem !important;
+  }
+  .money-card .card-number {
+    font-size: 0.92rem !important;
+    letter-spacing: 0.12em !important;
+  }
+  .money-card .money-balance {
+    font-size: 1.45rem !important;
+  }
+  
+  /* Code boxes padding on extra small phones */
+  .code-box-small {
+    padding: 2.2rem 0.65rem 0.65rem !important;
+  }
+  .code-box-small pre {
+    font-size: 0.75rem !important;
+  }
+  .copy-code-btn {
+    top: 0.4rem !important;
+    right: 0.4rem !important;
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.5rem !important;
   }
 }

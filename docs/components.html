@@ -45,8 +45,12 @@
   <style>
     .docs-layout {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 260px minmax(0, 1fr);
       min-height: calc(100vh - 65px);
+      width: 100%;
+      max-width: 100vw;
+      min-width: 0;
+      overflow-x: hidden;
     }
     .sidebar {
       position: sticky;
@@ -82,17 +86,27 @@
     .content-area {
       padding: 2.5rem 2rem 5rem;
       max-width: 960px;
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
     }
     .component-box {
       margin-bottom: 3.5rem;
       scroll-margin-top: 80px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
     .preview-code-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 1.25rem;
       align-items: stretch;
       margin-top: 1rem;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
     .preview-box {
       background-color: var(--salone-surface);
@@ -103,38 +117,88 @@
       flex-direction: column;
       justify-content: center;
       min-height: 140px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .code-box-small {
       position: relative;
       background: #0f172a;
       color: #f8fafc;
       border-radius: var(--salone-radius);
-      padding: 1.25rem 1rem 1rem;
+      padding: 2.4rem 1rem 1rem;
       font-family: var(--salone-font-mono);
       font-size: 0.82rem;
-      overflow-x: auto;
       border: 1px solid #1e293b;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .code-box-small pre {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      box-sizing: border-box;
+      display: block;
+    }
+    .code-box-small pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-family: inherit;
+      white-space: pre;
     }
     .copy-code-btn {
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
-      padding: 0.25rem 0.6rem;
+      z-index: 10;
+      padding: 0.25rem 0.65rem;
       font-size: 0.72rem;
+      line-height: 1;
     }
     @media (max-width: 900px) {
       .docs-layout {
-        grid-template-columns: 1fr;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100vw !important;
       }
       .sidebar {
-        display: none;
+        display: none !important;
+      }
+      .content-area {
+        padding: 1.25rem 0.85rem 4rem !important;
+        max-width: 100% !important;
+        width: 100% !important;
       }
       .preview-code-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 1rem !important;
+        width: 100% !important;
+      }
+      .preview-box {
+        padding: 1.15rem 0.85rem !important;
+        min-height: auto !important;
+      }
+      .code-box-small {
+        padding: 2.25rem 0.85rem 0.85rem !important;
+      }
+      .component-box {
+        margin-bottom: 2.5rem !important;
       }
     }
   
