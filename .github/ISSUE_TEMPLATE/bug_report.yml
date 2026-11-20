@@ -1,0 +1,32 @@
+name: 🐛 Bug Report
+description: File a bug report for SaloneUI
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue! Please describe the problem clearly.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the bug or styling issue.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can someone reproduce this?
+      placeholder: |
+        1. Use `<button class="...">`
+        2. View on mobile screen
+        3. Notice...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / Device
+      placeholder: "e.g. Chrome on Windows 11 / Safari on iOS"

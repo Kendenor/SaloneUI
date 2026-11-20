@@ -1,0 +1,35 @@
+name: 💡 Propose a New Component
+description: Suggest a new plain-English component to add to SaloneUI
+title: "[Component]: "
+labels: ["enhancement", "new component", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make SaloneUI better!
+        Remember: SaloneUI components must use **plain English class names** and be lightweight (<25KB total framework).
+  - type: input
+    id: component_name
+    attributes:
+      label: Component Name
+      description: What is the proposed plain-English name? (e.g. `timeline`, `steps`, `tooltip`, `skeleton`)
+      placeholder: "e.g. class=\"steps\""
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Component Description
+      description: What does this component do and why would developers love it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_html
+    attributes:
+      label: Proposed HTML / CSS Structure
+      description: Show a rough example of how developers would use it in HTML.
+      placeholder: |
+        <div class="steps">
+          <div class="step completed">1</div>
+          <div class="step active">2</div>
+        </div>

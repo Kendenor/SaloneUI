@@ -1,0 +1,28 @@
+name: 🚀 Feature Request
+description: Suggest an idea or enhancement for SaloneUI
+title: "[Feature]: "
+labels: ["enhancement", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make SaloneUI easier, faster, or more powerful? We'd love to hear it!
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear description of what the problem is.
+    validations:
+      required: false
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Additional context
+      description: Add any other context, screenshots, or mockup ideas.

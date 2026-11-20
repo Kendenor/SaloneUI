@@ -1,0 +1,16 @@
+{
+  "name": "SaloneUI",
+  "short_name": "SaloneUI",
+  "description": "A plain-English CSS framework for rapidly building modern, accessible user interfaces without configuration.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#00A651",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

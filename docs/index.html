@@ -3,7 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaloneUI — Build Beautiful Websites With Plain English</title>
+  <title>SaloneUI — Plain-English CSS Framework for Modern Web Apps</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="SaloneUI — Plain-English CSS Framework for Modern Web Apps">
+  <meta name="description" content="A plain-English, ultra-lightweight (<25KB) CSS framework with zero configuration. Build beautiful, modern, and accessible websites with intuitive classes like button green, card elevated, and grid 3.">
+  <meta name="keywords" content="CSS framework, plain English CSS, lightweight CSS, zero config CSS, modern UI, frontend framework, beginner friendly CSS, fintech UI, Tailwind alternative, Bootstrap alternative, SaloneUI">
+  <meta name="author" content="SaloneUI Team">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#00A651">
+  <link rel="canonical" href="https://kendenor.github.io/SaloneUI/">
+
+  <!-- Open Graph / Facebook / LinkedIn / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kendenor.github.io/SaloneUI/">
+  <meta property="og:title" content="SaloneUI — Plain-English CSS Framework for Modern Web Apps">
+  <meta property="og:description" content="A plain-English, ultra-lightweight (<25KB) CSS framework with zero configuration. Build beautiful, modern, and accessible websites with intuitive classes like button green, card elevated, and grid 3.">
+  <meta property="og:image" content="https://kendenor.github.io/SaloneUI/assets/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SaloneUI — The Plain-English CSS Framework">
+  <meta property="og:site_name" content="SaloneUI">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://kendenor.github.io/SaloneUI/">
+  <meta name="twitter:title" content="SaloneUI — Plain-English CSS Framework for Modern Web Apps">
+  <meta name="twitter:description" content="A plain-English, ultra-lightweight (<25KB) CSS framework with zero configuration. Build beautiful, modern, and accessible websites with intuitive classes like button green, card elevated, and grid 3.">
+  <meta name="twitter:image" content="https://kendenor.github.io/SaloneUI/assets/og-image.svg">
+
+  <!-- Favicon & Mobile Web App Manifest -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <!-- Schema.org JSON-LD (Google Sitelinks & Rich Results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "SaloneUI",
+        "url": "https://kendenor.github.io/SaloneUI/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "softwareVersion": "1.1.1",
+        "description": "A plain-English, ultra-lightweight (<25KB) CSS framework for rapidly building modern, accessible user interfaces without configuration.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "license": "https://opensource.org/licenses/MIT",
+        "author": {
+          "@type": "Organization",
+          "name": "SaloneUI",
+          "url": "https://github.com/Kendenor/SaloneUI"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "SaloneUI",
+        "url": "https://kendenor.github.io/SaloneUI/",
+        "description": "Official documentation for SaloneUI, the plain-English CSS framework.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://kendenor.github.io/SaloneUI/components.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "name": ["Home", "Components", "Playground", "Examples", "Download", "GitHub"],
+        "url": [
+          "https://kendenor.github.io/SaloneUI/index.html",
+          "https://kendenor.github.io/SaloneUI/components.html",
+          "https://kendenor.github.io/SaloneUI/playground.html",
+          "https://kendenor.github.io/SaloneUI/examples.html",
+          "https://kendenor.github.io/SaloneUI/download.html",
+          "https://github.com/Kendenor/SaloneUI"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="stylesheet" href="dist/salone-ui.css">
   <style>
@@ -29,6 +114,95 @@
       padding: 0.35rem 0.75rem;
       font-size: 0.8rem;
     }
+  
+    /* Unified Navbar Controls & Mobile Arrow */
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-control-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      height: 36px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--salone-text);
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius-sm);
+      cursor: pointer;
+      transition: all var(--salone-transition);
+      text-decoration: none;
+      box-sizing: border-box;
+      line-height: 1;
+    }
+    .nav-control-btn:hover {
+      background: var(--salone-bg-subtle);
+      border-color: var(--salone-primary);
+      color: var(--salone-text);
+      text-decoration: none;
+    }
+    .theme-dropdown-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .theme-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      min-width: 170px;
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 0.35rem;
+      box-shadow: var(--salone-shadow-lg);
+      z-index: 1000;
+    }
+    .theme-dropdown-menu.show {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .theme-option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: none;
+      background: transparent;
+      color: var(--salone-text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: var(--salone-radius-sm);
+      cursor: pointer;
+      text-align: left;
+      transition: background var(--salone-transition);
+    }
+    .theme-option:hover {
+      background: var(--salone-bg-subtle);
+    }
+    .color-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .theme-trigger .nav-text {
+        display: none !important;
+      }
+      .theme-trigger {
+        padding: 0.4rem 0.55rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -44,17 +218,38 @@
       <li><a href="playground.html">Playground</a></li>
       <li><a href="examples.html">Examples</a></li>
     </ul>
-    <div class="row gap-sm">
-      <select id="themeSelector" onchange="setTheme(this.value)" class="button small outline" style="padding: 0.35rem 0.65rem; font-size: 0.8rem; cursor: pointer;" title="Select Theme">
-        <option value="">Theme: Emerald</option>
-        <option value="theme-fintech">Theme: Fintech</option>
-        <option value="theme-shop">Theme: Shop</option>
-        <option value="theme-school">Theme: School</option>
-        <option value="dark">Theme: Dark</option>
-      </select>
-      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button small outline" title="GitHub" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-      <a href="download.html" class="button small hide-mobile">Download</a>
-    </div></nav>
+        <div class="nav-actions">
+      <!-- Theme Switcher Button with Icon, Arrow, and Mobile-Hidden Text -->
+      <div class="theme-dropdown-wrap">
+        <button class="nav-control-btn theme-trigger" onclick="toggleThemeDropdown(event)" id="themeTriggerBtn" aria-label="Select Theme" title="Switch Theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+          </svg>
+          <span class="nav-text hide-mobile" id="navThemeText">Theme</span>
+          <svg class="nav-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="theme-dropdown-menu" id="themeDropdownMenu">
+          <button class="theme-option" onclick="setTheme('')"><span class="color-dot" style="background:#00A651;"></span> Emerald (Default)</button>
+          <button class="theme-option" onclick="setTheme('theme-fintech')"><span class="color-dot" style="background:#10B981;"></span> Fintech</button>
+          <button class="theme-option" onclick="setTheme('theme-shop')"><span class="color-dot" style="background:#EA580C;"></span> Shop</button>
+          <button class="theme-option" onclick="setTheme('theme-school')"><span class="color-dot" style="background:#2563EB;"></span> School</button>
+          <button class="theme-option" onclick="setTheme('dark')"><span class="color-dot" style="background:#0F172A; border:1px solid #94A3B8;"></span> Dark Mode</button>
+        </div>
+      </div>
+
+      <!-- GitHub Link Icon (Matching Height and Border) -->
+      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+
+      <!-- Download Button -->
+      <a href="download.html" class="button small hide-mobile" style="height: 36px; padding: 0.4rem 0.95rem; display: inline-flex; align-items: center;">Download</a>
+    </div>
+  </nav>
 
 
   <!-- HERO SECTION -->
@@ -503,16 +698,57 @@ import 'salone-ui/dist/salone-ui.min.css';</code>
       });
     })();
 
-    function toggleTheme() {
-      const body = document.body;
-      const isDark = body.classList.toggle('dark');
-      const themeBtn = document.getElementById('themeBtn');
-      if (isDark) {
-        themeBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
-      } else {
-        themeBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
-      }
+      </script>
+  <script>
+    function toggleThemeDropdown(e) {
+      e.stopPropagation();
+      const menu = document.getElementById('themeDropdownMenu');
+      if (menu) menu.classList.toggle('show');
     }
-  </script>
+
+    document.addEventListener('click', () => {
+      const menu = document.getElementById('themeDropdownMenu');
+      if (menu) menu.classList.remove('show');
+    });
+
+    function setTheme(theme) {
+      document.body.classList.remove('theme-fintech', 'theme-shop', 'theme-school', 'dark');
+      if (theme) {
+        document.body.classList.add(theme);
+      }
+      localStorage.setItem('salone-theme', theme);
+      
+      const themeLabels = {
+        '': 'Emerald',
+        'theme-fintech': 'Fintech',
+        'theme-shop': 'Shop',
+        'theme-school': 'School',
+        'dark': 'Dark'
+      };
+      const lbl = document.getElementById('navThemeText');
+      if (lbl) lbl.innerText = themeLabels[theme] || 'Theme';
+      
+      const menu = document.getElementById('themeDropdownMenu');
+      if (menu) menu.classList.remove('show');
+    }
+
+    (function() {
+      const saved = localStorage.getItem('salone-theme') || '';
+      if (saved) {
+        document.body.classList.add(saved);
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const themeLabels = {
+          '': 'Emerald',
+          'theme-fintech': 'Fintech',
+          'theme-shop': 'Shop',
+          'theme-school': 'School',
+          'dark': 'Dark'
+        };
+        const lbl = document.getElementById('navThemeText');
+        if (lbl && saved) lbl.innerText = themeLabels[saved] || 'Theme';
+      });
+    })();
+</script>
 </body>
 </html>
