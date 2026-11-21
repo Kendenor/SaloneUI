@@ -604,16 +604,16 @@ const iconsPageHtml = `<!DOCTYPE html>
     function iconMatchesQuery(icon, query) {
       if (!query) return true;
       const rawQ = query.trim().toLowerCase();
-      const tokens = rawQ.split(/\s+/).filter(Boolean);
-      const collapsedQ = rawQ.replace(/[\s-_]+/g, '');
+      const cleanQ = rawQ.replace(/[^a-z0-9]/g, '');
+      const tokens = rawQ.split(' ').filter(Boolean);
       const name = (icon.name || '').toLowerCase();
       const title = (icon.title || '').toLowerCase();
       const tags = (icon.tags || '').toLowerCase();
       const full = name + ' ' + title + ' ' + tags;
       
       if (full.includes(rawQ)) return true;
-      if (name.includes(collapsedQ) || collapsedQ.includes(name)) return true;
-      if (tokens.every(t => full.includes(t))) return true;
+      if (cleanQ && (name.includes(cleanQ) || cleanQ.includes(name))) return true;
+      if (tokens.length > 0 && tokens.every(t => full.includes(t))) return true;
       return false;
     }
 
@@ -798,40 +798,36 @@ const iconsPageHtml = `<!DOCTYPE html>
 
     function svgToReactNative(svgStr) {
       if (!svgStr) return '';
-      let clean = svgStr.replace(/<\?xml.*?\?>/gi, '').trim();
-      clean = clean
-        .replace(/<svg\b/g, '<Svg')
-        .replace(/<\/svg>/g, '</Svg>')
-        .replace(/<path\b/g, '<Path')
-        .replace(/<\/path>/g, '</Path>')
-        .replace(/<rect\b/g, '<Rect')
-        .replace(/<\/rect>/g, '</Rect>')
-        .replace(/<circle\b/g, '<Circle')
-        .replace(/<\/circle>/g, '</Circle>')
-        .replace(/<ellipse\b/g, '<Ellipse')
-        .replace(/<\/ellipse>/g, '</Ellipse>')
-        .replace(/<line\b/g, '<Line')
-        .replace(/<\/line>/g, '</Line>')
-        .replace(/<polyline\b/g, '<Polyline')
-        .replace(/<\/polyline>/g, '</Polyline>')
-        .replace(/<polygon\b/g, '<Polygon')
-        .replace(/<\/polygon>/g, '</Polygon>')
-        .replace(/<g\b/g, '<G')
-        .replace(/<\/g>/g, '</G>')
-        .replace(/<defs\b/g, '<Defs')
-        .replace(/<\/defs>/g, '</Defs>')
-        .replace(/<linearGradient\b/g, '<LinearGradient')
-        .replace(/<\/linearGradient>/g, '</LinearGradient>')
-        .replace(/<stop\b/g, '<Stop')
-        .replace(/<\/stop>/g, '</Stop>')
-        .replace(/stroke-width=/g, 'strokeWidth=')
-        .replace(/stroke-linecap=/g, 'strokeLinecap=')
-        .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
-        .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
-        .replace(/fill-rule=/g, 'fillRule=')
-        .replace(/clip-rule=/g, 'clipRule=')
-        .replace(/stop-color=/g, 'stopColor=')
-        .replace(/stop-opacity=/g, 'stopOpacity=');
+      let clean = svgStr.trim();
+      if (clean.startsWith('<?xml')) {
+        const endXml = clean.indexOf('?>');
+        if (endXml !== -1) clean = clean.slice(endXml + 2).trim();
+      }
+
+      // Convert SVG tags to PascalCase for react-native-svg
+      const tags = ['svg', 'path', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'g', 'defs', 'linearGradient', 'stop'];
+      tags.forEach(t => {
+        const Pascal = t.charAt(0).toUpperCase() + t.slice(1);
+        clean = clean.split('</' + t + '>').join('</' + Pascal + '>');
+        clean = clean.split('<' + t + ' ').join('<' + Pascal + ' ');
+        clean = clean.split('<' + t + '>').join('<' + Pascal + '>');
+      });
+
+      // Convert SVG attributes to camelCase
+      const attrs = [
+        ['stroke-width', 'strokeWidth'],
+        ['stroke-linecap', 'strokeLinecap'],
+        ['stroke-linejoin', 'strokeLinejoin'],
+        ['stroke-miterlimit', 'strokeMiterlimit'],
+        ['fill-rule', 'fillRule'],
+        ['clip-rule', 'clipRule'],
+        ['stop-color', 'stopColor'],
+        ['stop-opacity', 'stopOpacity']
+      ];
+      attrs.forEach(([k, v]) => {
+        clean = clean.split(k + '=').join(v + '=');
+      });
+
       return clean;
     }
 
