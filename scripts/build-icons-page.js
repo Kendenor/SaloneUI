@@ -1,0 +1,634 @@
+const fs = require('fs');
+const path = require('path');
+
+const iconsPageHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaloneUI Icons — 1,000+ Vector Icons &amp; Brand Logos</title>
+  <meta name="description" content="Explore over 1,000+ built-in, lightweight vector SVG icons and brand logos for SaloneUI. Zero external dependencies, pure plain-English CSS. 1-click copy SVG and HTML.">
+  <meta name="keywords" content="icons, svg icons, vector icons, brand icons, github icon, google icon, figma icon, netlify icon, css framework, SaloneUI">
+  <meta name="author" content="SaloneUI Team">
+  <meta name="theme-color" content="#00A651">
+  <link rel="canonical" href="https://saloneui.dev/icons.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://saloneui.dev/icons.html">
+  <meta property="og:title" content="SaloneUI Icons — 1,000+ Vector Icons &amp; Brand Logos">
+  <meta property="og:description" content="Explore built-in, lightweight vector SVG icons and brand logos for SaloneUI. Zero external dependencies.">
+  <meta property="og:image" content="https://saloneui.dev/assets/og-image.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="dist/salone-ui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <script src="assets/docs.js" defer></script>
+  <script src="assets/salone-icons.js"></script>
+
+  <style>
+    .icons-hero {
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .icons-hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+    .icons-hero p {
+      font-size: 1.15rem;
+      color: var(--salone-text-muted);
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    .icons-controls-card {
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .search-input-box {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    .search-input-box input {
+      width: 100%;
+      padding: 0.95rem 1rem 0.95rem 3rem;
+      font-size: 1rem;
+      border-radius: var(--salone-radius-sm);
+      border: 1px solid var(--salone-surface-border);
+      background: var(--salone-bg);
+      color: var(--salone-text);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .search-input-box input:focus {
+      border-color: var(--salone-primary);
+      box-shadow: 0 0 0 3px var(--salone-primary-light);
+    }
+    .search-input-box svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--salone-text-muted);
+      pointer-events: none;
+    }
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .cat-pill {
+      background: var(--salone-bg-subtle);
+      border: 1px solid var(--salone-surface-border);
+      color: var(--salone-text-muted);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--salone-radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .cat-pill:hover {
+      background: var(--salone-surface);
+      color: var(--salone-text);
+    }
+    .cat-pill.active {
+      background: var(--salone-primary);
+      border-color: var(--salone-primary);
+      color: #FFFFFF;
+    }
+    .toggles-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--salone-surface-border);
+      font-size: 0.85rem;
+      color: var(--salone-text-muted);
+    }
+    .toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .size-btn {
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--salone-radius-sm);
+      border: 1px solid var(--salone-surface-border);
+      background: var(--salone-bg);
+      color: var(--salone-text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .size-btn.active {
+      background: var(--salone-primary-light);
+      border-color: var(--salone-primary);
+      color: var(--salone-primary);
+    }
+    .icons-count-badge {
+      font-weight: 700;
+      color: var(--salone-text);
+    }
+    .icons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 640px) {
+      .icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+        gap: 0.65rem;
+      }
+    }
+    .icon-card {
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.25rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+    .icon-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--salone-primary);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+    }
+    .icon-card .icon-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      margin-bottom: 0.75rem;
+      color: var(--salone-text);
+      transition: transform 0.15s ease;
+    }
+    .icon-card:hover .icon-preview {
+      transform: scale(1.12);
+      color: var(--salone-primary);
+    }
+    .icon-card .icon-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--salone-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .icon-card .icon-name {
+      font-size: 0.7rem;
+      font-family: var(--salone-font-mono, monospace);
+      color: var(--salone-text-muted);
+      margin-top: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .icon-card .card-hover-actions {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.94);
+      border-radius: var(--salone-radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+    .icon-card:hover .card-hover-actions {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .card-hover-actions button {
+      width: 100%;
+      font-size: 0.72rem;
+      padding: 0.32rem 0.5rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      transition: background 0.15s ease;
+    }
+    .btn-copy-svg {
+      background: var(--salone-primary);
+      color: #FFFFFF;
+    }
+    .btn-copy-svg:hover {
+      background: var(--salone-primary-hover);
+    }
+    .btn-copy-html {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+    }
+    .btn-copy-html:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .btn-download-svg {
+      background: transparent;
+      color: #94A3B8;
+    }
+    .btn-download-svg:hover {
+      color: #FFFFFF;
+    }
+    .docs-code-example {
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--salone-radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="components.html">Components</a></li>
+      <li><a href="icons.html" class="active">Icons</a></li>
+      <li><a href="cheatsheet.html">Cheat Sheet</a></li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="examples.html">Examples</a></li>
+    </ul>
+    <div class="nav-actions">
+      <!-- Theme Switcher Button -->
+      <div class="theme-dropdown-wrap">
+        <button class="nav-control-btn theme-trigger" onclick="toggleThemeDropdown(event)" id="themeTriggerBtn" aria-label="Select Theme" title="Switch Theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+          </svg>
+          <span class="nav-text hide-mobile" id="navThemeText">Theme</span>
+          <svg class="nav-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="theme-dropdown-menu" id="themeDropdownMenu">
+          <button class="theme-option" onclick="setTheme('')"><span class="color-dot" style="background:#00A651;"></span> Emerald (Default)</button>
+          <button class="theme-option" onclick="setTheme('theme-fintech')"><span class="color-dot" style="background:#10B981;"></span> Fintech</button>
+          <button class="theme-option" onclick="setTheme('theme-shop')"><span class="color-dot" style="background:#EA580C;"></span> Shop</button>
+          <button class="theme-option" onclick="setTheme('theme-school')"><span class="color-dot" style="background:#2563EB;"></span> School</button>
+          <button class="theme-option" onclick="setTheme('dark')"><span class="color-dot" style="background:#0F172A; border:1px solid #94A3B8;"></span> Dark Mode</button>
+        </div>
+      </div>
+
+      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="download.html" class="button small hide-mobile" style="height: 36px; padding: 0.4rem 0.95rem;">Download</a>
+      <button class="nav-control-btn mobile-menu-btn" onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Toggle Menu">
+        <svg class="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="close-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="closeMobileDrawerOnBackdrop(event)">
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="index.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="components.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Components (32)</span>
+        </a>
+        <a href="icons.html" class="mobile-nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 16 12 12 8"/></svg>
+          <span>Icons &amp; Brands</span>
+        </a>
+        <a href="cheatsheet.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Cheat Sheet</span>
+        </a>
+        <a href="playground.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Playground</span>
+        </a>
+        <a href="examples.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          <span>Examples &amp; Templates</span>
+        </a>
+        <a href="download.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download</span>
+        </a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button outline small" style="width: 100%; justify-content: center; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub Repository
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="icons-hero">
+    <span class="badge green">Built-In Vector Library</span>
+    <h1 style="margin-top: 0.5rem;">SaloneUI Icons</h1>
+    <p>
+      Over 1,000+ pure vector SVG icons and tech brand logos built directly into SaloneUI. Zero external icon fonts, zero emoji hacks, and zero runtime overhead.
+    </p>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+
+    <!-- SEARCH & CONTROLS CARD -->
+    <div class="icons-controls-card">
+      <div class="search-input-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="iconSearchInput" placeholder="Search icons (e.g. github, google, figma, search, check, arrow, user, shopping, mail)..." oninput="handleSearch()">
+      </div>
+
+      <div class="category-pills">
+        <button class="cat-pill active" onclick="setCategory('all', this)">All Icons</button>
+        <button class="cat-pill" onclick="setCategory('brands', this)">Brands &amp; Tech</button>
+        <button class="cat-pill" onclick="setCategory('navigation', this)">Navigation &amp; Arrows</button>
+        <button class="cat-pill" onclick="setCategory('actions', this)">Actions &amp; Controls</button>
+        <button class="cat-pill" onclick="setCategory('communication', this)">Communication</button>
+        <button class="cat-pill" onclick="setCategory('finance', this)">Finance &amp; Commerce</button>
+        <button class="cat-pill" onclick="setCategory('media', this)">Media &amp; Files</button>
+        <button class="cat-pill" onclick="setCategory('devices', this)">Devices &amp; Hardware</button>
+      </div>
+
+      <div class="toggles-bar">
+        <div>
+          Showing <span id="visibleCount" class="icons-count-badge">0</span> icons
+        </div>
+        <div class="toggle-group">
+          <span>Preview Size:</span>
+          <button class="size-btn" onclick="changeIconSize(18, this)">18px</button>
+          <button class="size-btn active" onclick="changeIconSize(24, this)">24px</button>
+          <button class="size-btn" onclick="changeIconSize(32, this)">32px</button>
+          <button class="size-btn" onclick="changeIconSize(40, this)">40px</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICONS GRID CONTAINER -->
+    <div id="iconsGrid" class="icons-grid">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- HOW TO USE IN SALONEUI -->
+    <div class="docs-code-example">
+      <h2>How to Use SaloneUI Icons in Your Project</h2>
+      <p style="color: var(--salone-text-muted); margin-bottom: 1.25rem;">
+        Click any icon card above to copy its pure inline SVG code directly to your clipboard, or use the <code>class="icon"</code> plain-English CSS helper.
+      </p>
+
+      <div class="grid 2" style="gap: 1.5rem;">
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">1. Brand Buttons</h3>
+          <pre><code>&lt;button class="button github"&gt;
+  &lt;svg class="icon" width="18" height="18" ...&gt;...&lt;/svg&gt;
+  Sign in with GitHub
+&lt;/button&gt;
+
+&lt;button class="button google"&gt;
+  &lt;svg class="icon" width="18" height="18" ...&gt;...&lt;/svg&gt;
+  Sign in with Google
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <div>
+          <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">2. UI Buttons &amp; Badges</h3>
+          <pre><code>&lt;button class="button green"&gt;
+  &lt;svg class="icon" width="16" height="16" ...&gt;...&lt;/svg&gt;
+  Saved Successfully
+&lt;/button&gt;
+
+&lt;span class="badge green"&gt;
+  &lt;svg class="icon" width="12" height="12" ...&gt;...&lt;/svg&gt;
+  Active • Verified
+&lt;/span&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- TOAST FEEDBACK NOTIFICATION -->
+  <div id="iconToast" class="toast-msg">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toastText">Copied SVG to clipboard!</span>
+  </div>
+
+  <!-- SCRIPT FOR LIVE RENDERING & FILTERING -->
+  <script>
+    let currentCategory = 'all';
+    let currentSize = 24;
+    let searchQuery = '';
+
+    function renderIcons() {
+      const container = document.getElementById('iconsGrid');
+      if (!container || !window.SALONE_ICONS) return;
+
+      const filtered = window.SALONE_ICONS.filter(icon => {
+        const matchCat = currentCategory === 'all' || icon.category === currentCategory;
+        const matchQuery = !searchQuery || 
+          icon.name.toLowerCase().includes(searchQuery) ||
+          icon.title.toLowerCase().includes(searchQuery) ||
+          (icon.tags && icon.tags.toLowerCase().includes(searchQuery));
+        return matchCat && matchQuery;
+      });
+
+      document.getElementById('visibleCount').innerText = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = \`
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--salone-surface); border-radius: var(--salone-radius); border: 1px dashed var(--salone-surface-border);">
+            <div style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">No built-in icons matched "\${searchQuery}"</div>
+            <p style="color: var(--salone-text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem;">
+              You can search for general terms like "button", "arrow", "mail", "user", "social", or request new brand icons.
+            </p>
+            <button class="button small green" onclick="clearSearch()">View All Built-in Icons</button>
+          </div>
+        \`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(icon => {
+        const svgContent = window.getSaloneSVG(icon, currentSize);
+        return \`
+          <div class="icon-card" onclick="copyIconSvg('\${icon.name}')" title="Click to copy SVG">
+            <div class="icon-preview">
+              \${svgContent}
+            </div>
+            <div class="icon-title">\${icon.title}</div>
+            <div class="icon-name">\${icon.name}</div>
+
+            <div class="card-hover-actions">
+              <button class="btn-copy-svg" onclick="event.stopPropagation(); copyIconSvg('\${icon.name}')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                Copy SVG
+              </button>
+              <button class="btn-copy-html" onclick="event.stopPropagation(); copyIconHtml('\${icon.name}')">
+                Copy HTML
+              </button>
+              <button class="btn-download-svg" onclick="event.stopPropagation(); downloadIconSvg('\${icon.name}')">
+                Download
+              </button>
+            </div>
+          </div>
+        \`;
+      }).join('');
+    }
+
+    function setCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      renderIcons();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById('iconSearchInput').value.trim().toLowerCase();
+      renderIcons();
+    }
+
+    function clearSearch() {
+      document.getElementById('iconSearchInput').value = '';
+      searchQuery = '';
+      currentCategory = 'all';
+      document.querySelectorAll('.cat-pill').forEach((el, idx) => {
+        if (idx === 0) el.classList.add('active');
+        else el.classList.remove('active');
+      });
+      renderIcons();
+    }
+
+    function changeIconSize(size, btn) {
+      currentSize = size;
+      document.querySelectorAll('.size-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      renderIcons();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('iconToast');
+      const text = document.getElementById('toastText');
+      text.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function copyIconSvg(name) {
+      const icon = window.SALONE_ICONS.find(i => i.name === name);
+      if (!icon) return;
+      const svg = window.getSaloneSVG(icon, currentSize);
+      navigator.clipboard.writeText(svg).then(() => {
+        showToast('Copied <' + icon.name + '> SVG to clipboard!');
+      });
+    }
+
+    function copyIconHtml(name) {
+      const icon = window.SALONE_ICONS.find(i => i.name === name);
+      if (!icon) return;
+      const svg = window.getSaloneSVG(icon, currentSize);
+      const htmlSnippet = '<span class="icon">' + svg + '</span>';
+      navigator.clipboard.writeText(htmlSnippet).then(() => {
+        showToast('Copied <span class="icon"> HTML snippet!');
+      });
+    }
+
+    function downloadIconSvg(name) {
+      const icon = window.SALONE_ICONS.find(i => i.name === name);
+      if (!icon) return;
+      const svg = window.getSaloneSVG(icon, 24);
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = icon.name + '.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Downloaded ' + icon.name + '.svg');
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderIcons();
+    });
+  </script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(path.join(__dirname, '..', 'docs', 'icons.html'), iconsPageHtml, 'utf8');
+console.log('docs/icons.html successfully generated!');

@@ -1776,3 +1776,109 @@ html.dark body .status.error {
     opacity: 0;
   }
 }
+
+/* 32. ICONS & BRAND BUTTONS */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.icon svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.icon.small { font-size: 0.85rem; }
+.icon.medium { font-size: 1.25rem; }
+.icon.big, .icon.large { font-size: 1.75rem; }
+
+/* Icon inside buttons */
+.button .icon {
+  font-size: 1.15em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.button .icon:first-child:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.button .icon:last-child:not(:first-child) {
+  margin-left: 0.5rem;
+}
+
+.button.icon-only {
+  padding: 0.6rem;
+  border-radius: var(--salone-radius-sm);
+  justify-content: center;
+}
+
+.button.icon-only .icon {
+  margin: 0;
+}
+
+/* Dedicated Brand Buttons */
+.button.github {
+  background-color: #24292F;
+  color: #FFFFFF;
+  border-color: #24292F;
+}
+.button.github:hover {
+  background-color: #1B1F24;
+  border-color: #1B1F24;
+}
+
+.button.google {
+  background-color: #FFFFFF;
+  color: #1F2937;
+  border-color: #E5E7EB;
+}
+.button.google:hover {
+  background-color: #F9FAFB;
+  border-color: #D1D5DB;
+}
+
+.button.apple {
+  background-color: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+}
+.button.apple:hover {
+  background-color: #1C1C1E;
+  border-color: #1C1C1E;
+}
+
+.button.facebook {
+  background-color: #1877F2;
+  color: #FFFFFF;
+  border-color: #1877F2;
+}
+.button.facebook:hover {
+  background-color: #0C63D4;
+  border-color: #0C63D4;
+}
+
+.button.figma {
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  border-color: #1E1E1E;
+}
+.button.figma:hover {
+  background-color: #2C2C2C;
+  border-color: #2C2C2C;
+}
+
+.button.netlify {
+  background-color: #00AD9F;
+  color: #FFFFFF;
+  border-color: #00AD9F;
+}
+.button.netlify:hover {
+  background-color: #009387;
+  border-color: #009387;
+}
