@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaloneUI Icons — 1,000+ Vector Icons &amp; Brand Logos</title>
-  <meta name="description" content="Explore over 1,000+ built-in, lightweight vector SVG icons and brand logos for SaloneUI. Zero external dependencies, pure plain-English CSS. 1-click copy SVG and HTML.">
-  <meta name="keywords" content="icons, svg icons, vector icons, brand icons, github icon, google icon, figma icon, netlify icon, css framework, SaloneUI">
+  <title>SaloneUI Icons — Over 200,000+ Vector Icons &amp; Brand Logos</title>
+  <meta name="description" content="Search over 200,000+ open-source vector SVG icons and tech brand logos right inside SaloneUI. Zero external dependencies, pure vector SVGs, 1-click copy, and 1-click download.">
+  <meta name="keywords" content="icons, svg icons, vector icons, brand icons, github icon, google icon, figma icon, netlify icon, iconify, material icons, lucide, fontawesome, simple icons, css framework, SaloneUI">
   <meta name="author" content="SaloneUI Team">
   <meta name="theme-color" content="#00A651">
   <link rel="canonical" href="https://saloneui.dev/icons.html">
@@ -13,8 +13,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://saloneui.dev/icons.html">
-  <meta property="og:title" content="SaloneUI Icons — 1,000+ Vector Icons &amp; Brand Logos">
-  <meta property="og:description" content="Explore built-in, lightweight vector SVG icons and brand logos for SaloneUI. Zero external dependencies.">
+  <meta property="og:title" content="SaloneUI Icons — Over 200,000+ Vector Icons &amp; Brand Logos">
+  <meta property="og:description" content="Search over 200,000+ open-source vector SVG icons and tech brand logos right inside SaloneUI. Zero external dependencies, 1-click copy SVG.">
   <meta property="og:image" content="https://saloneui.dev/assets/og-image.svg">
 
   <!-- Favicon -->
@@ -36,7 +36,7 @@
     .icons-hero {
       padding: 3rem 1.5rem 2rem;
       text-align: center;
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
     }
     .icons-hero h1 {
@@ -49,14 +49,14 @@
       font-size: 1.15rem;
       color: var(--salone-text-muted);
       line-height: 1.6;
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto 1.5rem;
     }
     .icons-controls-card {
       background: var(--salone-surface);
       border: 1px solid var(--salone-surface-border);
       border-radius: var(--salone-radius);
-      padding: 1.25rem;
+      padding: 1.5rem;
       margin-bottom: 2rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
@@ -66,8 +66,8 @@
     }
     .search-input-box input {
       width: 100%;
-      padding: 0.95rem 1rem 0.95rem 3rem;
-      font-size: 1rem;
+      padding: 1rem 1.25rem 1rem 3.25rem;
+      font-size: 1.05rem;
       border-radius: var(--salone-radius-sm);
       border: 1px solid var(--salone-surface-border);
       background: var(--salone-bg);
@@ -81,7 +81,7 @@
     }
     .search-input-box svg {
       position: absolute;
-      left: 1rem;
+      left: 1.15rem;
       top: 50%;
       transform: translateY(-50%);
       color: var(--salone-text-muted);
@@ -107,6 +107,7 @@
     .cat-pill:hover {
       background: var(--salone-surface);
       color: var(--salone-text);
+      border-color: var(--salone-primary);
     }
     .cat-pill.active {
       background: var(--salone-primary);
@@ -130,7 +131,7 @@
       gap: 0.5rem;
     }
     .size-btn {
-      padding: 0.25rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: var(--salone-radius-sm);
       border: 1px solid var(--salone-surface-border);
       background: var(--salone-bg);
@@ -150,7 +151,7 @@
     }
     .icons-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
       gap: 1rem;
       margin-bottom: 3rem;
     }
@@ -174,6 +175,7 @@
       position: relative;
       transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
+      min-height: 120px;
     }
     .icon-card:hover {
       transform: translateY(-3px);
@@ -190,7 +192,7 @@
       transition: transform 0.15s ease;
     }
     .icon-card:hover .icon-preview {
-      transform: scale(1.12);
+      transform: scale(1.15);
       color: var(--salone-primary);
     }
     .icon-card .icon-title {
@@ -212,10 +214,24 @@
       text-overflow: ellipsis;
       width: 100%;
     }
+    .icon-card .icon-badge-source {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--salone-bg-subtle);
+      color: var(--salone-text-muted);
+      border: 1px solid var(--salone-surface-border);
+      line-height: 1;
+    }
     .icon-card .card-hover-actions {
       position: absolute;
       inset: 0;
-      background: rgba(15, 23, 42, 0.94);
+      background: rgba(15, 23, 42, 0.95);
       border-radius: var(--salone-radius);
       display: flex;
       flex-direction: column;
@@ -226,6 +242,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.15s ease;
+      z-index: 10;
     }
     .icon-card:hover .card-hover-actions {
       opacity: 1;
@@ -234,7 +251,7 @@
     .card-hover-actions button {
       width: 100%;
       font-size: 0.72rem;
-      padding: 0.32rem 0.5rem;
+      padding: 0.35rem 0.5rem;
       border-radius: 4px;
       border: none;
       cursor: pointer;
@@ -253,11 +270,11 @@
       background: var(--salone-primary-hover);
     }
     .btn-copy-html {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
       color: #FFFFFF;
     }
     .btn-copy-html:hover {
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.28);
     }
     .btn-download-svg {
       background: transparent;
@@ -273,6 +290,18 @@
       padding: 1.5rem;
       margin-bottom: 3rem;
     }
+    .search-loading-bar {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--salone-primary);
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+    .search-loading-bar.show {
+      display: flex;
+    }
     .toast-msg {
       position: fixed;
       bottom: 2rem;
@@ -280,11 +309,11 @@
       transform: translateX(-50%) translateY(20px);
       background: #0F172A;
       color: #FFFFFF;
-      padding: 0.65rem 1.25rem;
+      padding: 0.7rem 1.35rem;
       border-radius: var(--salone-radius-full);
       font-size: 0.85rem;
       font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       z-index: 9999;
       opacity: 0;
       pointer-events: none;
@@ -393,10 +422,10 @@
 
   <!-- HERO -->
   <header class="icons-hero">
-    <span class="badge green">Built-In Vector Library</span>
-    <h1 style="margin-top: 0.5rem;">SaloneUI Icons</h1>
+    <span class="badge green">200,000+ Universal Vector Icons</span>
+    <h1 style="margin-top: 0.5rem;">SaloneUI Universal Icons Explorer</h1>
     <p>
-      Over 1,000+ pure vector SVG icons and tech brand logos built directly into SaloneUI. Zero external icon fonts, zero emoji hacks, and zero runtime overhead.
+      Search and copy from <strong>over 200,000+ open-source vector SVG icons and company brand logos</strong>. Instant 1-click copy for clean SVG, SaloneUI HTML markup, or raw .svg download.
     </p>
   </header>
 
@@ -407,23 +436,28 @@
     <div class="icons-controls-card">
       <div class="search-input-box">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="text" id="iconSearchInput" placeholder="Search icons (e.g. github, google, figma, search, check, arrow, user, shopping, mail)..." oninput="handleSearch()">
+        <input type="text" id="iconSearchInput" placeholder="Search 200,000+ icons (e.g. github, google, medical, car, airplane, bitcoin, shield, user, cart, wifi)..." oninput="debounceSearch()">
       </div>
 
       <div class="category-pills">
-        <button class="cat-pill active" onclick="setCategory('all', this)">All Icons</button>
-        <button class="cat-pill" onclick="setCategory('brands', this)">Brands &amp; Tech</button>
+        <button class="cat-pill active" onclick="setCategory('all', this)">Curated Essentials</button>
+        <button class="cat-pill" onclick="setCategory('brands', this)">Tech &amp; Brands</button>
         <button class="cat-pill" onclick="setCategory('navigation', this)">Navigation &amp; Arrows</button>
         <button class="cat-pill" onclick="setCategory('actions', this)">Actions &amp; Controls</button>
         <button class="cat-pill" onclick="setCategory('communication', this)">Communication</button>
-        <button class="cat-pill" onclick="setCategory('finance', this)">Finance &amp; Commerce</button>
+        <button class="cat-pill" onclick="setCategory('finance', this)">Finance &amp; E-Commerce</button>
         <button class="cat-pill" onclick="setCategory('media', this)">Media &amp; Files</button>
-        <button class="cat-pill" onclick="setCategory('devices', this)">Devices &amp; Hardware</button>
+        <button class="cat-pill" onclick="setCategory('devices', this)">Hardware &amp; Devices</button>
+      </div>
+
+      <div class="search-loading-bar" id="searchLoadingBar">
+        <div class="loader" style="width: 16px; height: 16px; border-width: 2px;"></div>
+        <span>Searching universal open-source index (200,000+ icons)...</span>
       </div>
 
       <div class="toggles-bar">
         <div>
-          Showing <span id="visibleCount" class="icons-count-badge">0</span> icons
+          Showing <span id="visibleCount" class="icons-count-badge">0</span> icons <span id="sourceNotice" style="font-size:0.75rem; color:var(--salone-text-muted); margin-left: 0.5rem;">(Built-in Offline Ready)</span>
         </div>
         <div class="toggle-group">
           <span>Preview Size:</span>
@@ -484,13 +518,16 @@
     <span id="toastText">Copied SVG to clipboard!</span>
   </div>
 
-  <!-- SCRIPT FOR LIVE RENDERING & FILTERING -->
+  <!-- SCRIPT FOR LIVE RENDERING & UNIVERSAL SEARCH -->
   <script>
     let currentCategory = 'all';
     let currentSize = 24;
     let searchQuery = '';
+    let debounceTimer = null;
+    let universalResults = [];
+    const svgCache = new Map();
 
-    function renderIcons() {
+    function renderCuratedIcons() {
       const container = document.getElementById('iconsGrid');
       if (!container || !window.SALONE_ICONS) return;
 
@@ -504,75 +541,145 @@
       });
 
       document.getElementById('visibleCount').innerText = filtered.length;
+      document.getElementById('sourceNotice').innerText = '(Built-in Offline Ready)';
 
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--salone-surface); border-radius: var(--salone-radius); border: 1px dashed var(--salone-surface-border);">
-            <div style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">No built-in icons matched "${searchQuery}"</div>
-            <p style="color: var(--salone-text-muted); font-size: 0.9rem; max-width: 480px; margin: 0 auto 1.5rem;">
-              You can search for general terms like "button", "arrow", "mail", "user", "social", or request new brand icons.
-            </p>
-            <button class="button small green" onclick="clearSearch()">View All Built-in Icons</button>
-          </div>
-        `;
+      if (filtered.length === 0 && !searchQuery) {
+        container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">No icons found.</div>`;
         return;
       }
 
       container.innerHTML = filtered.map(icon => {
         const svgContent = window.getSaloneSVG(icon, currentSize);
-        return `
-          <div class="icon-card" onclick="copyIconSvg('${icon.name}')" title="Click to copy SVG">
-            <div class="icon-preview">
-              ${svgContent}
-            </div>
-            <div class="icon-title">${icon.title}</div>
-            <div class="icon-name">${icon.name}</div>
-
-            <div class="card-hover-actions">
-              <button class="btn-copy-svg" onclick="event.stopPropagation(); copyIconSvg('${icon.name}')">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
-                Copy SVG
-              </button>
-              <button class="btn-copy-html" onclick="event.stopPropagation(); copyIconHtml('${icon.name}')">
-                Copy HTML
-              </button>
-              <button class="btn-download-svg" onclick="event.stopPropagation(); downloadIconSvg('${icon.name}')">
-                Download
-              </button>
-            </div>
-          </div>
-        `;
+        return createIconCardHtml(icon.name, icon.title, svgContent, 'builtin');
       }).join('');
+    }
+
+    function createIconCardHtml(name, title, svgContent, source = 'builtin') {
+      const escapedName = name.replace(/'/g, "\\'");
+      return `
+        <div class="icon-card" onclick="copyCardSvg('${escapedName}', this)" title="Click to copy SVG">
+          <span class="icon-badge-source">${source === 'builtin' ? 'CORE' : source}</span>
+          <div class="icon-preview" data-name="${name}">
+            ${svgContent}
+          </div>
+          <div class="icon-title">${title}</div>
+          <div class="icon-name">${name}</div>
+
+          <div class="card-hover-actions">
+            <button class="btn-copy-svg" onclick="event.stopPropagation(); copyCardSvg('${escapedName}', this.closest('.icon-card'))">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+              Copy SVG
+            </button>
+            <button class="btn-copy-html" onclick="event.stopPropagation(); copyCardHtml('${escapedName}', this.closest('.icon-card'))">
+              Copy HTML
+            </button>
+            <button class="btn-download-svg" onclick="event.stopPropagation(); downloadCardSvg('${escapedName}', this.closest('.icon-card'))">
+              Download
+            </button>
+          </div>
+        </div>
+      `;
     }
 
     function setCategory(cat, btn) {
       currentCategory = cat;
       document.querySelectorAll('.cat-pill').forEach(el => el.classList.remove('active'));
       btn.classList.add('active');
-      renderIcons();
-    }
-
-    function handleSearch() {
-      searchQuery = document.getElementById('iconSearchInput').value.trim().toLowerCase();
-      renderIcons();
-    }
-
-    function clearSearch() {
       document.getElementById('iconSearchInput').value = '';
       searchQuery = '';
-      currentCategory = 'all';
-      document.querySelectorAll('.cat-pill').forEach((el, idx) => {
-        if (idx === 0) el.classList.add('active');
-        else el.classList.remove('active');
+      universalResults = [];
+      renderCuratedIcons();
+    }
+
+    function debounceSearch() {
+      clearTimeout(debounceTimer);
+      searchQuery = document.getElementById('iconSearchInput').value.trim().toLowerCase();
+      
+      // First update local curated matches immediately
+      renderCuratedIcons();
+
+      if (!searchQuery || searchQuery.length < 2) {
+        document.getElementById('searchLoadingBar').classList.remove('show');
+        return;
+      }
+
+      // Query the 200,000+ universal icon catalog
+      debounceTimer = setTimeout(() => {
+        fetchUniversalIcons(searchQuery);
+      }, 350);
+    }
+
+    async function fetchUniversalIcons(query) {
+      const loadingBar = document.getElementById('searchLoadingBar');
+      loadingBar.classList.add('show');
+
+      try {
+        const res = await fetch(`https://api.iconify.design/search?query=${encodeURIComponent(query)}&limit=64`);
+        if (!res.ok) throw new Error('Search failed');
+        const data = await res.json();
+        
+        loadingBar.classList.remove('show');
+        
+        if (data.icons && data.icons.length > 0) {
+          renderCombinedResults(data.icons);
+        }
+      } catch (err) {
+        loadingBar.classList.remove('show');
+        console.warn('Universal icon search offline or rate-limited:', err);
+      }
+    }
+
+    function renderCombinedResults(remoteIconIds) {
+      const container = document.getElementById('iconsGrid');
+      
+      // Filter local matches
+      const localMatches = (window.SALONE_ICONS || []).filter(icon => {
+        return icon.name.toLowerCase().includes(searchQuery) ||
+          icon.title.toLowerCase().includes(searchQuery) ||
+          (icon.tags && icon.tags.toLowerCase().includes(searchQuery));
       });
-      renderIcons();
+
+      let totalCount = localMatches.length + remoteIconIds.length;
+      document.getElementById('visibleCount').innerText = totalCount;
+      document.getElementById('sourceNotice').innerText = `(Found ${localMatches.length} Core + ${remoteIconIds.length} Universal)`;
+
+      // Render local cards first
+      let html = localMatches.map(icon => {
+        const svgContent = window.getSaloneSVG(icon, currentSize);
+        return createIconCardHtml(icon.name, icon.title, svgContent, 'CORE');
+      }).join('');
+
+      // Append universal cards with async SVG loader
+      remoteIconIds.forEach(id => {
+        const parts = id.split(':');
+        const prefix = parts[0] || 'icon';
+        const rawName = parts[1] || parts[0];
+        const prettyTitle = rawName.replace(/-/g, ' ');
+        const initialSvg = `<img src="https://api.iconify.design/${prefix}/${rawName}.svg" width="${currentSize}" height="${currentSize}" alt="${rawName}" style="display:block;">`;
+        
+        html += createIconCardHtml(id, prettyTitle, initialSvg, prefix.toUpperCase());
+      });
+
+      container.innerHTML = html;
     }
 
     function changeIconSize(size, btn) {
       currentSize = size;
       document.querySelectorAll('.size-btn').forEach(el => el.classList.remove('active'));
       btn.classList.add('active');
-      renderIcons();
+      
+      document.querySelectorAll('.icon-card .icon-preview').forEach(preview => {
+        const svg = preview.querySelector('svg');
+        const img = preview.querySelector('img');
+        if (svg) {
+          svg.setAttribute('width', size);
+          svg.setAttribute('height', size);
+        }
+        if (img) {
+          img.setAttribute('width', size);
+          img.setAttribute('height', size);
+        }
+      });
     }
 
     function showToast(msg) {
@@ -583,44 +690,64 @@
       setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
-    function copyIconSvg(name) {
-      const icon = window.SALONE_ICONS.find(i => i.name === name);
-      if (!icon) return;
-      const svg = window.getSaloneSVG(icon, currentSize);
+    async function getSvgStringFromCard(card, name) {
+      const svgEl = card.querySelector('.icon-preview svg');
+      if (svgEl) {
+        return svgEl.outerHTML;
+      }
+      // If it is an external icon loaded as img, fetch its raw SVG text
+      const imgEl = card.querySelector('.icon-preview img');
+      if (imgEl && imgEl.src) {
+        if (svgCache.has(imgEl.src)) {
+          return svgCache.get(imgEl.src);
+        }
+        try {
+          const res = await fetch(imgEl.src);
+          const raw = await res.text();
+          svgCache.set(imgEl.src, raw);
+          return raw;
+        } catch (e) {
+          return imgEl.outerHTML;
+        }
+      }
+      return '';
+    }
+
+    async function copyCardSvg(name, card) {
+      const svg = await getSvgStringFromCard(card, name);
+      if (!svg) return;
       navigator.clipboard.writeText(svg).then(() => {
-        showToast('Copied <' + icon.name + '> SVG to clipboard!');
+        showToast('Copied <' + name + '> SVG to clipboard!');
       });
     }
 
-    function copyIconHtml(name) {
-      const icon = window.SALONE_ICONS.find(i => i.name === name);
-      if (!icon) return;
-      const svg = window.getSaloneSVG(icon, currentSize);
+    async function copyCardHtml(name, card) {
+      const svg = await getSvgStringFromCard(card, name);
+      if (!svg) return;
       const htmlSnippet = '<span class="icon">' + svg + '</span>';
       navigator.clipboard.writeText(htmlSnippet).then(() => {
         showToast('Copied <span class="icon"> HTML snippet!');
       });
     }
 
-    function downloadIconSvg(name) {
-      const icon = window.SALONE_ICONS.find(i => i.name === name);
-      if (!icon) return;
-      const svg = window.getSaloneSVG(icon, 24);
+    async function downloadCardSvg(name, card) {
+      const svg = await getSvgStringFromCard(card, name);
+      if (!svg) return;
       const blob = new Blob([svg], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = icon.name + '.svg';
+      a.download = name.replace(/[:/]/g, '-') + '.svg';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('Downloaded ' + icon.name + '.svg');
+      showToast('Downloaded ' + name + '.svg');
     }
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', () => {
-      renderIcons();
+      renderCuratedIcons();
     });
   </script>
 </body>
