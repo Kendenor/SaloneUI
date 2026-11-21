@@ -3,24 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cheat Sheet — Every Word in SaloneUI</title>
+  <title>SaloneUI Cheat Sheet — Every Plain-English Class Word</title>
   <meta name="description" content="A plain-English cheat sheet of every class word in SaloneUI. Say the word, get the style.">
+  
+  <!-- Favicon & Search Engine Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
   <link rel="stylesheet" href="dist/salone-ui.css">
   <link rel="stylesheet" href="assets/docs.css">
   <script src="assets/docs.js" defer></script>
   <style>
-    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-    .cheat-card { padding: 1.1rem 1.25rem; }
-    .cheat-card h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
-    .cheat-card h3 code { font-size: .95rem; color: var(--salone-primary); }
-    .cheat-card p { margin: 0; font-size: .85rem; color: var(--salone-text-muted); }
-    .cheat-card .mods { margin-top: .6rem; display: flex; flex-wrap: wrap; gap: .3rem; }
-    .cheat-card .mods code { font-size: .72rem; }
+    .cheat-search-wrap {
+      max-width: 600px;
+      margin: 1.5rem 0 2.5rem;
+      position: relative;
+    }
+    .cheat-search-input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.85rem;
+      font-size: 0.95rem;
+      border-radius: var(--salone-radius);
+      border: 1px solid var(--salone-surface-border);
+      background: var(--salone-surface);
+      color: var(--salone-text);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      outline: none;
+      transition: all var(--salone-transition);
+    }
+    .cheat-search-input:focus {
+      border-color: var(--salone-primary);
+      box-shadow: 0 0 0 3px var(--salone-primary-light);
+    }
+    .cheat-search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--salone-text-muted);
+      pointer-events: none;
+    }
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .cheat-card {
+      padding: 1.25rem;
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cheat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--salone-shadow-md);
+      border-color: var(--salone-primary);
+    }
+    .cheat-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cheat-card h3 code {
+      font-size: 1rem;
+      color: var(--salone-primary);
+      background: var(--salone-primary-light);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--salone-radius-sm);
+      cursor: pointer;
+    }
+    .cheat-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--salone-text-muted);
+      line-height: 1.5;
+    }
+    .cheat-card .mods {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--salone-surface-border);
+    }
+    .cheat-card .mods code {
+      font-size: 0.75rem;
+      background: var(--salone-bg-subtle);
+      border: 1px solid var(--salone-surface-border);
+      color: var(--salone-text);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all var(--salone-transition);
+    }
+    .cheat-card .mods code:hover {
+      background: var(--salone-primary);
+      color: #FFFFFF;
+      border-color: var(--salone-primary);
+    }
+    .cheat-section-title {
+      font-size: 1.35rem;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
       <img src="assets/logo.svg" alt="SaloneUI" height="34">
@@ -33,6 +138,28 @@
       <li><a href="examples.html">Examples</a></li>
     </ul>
     <div class="nav-actions">
+      <!-- Theme Switcher Button -->
+      <div class="theme-dropdown-wrap">
+        <button class="nav-control-btn theme-trigger" onclick="toggleThemeDropdown(event)" id="themeTriggerBtn" aria-label="Select Theme" title="Switch Theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+          </svg>
+          <span class="nav-text hide-mobile" id="navThemeText">Theme</span>
+          <svg class="nav-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="theme-dropdown-menu" id="themeDropdownMenu">
+          <button class="theme-option" onclick="setTheme('')"><span class="color-dot" style="background:#00A651;"></span> Emerald (Default)</button>
+          <button class="theme-option" onclick="setTheme('theme-fintech')"><span class="color-dot" style="background:#10B981;"></span> Fintech</button>
+          <button class="theme-option" onclick="setTheme('theme-shop')"><span class="color-dot" style="background:#EA580C;"></span> Shop</button>
+          <button class="theme-option" onclick="setTheme('theme-school')"><span class="color-dot" style="background:#2563EB;"></span> School</button>
+          <button class="theme-option" onclick="setTheme('dark')"><span class="color-dot" style="background:#0F172A; border:1px solid #94A3B8;"></span> Dark Mode</button>
+        </div>
+      </div>
+
       <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
       </a>
@@ -44,93 +171,393 @@
     </div>
   </nav>
 
+  <!-- Mobile Drawer -->
   <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="closeMobileDrawerOnBackdrop(event)">
     <div class="mobile-drawer">
       <div class="mobile-drawer-links">
-        <a href="index.html" class="mobile-nav-item"><span>Home</span></a>
-        <a href="components.html" class="mobile-nav-item"><span>Components</span></a>
-        <a href="cheatsheet.html" class="mobile-nav-item"><span>Cheat Sheet</span></a>
-        <a href="playground.html" class="mobile-nav-item"><span>Playground</span></a>
-        <a href="examples.html" class="mobile-nav-item"><span>Examples</span></a>
-        <a href="download.html" class="mobile-nav-item"><span>Download</span></a>
+        <a href="index.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="components.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Components (31)</span>
+        </a>
+        <a href="cheatsheet.html" class="mobile-nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Cheat Sheet</span>
+        </a>
+        <a href="playground.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Playground</span>
+        </a>
+        <a href="examples.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          <span>Examples &amp; Templates</span>
+        </a>
+        <a href="download.html" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download</span>
+        </a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button outline small" style="width: 100%; justify-content: center; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub Repository
+        </a>
       </div>
     </div>
   </div>
 
-  <main class="content-area" style="padding: 2.5rem 1.5rem;">
-    <div class="row" style="margin-bottom: 1.5rem;">
-      <span class="badge green">Plain English</span>
-      <h1 style="margin: 0; font-size: 2rem;">The Cheat Sheet</h1>
-    </div>
-    <p style="color: var(--salone-text-muted); max-width: 640px; margin-bottom: 2rem;">
-      You don't need to memorize long class names. Say the word you want and add the color
-      or size you like. This page lists every word SaloneUI understands.
-    </p>
-
-    <h2 style="font-size: 1.25rem;">Components</h2>
-    <div class="cheat-grid" style="margin-bottom: 2rem;">
-      <div class="cheat-card card flat"><h3><code>button</code></h3><p>A tappable action.</p>
-        <div class="mods"><code>green</code><code>blue</code><code>red</code><code>outline</code><code>small</code><code>big</code><code>full</code></div></div>
-      <div class="cheat-card card flat"><h3><code>card</code></h3><p>A bordered content box.</p>
-        <div class="mods"><code>flat</code><code>elevated</code></div></div>
-      <div class="cheat-card card flat"><h3><code>input</code></h3><p>A text field.</p>
-        <div class="mods"><code>error</code><code>success</code></div></div>
-      <div class="cheat-card card flat"><h3><code>money-card</code></h3><p>A realistic bank-card visual.</p>
-        <div class="mods"><code>dark</code><code>purple</code><code>gold</code></div></div>
-      <div class="cheat-card card flat"><h3><code>transaction</code></h3><p>A single line-item with an amount.</p></div>
-      <div class="cheat-card card flat"><h3><code>pin-box</code></h3><p>A 4-digit PIN entry row.</p></div>
-      <div class="cheat-card card flat"><h3><code>navbar</code></h3><p>A sticky top bar with brand + links.</p></div>
-      <div class="cheat-card card flat"><h3><code>bottom-bar</code></h3><p>A fixed app-style bottom nav.</p></div>
-      <div class="cheat-card card flat"><h3><code>modal</code></h3><p>A centered dialog (use <code>&lt;details class="modal"&gt;</code>).</p></div>
-      <div class="cheat-card card flat"><h3><code>alert</code></h3><p>An inline notification banner.</p>
-        <div class="mods"><code>success</code><code>error</code><code>warning</code><code>info</code></div></div>
-      <div class="cheat-card card flat"><h3><code>badge</code></h3><p>A tiny uppercase label pill.</p>
-        <div class="mods"><code>green</code><code>red</code><code>blue</code><code>black</code><code>grey</code></div></div>
-      <div class="cheat-card card flat"><h3><code>avatar</code></h3><p>A round image or initials circle.</p>
-        <div class="mods"><code>small</code><code>big</code></div></div>
-      <div class="cheat-card card flat"><h3><code>table</code></h3><p>A data table (wrap in <code>table-wrap</code>).</p></div>
-      <div class="cheat-card card flat"><h3><code>form</code></h3><p>A vertical form container.</p>
-        <div class="mods"><code>form-group</code><code>label</code><code>form-help</code></div></div>
-      <div class="cheat-card card flat"><h3><code>toggle</code></h3><p>A switch-style checkbox.</p></div>
-      <div class="cheat-card card flat"><h3><code>loader</code></h3><p>A spinning circle.</p></div>
-      <div class="cheat-card card flat"><h3><code>price</code></h3><p>A big number with currency + period.</p></div>
-      <div class="cheat-card card flat"><h3><code>profile</code></h3><p>Avatar + name + bio block.</p></div>
-      <div class="cheat-card card flat"><h3><code>search</code></h3><p>A rounded input with a search icon.</p></div>
-      <div class="cheat-card card flat"><h3><code>tabs</code></h3><p>A segmented tab bar.</p></div>
-      <div class="cheat-card card flat"><h3><code>progress</code></h3><p>A thin fill bar (put <code>.bar</code> inside).</p></div>
-      <div class="cheat-card card flat"><h3><code>footer</code></h3><p>A padded bottom-of-page section.</p></div>
-      <div class="cheat-card card flat"><h3><code>hero</code></h3><p>A big centered intro section.</p></div>
-      <div class="cheat-card card flat"><h3><code>accordion</code></h3><p>Expandable panel (use <code>&lt;details class="accordion"&gt;</code>).</p></div>
-      <div class="cheat-card card flat"><h3><code>toast</code></h3><p>A floating bottom notification.</p>
-        <div class="mods"><code>success</code><code>error</code><code>info</code><code>show</code></div></div>
-      <div class="cheat-card card flat"><h3><code>steps</code></h3><p>A horizontal progress stepper.</p>
-        <div class="mods"><code>done</code><code>active</code></div></div>
-      <div class="cheat-card card flat"><h3><code>tooltip</code></h3><p>A hover label that floats above.</p></div>
-      <div class="cheat-card card flat"><h3><code>divider</code></h3><p>A labeled horizontal rule.</p></div>
-      <div class="cheat-card card flat"><h3><code>status</code></h3><p>A dot pill for online/busy/offline.</p>
-        <div class="mods"><code>online</code><code>busy</code><code>offline</code></div></div>
+  <main class="container" style="padding: 3rem 1.25rem 5rem;">
+    <div style="max-width: 800px;">
+      <span class="badge green">Interactive Reference</span>
+      <h1 style="margin: 0.5rem 0 0.5rem; font-size: 2.25rem;">SaloneUI Cheat Sheet</h1>
+      <p style="color: var(--salone-text-muted); font-size: 1.05rem; line-height: 1.6;">
+        Every plain-English word in SaloneUI. Click any class word to copy it instantly to your clipboard.
+      </p>
     </div>
 
-    <h2 style="font-size: 1.25rem;">Layout &amp; Helpers</h2>
-    <div class="cheat-grid">
-      <div class="cheat-card card flat"><h3><code>container</code></h3><p>Centers content to a 1140px width.</p></div>
-      <div class="cheat-card card flat"><h3><code>grid</code></h3><p>A CSS grid. Add <code>2</code>, <code>3</code> or <code>4</code> for columns on desktop.</p></div>
-      <div class="cheat-card card flat"><h3><code>row</code></h3><p>A wrapping flex row.</p></div>
-      <div class="cheat-card card flat"><h3><code>column</code></h3><p>A flex column with gap.</p></div>
-      <div class="cheat-card card flat"><h3><code>center</code></h3><p>Everything centered.</p></div>
-      <div class="cheat-card card flat"><h3><code>space-between</code></h3><p>Flex row, items pushed to the edges.</p></div>
-      <div class="cheat-card card flat"><h3><code>gap-sm / gap-md / gap-lg</code></h3><p>Control the space between items.</p></div>
-      <div class="cheat-card card flat"><h3><code>hide-mobile / show-mobile</code></h3><p>Toggle visibility on small screens.</p></div>
+    <!-- Quick Filter Search Input -->
+    <div class="cheat-search-wrap">
+      <svg class="cheat-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="cheatSearch" class="cheat-search-input" placeholder="Filter 50+ classes (e.g. button, grid, toast, money-card)..." onkeyup="filterCheatsheet()">
     </div>
 
-    <h2 style="font-size: 1.25rem;">Themes (one word on <code>&lt;body&gt;</code>)</h2>
-    <div class="cheat-grid">
-      <div class="cheat-card card flat"><h3><code>theme-fintech</code></h3><p>Green / emerald palette.</p></div>
-      <div class="cheat-card card flat"><h3><code>theme-shop</code></h3><p>Warm orange palette.</p></div>
-      <div class="cheat-card card flat"><h3><code>theme-school</code></h3><p>Blue palette.</p></div>
-      <div class="cheat-card card flat"><h3><code>dark</code></h3><p>Dark mode. Drop it on <code>&lt;body&gt;</code> or <code>&lt;html&gt;</code>.</p></div>
+    <!-- 1. COMPONENTS -->
+    <h2 class="cheat-section-title">📦 Core Components (31)</h2>
+    <div class="cheat-grid" id="compGrid">
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('button')">button</code></h3>
+          <p>A clickable interactive action element.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('green')">green</code>
+          <code onclick="copyWord('blue')">blue</code>
+          <code onclick="copyWord('red')">red</code>
+          <code onclick="copyWord('outline')">outline</code>
+          <code onclick="copyWord('small')">small</code>
+          <code onclick="copyWord('big')">big</code>
+          <code onclick="copyWord('full')">full</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('card')">card</code></h3>
+          <p>Surface content container box.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('flat')">flat</code>
+          <code onclick="copyWord('elevated')">elevated</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('toast')">toast</code></h3>
+          <p>Floating notification banner with slide-up animation.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('show')">show</code>
+          <code onclick="copyWord('success')">success</code>
+          <code onclick="copyWord('error')">error</code>
+          <code onclick="copyWord('info')">info</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('steps')">steps</code></h3>
+          <p>Horizontal checkout or onboarding stepper.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('step')">step</code>
+          <code onclick="copyWord('done')">done</code>
+          <code onclick="copyWord('active')">active</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('tooltip')">tooltip</code></h3>
+          <p>Hover hint bubble positioned above content.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('tip')">tip</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('divider')">divider</code></h3>
+          <p>Faded horizontal line with centered text.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('status')">status</code></h3>
+          <p>Status pill badge with live indicator dot.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('online')">online</code>
+          <code onclick="copyWord('busy')">busy</code>
+          <code onclick="copyWord('offline')">offline</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('money-card')">money-card</code></h3>
+          <p>Fintech bank card with balance &amp; chip.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('dark')">dark</code>
+          <code onclick="copyWord('purple')">purple</code>
+          <code onclick="copyWord('gold')">gold</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('transaction')">transaction</code></h3>
+          <p>Financial ledger line-item row with status.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('pin-box')">pin-box</code></h3>
+          <p>4-digit mobile money PIN security input.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('navbar')">navbar</code></h3>
+          <p>Sticky header navigation with brand &amp; controls.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('bottom-bar')">bottom-bar</code></h3>
+          <p>Mobile app bottom tab navigation.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('modal')">modal</code></h3>
+          <p>Zero-JS centered overlay dialog using details.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('alert')">alert</code></h3>
+          <p>Inline notice banner with icons.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('success')">success</code>
+          <code onclick="copyWord('error')">error</code>
+          <code onclick="copyWord('warning')">warning</code>
+          <code onclick="copyWord('info')">info</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('badge')">badge</code></h3>
+          <p>Compact tag label pill.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('green')">green</code>
+          <code onclick="copyWord('blue')">blue</code>
+          <code onclick="copyWord('red')">red</code>
+          <code onclick="copyWord('orange')">orange</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('avatar')">avatar</code></h3>
+          <p>Round user avatar or initials circle.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('small')">small</code>
+          <code onclick="copyWord('big')">big</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('table')">table</code></h3>
+          <p>Clean bordered tabular data table.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('toggle')">toggle</code></h3>
+          <p>Smooth animated switch checkbox.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('loader')">loader</code></h3>
+          <p>Spinning loading circle animation.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('progress')">progress</code></h3>
+          <p>Percentage bar with fill indicator.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('bar')">bar</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('accordion')">accordion</code></h3>
+          <p>Collapsible FAQ disclosure panel.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. LAYOUT & HELPERS -->
+    <h2 class="cheat-section-title">📐 Auto-Layout &amp; Grid Helpers</h2>
+    <div class="cheat-grid" id="layoutGrid">
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('container')">container</code></h3>
+          <p>Centers content with responsive padding (max 1140px).</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('grid')">grid</code></h3>
+          <p>Responsive CSS grid. Auto-collapses on mobile.</p>
+        </div>
+        <div class="mods">
+          <code onclick="copyWord('2')">2</code>
+          <code onclick="copyWord('3')">3</code>
+          <code onclick="copyWord('4')">4</code>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('row')">row</code></h3>
+          <p>Wrapping horizontal flex row with gap.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('column')">column</code></h3>
+          <p>Vertical flex column with gap.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('center')">center</code></h3>
+          <p>Horizontally and vertically centers content.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('space-between')">space-between</code></h3>
+          <p>Flex row with items spaced to opposite edges.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('hide-mobile')">hide-mobile</code></h3>
+          <p>Hides element on phone viewports (&lt;768px).</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('show-mobile')">show-mobile</code></h3>
+          <p>Shows element only on phone viewports.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. THEMES -->
+    <h2 class="cheat-section-title">🎨 Magic 1-Word Themes (Put on &lt;body&gt;)</h2>
+    <div class="cheat-grid" id="themeGrid">
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('theme-fintech')">theme-fintech</code></h3>
+          <p>Emerald green modern banking &amp; payment palette.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('theme-shop')">theme-shop</code></h3>
+          <p>Warm coral/orange e-commerce palette.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('theme-school')">theme-school</code></h3>
+          <p>Clean royal blue education portal palette.</p>
+        </div>
+      </div>
+
+      <div class="cheat-card">
+        <div>
+          <h3><code onclick="copyWord('dark')">dark</code></h3>
+          <p>High-contrast dark mode with zero configuration.</p>
+        </div>
+      </div>
     </div>
   </main>
 
+  <script>
+    function filterCheatsheet() {
+      const q = document.getElementById('cheatSearch').value.toLowerCase();
+      document.querySelectorAll('.cheat-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    function copyWord(word) {
+      navigator.clipboard.writeText(word).then(() => {
+        // Show lightweight toast feedback
+        let toast = document.getElementById('copyToast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'copyToast';
+          toast.className = 'toast success show';
+          toast.style.position = 'fixed';
+          toast.style.bottom = '2rem';
+          toast.style.left = '50%';
+          toast.style.transform = 'translateX(-50%)';
+          toast.style.zIndex = '9999';
+          document.body.appendChild(toast);
+        }
+        toast.innerHTML = '<span>Copied: <code>' + word + '</code></span>';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    }
+  </script>
 </body>
 </html>

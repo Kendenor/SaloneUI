@@ -1209,43 +1209,79 @@
       <!-- 27. TOAST -->
       <section id="toast" class="component-box">
         <h2>27. Toast</h2>
-        <p style="color: var(--salone-text-muted);">A small floating notification at the bottom of the screen. Show it with the <code>show</code> class.</p>
+        <p style="color: var(--salone-text-muted);">A sleek, floating feedback banner that slides up at the bottom of the screen. Add <code>show</code> to reveal it, and style with <code>success</code>, <code>error</code>, or <code>info</code>.</p>
         <div class="preview-code-grid">
           <div class="preview-box">
-            <div class="toast success" style="position: static; transform: none; opacity: 1; pointer-events: auto;">Saved your changes</div>
+            <div class="row gap-xs" style="margin-bottom: 1rem; flex-wrap: wrap;">
+              <button class="button small green" onclick="triggerToastDemo('success')">Show Success</button>
+              <button class="button small red" onclick="triggerToastDemo('error')">Show Error</button>
+              <button class="button small blue" onclick="triggerToastDemo('info')">Show Info</button>
+            </div>
+            <div id="demoToast" class="toast success show" style="position: static; transform: none; width: 100%; box-sizing: border-box; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span id="toastMsg">Payment sent successfully! ($250.00)</span>
+              </div>
+              <span style="font-size: 0.75rem; opacity: 0.7;">Just now</span>
+            </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-tst')">Copy</button>
-            <pre><code id="c-tst">&lt;div class="toast success"&gt;Saved your changes&lt;/div&gt;
+            <pre><code id="c-tst">&lt;div class="toast success show"&gt;
+  &lt;span&gt;Payment sent successfully!&lt;/span&gt;
+&lt;/div&gt;
 
-/* show it */
+/* Show dynamically with JS */
 toast.classList.add('show');
+setTimeout(() => toast.classList.remove('show'), 3500);
 
-/* success, error or info */
-&lt;div class="toast error"&gt;Something broke&lt;/div&gt;
-&lt;div class="toast info"&gt;New message&lt;/div&gt;</code></pre>
+/* Status variants */
+&lt;div class="toast error"&gt;Failed to process transaction&lt;/div&gt;
+&lt;div class="toast info"&gt;New account alert&lt;/div&gt;</code></pre>
           </div>
         </div>
       </section>
 
       <!-- 28. STEPS -->
       <section id="step" class="component-box">
-        <h2>28. Steps</h2>
-        <p style="color: var(--salone-text-muted);">A horizontal progress stepper. Mark each step <code>done</code> or <code>active</code>.</p>
+        <h2>28. Steps (Stepper)</h2>
+        <p style="color: var(--salone-text-muted);">A responsive checkout or multi-step progress bar. Use <code>step done</code> for completed steps and <code>step active</code> for the current step.</p>
         <div class="preview-code-grid">
           <div class="preview-box">
             <div class="steps">
-              <div class="step done"><div class="step-dot">1</div>Cart<div class="step-line"></div></div>
-              <div class="step active"><div class="step-dot">2</div>Shipping<div class="step-line"></div></div>
-              <div class="step"><div class="step-dot">3</div>Payment</div>
+              <div class="step done">
+                <div class="step-dot">✓</div>
+                <span>Cart</span>
+                <div class="step-line"></div>
+              </div>
+              <div class="step active">
+                <div class="step-dot">2</div>
+                <span>Shipping</span>
+                <div class="step-line"></div>
+              </div>
+              <div class="step">
+                <div class="step-dot">3</div>
+                <span>Payment</span>
+              </div>
             </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-stp')">Copy</button>
             <pre><code id="c-stp">&lt;div class="steps"&gt;
-  &lt;div class="step done"&gt;&lt;div class="step-dot"&gt;1&lt;/div&gt;Cart&lt;div class="step-line"&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="step active"&gt;&lt;div class="step-dot"&gt;2&lt;/div&gt;Shipping&lt;div class="step-line"&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="step"&gt;&lt;div class="step-dot"&gt;3&lt;/div&gt;Payment&lt;/div&gt;
+  &lt;div class="step done"&gt;
+    &lt;div class="step-dot"&gt;✓&lt;/div&gt;
+    &lt;span&gt;Cart&lt;/span&gt;
+    &lt;div class="step-line"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="step active"&gt;
+    &lt;div class="step-dot"&gt;2&lt;/div&gt;
+    &lt;span&gt;Shipping&lt;/span&gt;
+    &lt;div class="step-line"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="step"&gt;
+    &lt;div class="step-dot"&gt;3&lt;/div&gt;
+    &lt;span&gt;Payment&lt;/span&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </div>
         </div>
@@ -1254,16 +1290,34 @@ toast.classList.add('show');
       <!-- 29. TOOLTIP -->
       <section id="tooltip" class="component-box">
         <h2>29. Tooltip</h2>
-        <p style="color: var(--salone-text-muted);">Hover any <code>tooltip</code> to reveal a small floating label on top. Pure CSS.</p>
+        <p style="color: var(--salone-text-muted);">Lightweight pure CSS floating tooltips. Hover or focus on any element wrapped with <code>class="tooltip"</code> to reveal the <code>tip</code>.</p>
         <div class="preview-code-grid">
           <div class="preview-box">
-            <span class="tooltip"><span class="tip">I'm a tooltip</span>Hover me</span>
+            <div class="row gap-md center" style="flex-wrap: wrap;">
+              <span class="tooltip">
+                <button class="button small outline">Hover Button</button>
+                <span class="tip">🚀 Plain-English CSS!</span>
+              </span>
+              <span class="tooltip">
+                <span class="badge blue">Hover Badge</span>
+                <span class="tip">Direct account transfer</span>
+              </span>
+              <span class="tooltip">
+                <span class="status online"><span class="dot"></span>System Active</span>
+                <span class="tip">All servers 100% operational</span>
+              </span>
+            </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-ttl')">Copy</button>
             <pre><code id="c-ttl">&lt;span class="tooltip"&gt;
-  &lt;span class="tip"&gt;I'm a tooltip&lt;/span&gt;
-  Hover me
+  &lt;button class="button outline"&gt;Hover Me&lt;/button&gt;
+  &lt;span class="tip"&gt;Instant plain-English tooltip!&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;span class="tooltip"&gt;
+  &lt;span class="badge blue"&gt;Hover Badge&lt;/span&gt;
+  &lt;span class="tip"&gt;Helpful hint message&lt;/span&gt;
 &lt;/span&gt;</code></pre>
           </div>
         </div>
@@ -1272,37 +1326,57 @@ toast.classList.add('show');
       <!-- 30. DIVIDER -->
       <section id="divider" class="component-box">
         <h2>30. Divider</h2>
-        <p style="color: var(--salone-text-muted);">A labeled horizontal rule, perfect for "or" separators in forms.</p>
+        <p style="color: var(--salone-text-muted);">A labeled horizontal rule with gentle edge-fading gradients, ideal for authentication forms and section dividers.</p>
         <div class="preview-code-grid">
           <div class="preview-box">
-            <div class="divider">or</div>
+            <div style="width: 100%; max-width: 320px; margin: 0 auto;">
+              <button class="button blue full" style="justify-content: center;">Sign In with GitHub</button>
+              <div class="divider">or continue with email</div>
+              <input type="email" placeholder="name@domain.com" style="width: 100%; margin-bottom: 0.5rem;">
+              <button class="button green full" style="justify-content: center;">Continue</button>
+            </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-dvd')">Copy</button>
-            <pre><code id="c-dvd">&lt;div class="divider"&gt;or&lt;/div&gt;</code></pre>
+            <pre><code id="c-dvd">&lt;div class="divider"&gt;or continue with&lt;/div&gt;
+
+&lt;!-- Useful in login cards & settings --&gt;
+&lt;button class="button full"&gt;Sign in with Google&lt;/button&gt;
+&lt;div class="divider"&gt;or&lt;/div&gt;
+&lt;input type="email" placeholder="Email address"&gt;</code></pre>
           </div>
         </div>
       </section>
 
       <!-- 31. STATUS -->
       <section id="status" class="component-box">
-        <h2>31. Status</h2>
-        <p style="color: var(--salone-text-muted);">A small pill with a colored dot for online / busy / offline states.</p>
+        <h2>31. Status Pill</h2>
+        <p style="color: var(--salone-text-muted);">A pill badge with an indicator dot. Features an automatic live pulse animation on <code>online</code>.</p>
         <div class="preview-code-grid">
           <div class="preview-box">
-            <span class="status online"><span class="dot"></span>Online</span>
-            <span class="status busy"><span class="dot"></span>Busy</span>
-            <span class="status offline"><span class="dot"></span>Offline</span>
+            <div class="row gap-sm" style="flex-wrap: wrap;">
+              <span class="status online"><span class="dot"></span>API Online</span>
+              <span class="status busy"><span class="dot"></span>Syncing</span>
+              <span class="status offline"><span class="dot"></span>Database Offline</span>
+            </div>
           </div>
           <div class="code-box-small">
             <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-stt')">Copy</button>
-            <pre><code id="c-stt">&lt;span class="status online"&gt;&lt;span class="dot"&gt;&lt;/span&gt;Online&lt;/span&gt;
-&lt;span class="status busy"&gt;&lt;span class="dot"&gt;&lt;/span&gt;Busy&lt;/span&gt;
-&lt;span class="status offline"&gt;&lt;span class="dot"&gt;&lt;/span&gt;Offline&lt;/span&gt;</code></pre>
+            <pre><code id="c-stt">&lt;span class="status online"&gt;
+  &lt;span class="dot"&gt;&lt;/span&gt;Online
+&lt;/span&gt;
+
+&lt;span class="status busy"&gt;
+  &lt;span class="dot"&gt;&lt;/span&gt;Busy
+&lt;/span&gt;
+
+&lt;span class="status offline"&gt;
+  &lt;span class="dot"&gt;&lt;/span&gt;Offline
+&lt;/span&gt;</code></pre>
           </div>
         </div>
       </section>
-    </main>
+</main>
   </div>
 
   <script>
