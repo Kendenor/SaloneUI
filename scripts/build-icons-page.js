@@ -652,19 +652,73 @@ const iconsPageHtml = `<!DOCTYPE html>
         return createIconCardHtml(icon.name, icon.title, svgContent, 'CORE');
       }).join('');
 
-      // Append universal cards with async SVG loader
+      // Append universal cards with zero-broken-image protection
       remoteIconIds.forEach(id => {
         const parts = id.split(':');
         const prefix = parts[0] || 'icon';
         const rawName = parts[1] || parts[0];
         const prettyTitle = rawName.replace(/-/g, ' ');
-        const initialSvg = \`<img src="https://api.iconify.design/\${prefix}/\${rawName}.svg" width="\${currentSize}" height="\${currentSize}" alt="\${rawName}" style="display:block;">\`;
+        const imgUrl = \`https://api.iconify.design/\${prefix}/\${rawName}.svg\`;
+        
+        // Zero-broken-image protection:
+        // 1. Starts hidden (opacity: 0).
+        // 2. On successful load, transitions smoothly and upgrades to inline <svg>.
+        // 3. On error (404, bad connection, broken image), immediately removes card so NO broken image box is ever displayed!
+        const initialSvg = \`<img src="\${imgUrl}" width="\${currentSize}" height="\${currentSize}" alt="\${rawName}" loading="lazy" onload="handleIconLoad(this, '\${prefix}', '\${rawName}')" onerror="handleIconError(this)" style="display:block; opacity:0; transition:opacity 0.2s ease;">\`;
         
         html += createIconCardHtml(id, prettyTitle, initialSvg, prefix.toUpperCase());
       });
 
       container.innerHTML = html;
     }
+
+    window.handleIconLoad = async function(img, prefix, rawName) {
+      img.style.opacity = '1';
+      try {
+        const url = img.src;
+        if (!svgCache.has(url)) {
+          const res = await fetch(url);
+          if (res.ok) {
+            const rawSvg = await res.text();
+            if (rawSvg && rawSvg.includes('<svg')) {
+              svgCache.set(url, rawSvg);
+              const preview = img.closest('.icon-preview');
+              if (preview && preview.querySelector('img') === img) {
+                const sizedSvg = rawSvg
+                  .replace(/width="[^"]*"/, \`width="\${currentSize}"\`)
+                  .replace(/height="[^"]*"/, \`height="\${currentSize}"\`);
+                preview.innerHTML = sizedSvg;
+              }
+            }
+          }
+        } else {
+          const rawSvg = svgCache.get(url);
+          const preview = img.closest('.icon-preview');
+          if (preview && preview.querySelector('img') === img) {
+            const sizedSvg = rawSvg
+              .replace(/width="[^"]*"/, \`width="\${currentSize}"\`)
+              .replace(/height="[^"]*"/, \`height="\${currentSize}"\`);
+            preview.innerHTML = sizedSvg;
+          }
+        }
+      } catch (e) {
+        // img stays cleanly rendered
+      }
+    };
+
+    window.handleIconError = function(img) {
+      const card = img.closest('.icon-card');
+      if (card) {
+        card.remove();
+        updateVisibleCounter();
+      }
+    };
+
+    window.updateVisibleCounter = function() {
+      const cards = document.querySelectorAll('#iconsGrid .icon-card');
+      const counter = document.getElementById('visibleCount');
+      if (counter) counter.innerText = cards.length;
+    };
 
     function changeIconSize(size, btn) {
       currentSize = size;

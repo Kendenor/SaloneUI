@@ -1882,3 +1882,23 @@ html.dark body .status.error {
   background-color: #009387;
   border-color: #009387;
 }
+
+.button.salone {
+  background: linear-gradient(135deg, #00A651 0%, #008F75 55%, #0072C6 100%);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+.button.salone:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 14px rgba(0, 166, 81, 0.35);
+}
+
+.button.tailwind {
+  background-color: #06B6D4;
+  color: #FFFFFF;
+  border-color: #06B6D4;
+}
+.button.tailwind:hover {
+  background-color: #0891B2;
+  border-color: #0891B2;
+}

@@ -4,6 +4,14 @@ const path = require('path');
 const icons = [
   // --- TECH & COMPANY BRANDS ---
   {
+    name: 'saloneui',
+    title: 'SaloneUI',
+    category: 'brands',
+    tags: 'saloneui salone ui css framework plain english library logo brand official sierra leone emerald',
+    type: 'multi',
+    svg: '<defs><linearGradient id="saloneMarkGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00A651"/><stop offset="55%" stop-color="#008F75"/><stop offset="100%" stop-color="#0072C6"/></linearGradient></defs><rect width="22" height="22" x="1" y="1" rx="5" fill="url(#saloneMarkGrad)"/><path d="M15.5 7C15.5 4.5 8.5 4.5 8.5 8.5C8.5 12 15.5 11.5 15.5 15.5C15.5 19.5 8.5 19.5 8.5 17" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15.5" cy="7" r="0.9" fill="#FFFFFF"/><circle cx="8.5" cy="17" r="0.9" fill="#FFFFFF"/>'
+  },
+  {
     name: 'github',
     title: 'GitHub',
     category: 'brands',
@@ -58,6 +66,62 @@ const icons = [
     tags: 'hosting deploy jamstack serverless cloud web',
     type: 'fill',
     svg: '<path d="M6.49 19.09h-.05l-4.22-4.22c-.1-.1-.13-.24-.13-.37 0-.13.04-.26.13-.36l4.22-4.22h.05c.2 0 .37.16.37.37v8.43c0 .21-.17.37-.37.37zm1.61.91v3.25c0 .28.23.5.5.5h6.8c.28 0 .5-.22.5-.5v-3.25H8.1zm13.68-5.13l-4.22 4.22h-.05c-.2 0-.37-.16-.37-.37v-8.43c0-.21.17-.37.37-.37h.05l4.22 4.22c.1.1.13.23.13.36 0 .14-.03.27-.13.37zm-5.78-7.77h-3.9V.5c0-.28.22-.5.5-.5h2.9c.28 0 .5.22.5.5v6.6zM8.1 8.87h7.8v6.26H8.1V8.87z"/>'
+  },
+  {
+    name: 'tailwind',
+    title: 'Tailwind CSS',
+    category: 'brands',
+    tags: 'tailwind tailwindcss css utility framework styling web design frontend',
+    type: 'fill',
+    svg: '<path fill="#06B6D4" d="M12.001 4.8q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8m-6 7.2q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624c1.177 1.194 2.538 2.576 5.512 2.576q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12"/>'
+  },
+  {
+    name: 'tailwindcss',
+    title: 'Tailwind CSS',
+    category: 'brands',
+    tags: 'tailwind tailwindcss css utility framework styling',
+    type: 'fill',
+    svg: '<path fill="#06B6D4" d="M12.001 4.8q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8m-6 7.2q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624c1.177 1.194 2.538 2.576 5.512 2.576q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12"/>'
+  },
+  {
+    name: 'bootstrap',
+    title: 'Bootstrap',
+    category: 'brands',
+    tags: 'bootstrap css framework responsive web components styling frontend',
+    type: 'fill',
+    svg: '<path fill="#7952B3" d="M11.77 11.24H9.956V8.202h2.152c1.17 0 1.834.522 1.834 1.466c0 1.008-.773 1.572-2.174 1.572zm.324 1.206H9.957v3.348h2.231c1.459 0 2.232-.585 2.232-1.685s-.795-1.663-2.326-1.663M24 11.39v1.218c-1.128.108-1.817.944-2.226 2.268c-.407 1.319-.463 2.937-.42 4.186c.045 1.3-.968 2.5-2.337 2.5H4.985c-1.37 0-2.383-1.2-2.337-2.5c.043-1.249-.013-2.867-.42-4.186c-.41-1.324-1.1-2.16-2.228-2.268V11.39c1.128-.108 1.819-.944 2.227-2.268c.408-1.319.464-2.937.42-4.186c-.045-1.3.968-2.5 2.338-2.5h14.032c1.37 0 2.382 1.2 2.337 2.5c-.043 1.249.013 2.867.42 4.186c.409 1.324 1.098 2.16 2.226 2.268m-7.927 2.817c0-1.354-.953-2.333-2.368-2.488v-.057c1.04-.169 1.856-1.135 1.856-2.213c0-1.537-1.213-2.538-3.062-2.538h-4.16v10.172h4.181c2.218 0 3.553-1.086 3.553-2.876"/>'
+  },
+  {
+    name: 'html5',
+    title: 'HTML5',
+    category: 'brands',
+    tags: 'html html5 web markup language semantic frontend',
+    type: 'fill',
+    svg: '<path fill="#E34F26" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.235-2.625H5.812l.704 7.875h8.953l-.328 3.656-3.141.844-3.14-.844-.188-2.109H6.188l.375 4.172 5.437 1.5 5.438-1.5.75-8.344H8.531z"/>'
+  },
+  {
+    name: 'css3',
+    title: 'CSS3',
+    category: 'brands',
+    tags: 'css css3 styles stylesheets styling web design frontend',
+    type: 'fill',
+    svg: '<path fill="#1572B6" d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm14.719 7.125l.234-2.625H4.875l.703 7.875h10.453l-.375 4.125-3.656 1-3.656-1-.235-2.625H5.813l.468 5.203 5.696 1.578 5.695-1.578.75-8.422H7.969l-.235-2.625h10.485z"/>'
+  },
+  {
+    name: 'javascript',
+    title: 'JavaScript',
+    category: 'brands',
+    tags: 'javascript js script frontend web language ecmascript node',
+    type: 'multi',
+    svg: '<rect width="24" height="24" rx="3" fill="#F7DF1E"/><path fill="#000000" d="M6.48 18.5c.38.65.9 1.15 1.77 1.15.82 0 1.34-.4 1.34-1.34v-7.22h1.86v7.26c0 1.94-1.12 2.82-2.99 2.82-1.62 0-2.54-.84-2.96-1.87l.98-.8zm7.98 2.6c-.9-.49-1.44-1.28-1.44-2.3 0-1.54 1.05-2.44 2.84-2.44.82 0 1.43.18 1.83.36v-1.1c0-.75-.48-1.18-1.45-1.18-.75 0-1.34.33-1.66.75l-1.13-.73c.58-.88 1.58-1.34 2.89-1.34 1.88 0 3.03.95 3.03 2.66v5.27h-1.68v-.77c-.43.54-1.15.85-2.01.85m.42-1.3c.79 0 1.45-.44 1.76-1.07v-.81c-.34-.17-.82-.29-1.39-.29-.98 0-1.53.45-1.53 1.14 0 .63.46 1.03 1.16 1.03z"/>'
+  },
+  {
+    name: 'typescript',
+    title: 'TypeScript',
+    category: 'brands',
+    tags: 'typescript ts microsoft javascript typed programming language',
+    type: 'multi',
+    svg: '<rect width="24" height="24" rx="3" fill="#3178C6"/><path fill="#FFFFFF" d="M12.8 19.5v-10h-3.6V7.2h9.5v2.3h-3.6v10H12.8zm6.5 0v-2.1c.6.5 1.3.8 2.1.8.8 0 1.2-.3 1.2-.8 0-1.2-3.4-.8-3.4-3.5 0-1.4 1.1-2.4 2.8-2.4 1 0 1.9.3 2.5.8l-.6 1.9c-.5-.4-1.1-.6-1.8-.6-.7 0-1.1.3-1.1.7 0 1.1 3.4.8 3.4 3.5 0 1.5-1.2 2.5-3 2.5-1.2 0-2.3-.4-3.1-.8z"/>'
   },
   {
     name: 'x-twitter',
