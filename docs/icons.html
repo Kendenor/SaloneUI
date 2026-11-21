@@ -248,10 +248,26 @@
       opacity: 1;
       pointer-events: auto;
     }
+    .card-hover-actions {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--salone-radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.4rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 10;
+    }
     .card-hover-actions button {
       width: 100%;
-      font-size: 0.72rem;
-      padding: 0.35rem 0.5rem;
+      font-size: 0.68rem;
+      padding: 0.28rem 0.4rem;
       border-radius: 4px;
       border: none;
       cursor: pointer;
@@ -259,7 +275,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.3rem;
+      gap: 0.25rem;
       transition: background 0.15s ease;
     }
     .btn-copy-svg {
@@ -268,6 +284,13 @@
     }
     .btn-copy-svg:hover {
       background: var(--salone-primary-hover);
+    }
+    .btn-copy-rn {
+      background: #0284C7;
+      color: #FFFFFF;
+    }
+    .btn-copy-rn:hover {
+      background: #0369A1;
     }
     .btn-copy-html {
       background: rgba(255, 255, 255, 0.18);
@@ -279,6 +302,33 @@
     .btn-download-svg {
       background: transparent;
       color: #94A3B8;
+    }
+    .btn-download-svg:hover {
+      color: #FFFFFF;
+    }
+    .rn-guide-banner {
+      background: var(--salone-surface);
+      border: 1px solid var(--salone-surface-border);
+      border-radius: var(--salone-radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .rn-guide-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #E0F2FE;
+      color: #0369A1;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.35rem;
     }
     .btn-download-svg:hover {
       color: #FFFFFF;
@@ -367,6 +417,13 @@
         </div>
       </div>
 
+      <!-- Command Palette Trigger Button -->
+      <button class="nav-control-btn hide-mobile" onclick="openCommandPalette()" title="Search Components & Pages (Ctrl+K)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="font-size:0.75rem; color:var(--salone-text-muted);">Search</span>
+        <kbd class="kbd" style="font-size: 0.65rem; height: 18px; min-width: 18px; padding: 0 0.25rem;">⌘K</kbd>
+      </button>
+
       <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
       </a>
@@ -431,6 +488,20 @@
 
   <!-- MAIN CONTAINER -->
   <main class="container">
+
+    <!-- REACT NATIVE MOBILE CALLOUT -->
+    <div class="rn-guide-banner">
+      <div>
+        <span class="rn-guide-badge">Mobile Developer Ready</span>
+        <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 0.25rem;">Build Mobile Apps with React Native &amp; Expo</div>
+        <div style="font-size: 0.85rem; color: var(--salone-text-muted);">
+          Every icon includes 1-click <strong>React Native</strong> generating ready-to-paste <code>&lt;Svg&gt;&lt;Path ... /&gt;&lt;/Svg&gt;</code> components for <code>react-native-svg</code>.
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <code style="background: var(--salone-bg-subtle); padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.8rem; border: 1px solid var(--salone-surface-border);">npx expo install react-native-svg</code>
+      </div>
+    </div>
 
     <!-- SEARCH & CONTROLS CARD -->
     <div class="icons-controls-card">
@@ -527,16 +598,29 @@
     let universalResults = [];
     const svgCache = new Map();
 
+    function iconMatchesQuery(icon, query) {
+      if (!query) return true;
+      const rawQ = query.trim().toLowerCase();
+      const tokens = rawQ.split(/s+/).filter(Boolean);
+      const collapsedQ = rawQ.replace(/[s-_]+/g, '');
+      const name = (icon.name || '').toLowerCase();
+      const title = (icon.title || '').toLowerCase();
+      const tags = (icon.tags || '').toLowerCase();
+      const full = name + ' ' + title + ' ' + tags;
+      
+      if (full.includes(rawQ)) return true;
+      if (name.includes(collapsedQ) || collapsedQ.includes(name)) return true;
+      if (tokens.every(t => full.includes(t))) return true;
+      return false;
+    }
+
     function renderCuratedIcons() {
       const container = document.getElementById('iconsGrid');
       if (!container || !window.SALONE_ICONS) return;
 
       const filtered = window.SALONE_ICONS.filter(icon => {
         const matchCat = currentCategory === 'all' || icon.category === currentCategory;
-        const matchQuery = !searchQuery || 
-          icon.name.toLowerCase().includes(searchQuery) ||
-          icon.title.toLowerCase().includes(searchQuery) ||
-          (icon.tags && icon.tags.toLowerCase().includes(searchQuery));
+        const matchQuery = iconMatchesQuery(icon, searchQuery);
         return matchCat && matchQuery;
       });
 
@@ -557,7 +641,7 @@
     function createIconCardHtml(name, title, svgContent, source = 'builtin') {
       const escapedName = name.replace(/'/g, "\\'");
       return `
-        <div class="icon-card" onclick="copyCardSvg('${escapedName}', this)" title="Click to copy SVG">
+        <div class="icon-card" data-name="${escapedName}" onclick="copyCardSvg('${escapedName}', this)" title="Click to copy SVG">
           <span class="icon-badge-source">${source === 'builtin' ? 'CORE' : source}</span>
           <div class="icon-preview" data-name="${name}">
             ${svgContent}
@@ -567,8 +651,10 @@
 
           <div class="card-hover-actions">
             <button class="btn-copy-svg" onclick="event.stopPropagation(); copyCardSvg('${escapedName}', this.closest('.icon-card'))">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
               Copy SVG
+            </button>
+            <button class="btn-copy-rn" onclick="event.stopPropagation(); copyCardReactNative('${escapedName}', this.closest('.icon-card'))">
+              React Native
             </button>
             <button class="btn-copy-html" onclick="event.stopPropagation(); copyCardHtml('${escapedName}', this.closest('.icon-card'))">
               Copy HTML
@@ -632,11 +718,9 @@
     function renderCombinedResults(remoteIconIds) {
       const container = document.getElementById('iconsGrid');
       
-      // Filter local matches
+      // Filter local matches with token-aware matching
       const localMatches = (window.SALONE_ICONS || []).filter(icon => {
-        return icon.name.toLowerCase().includes(searchQuery) ||
-          icon.title.toLowerCase().includes(searchQuery) ||
-          (icon.tags && icon.tags.toLowerCase().includes(searchQuery));
+        return iconMatchesQuery(icon, searchQuery);
       });
 
       let totalCount = localMatches.length + remoteIconIds.length;
@@ -649,73 +733,113 @@
         return createIconCardHtml(icon.name, icon.title, svgContent, 'CORE');
       }).join('');
 
-      // Append universal cards with zero-broken-image protection
+      // Append universal cards with clean shimmer (NO <img> TAGS = NEVER SHOWS BROKEN IMAGE OR BROKEN ALT TEXT!)
+      const remotePending = [];
       remoteIconIds.forEach(id => {
         const parts = id.split(':');
         const prefix = parts[0] || 'icon';
         const rawName = parts[1] || parts[0];
         const prettyTitle = rawName.replace(/-/g, ' ');
-        const imgUrl = `https://api.iconify.design/${prefix}/${rawName}.svg`;
+        const shimmer = `<div class="icon-loading-shimmer" style="width:${currentSize}px; height:${currentSize}px; border-radius:4px; background:var(--salone-bg-subtle);"></div>`;
         
-        // Zero-broken-image protection:
-        // 1. Starts hidden (opacity: 0).
-        // 2. On successful load, transitions smoothly and upgrades to inline <svg>.
-        // 3. On error (404, bad connection, broken image), immediately removes card so NO broken image box is ever displayed!
-        const initialSvg = `<img src="${imgUrl}" width="${currentSize}" height="${currentSize}" alt="${rawName}" loading="lazy" onload="handleIconLoad(this, '${prefix}', '${rawName}')" onerror="handleIconError(this)" style="display:block; opacity:0; transition:opacity 0.2s ease;">`;
-        
-        html += createIconCardHtml(id, prettyTitle, initialSvg, prefix.toUpperCase());
+        html += createIconCardHtml(id, prettyTitle, shimmer, prefix.toUpperCase());
+        remotePending.push({ id, prefix, rawName });
       });
 
       container.innerHTML = html;
+
+      // Asynchronously fetch raw SVGs directly
+      remotePending.forEach(item => {
+        const card = container.querySelector(`.icon-card[data-name="${item.id}"]`);
+        if (!card) return;
+        const url = `https://api.iconify.design/${item.prefix}/${item.rawName}.svg`;
+        
+        if (svgCache.has(url)) {
+          applySvgToCard(card, svgCache.get(url));
+        } else {
+          fetch(url)
+            .then(res => {
+              if (!res.ok) throw new Error('Not found');
+              return res.text();
+            })
+            .then(svgText => {
+              if (!svgText || !svgText.includes('<svg')) throw new Error('Bad SVG');
+              svgCache.set(url, svgText);
+              applySvgToCard(card, svgText);
+            })
+            .catch(() => {
+              // Silently remove the card from the grid!
+              // NO broken image frame, NO broken alternative text!
+              card.remove();
+              updateVisibleCounter();
+            });
+        }
+      });
     }
 
-    window.handleIconLoad = async function(img, prefix, rawName) {
-      img.style.opacity = '1';
-      try {
-        const url = img.src;
-        if (!svgCache.has(url)) {
-          const res = await fetch(url);
-          if (res.ok) {
-            const rawSvg = await res.text();
-            if (rawSvg && rawSvg.includes('<svg')) {
-              svgCache.set(url, rawSvg);
-              const preview = img.closest('.icon-preview');
-              if (preview && preview.querySelector('img') === img) {
-                const sizedSvg = rawSvg
-                  .replace(/width="[^"]*"/, `width="${currentSize}"`)
-                  .replace(/height="[^"]*"/, `height="${currentSize}"`);
-                preview.innerHTML = sizedSvg;
-              }
-            }
-          }
-        } else {
-          const rawSvg = svgCache.get(url);
-          const preview = img.closest('.icon-preview');
-          if (preview && preview.querySelector('img') === img) {
-            const sizedSvg = rawSvg
-              .replace(/width="[^"]*"/, `width="${currentSize}"`)
-              .replace(/height="[^"]*"/, `height="${currentSize}"`);
-            preview.innerHTML = sizedSvg;
-          }
-        }
-      } catch (e) {
-        // img stays cleanly rendered
+    function applySvgToCard(card, rawSvg) {
+      const preview = card.querySelector('.icon-preview');
+      if (preview) {
+        const sized = rawSvg
+          .replace(/width="[^"]*"/, `width="${currentSize}"`)
+          .replace(/height="[^"]*"/, `height="${currentSize}"`);
+        preview.innerHTML = sized;
       }
-    };
-
-    window.handleIconError = function(img) {
-      const card = img.closest('.icon-card');
-      if (card) {
-        card.remove();
-        updateVisibleCounter();
-      }
-    };
+    }
 
     window.updateVisibleCounter = function() {
       const cards = document.querySelectorAll('#iconsGrid .icon-card');
       const counter = document.getElementById('visibleCount');
       if (counter) counter.innerText = cards.length;
     };
+
+    function svgToReactNative(svgStr) {
+      if (!svgStr) return '';
+      let clean = svgStr.replace(/<?xml.*??>/gi, '').trim();
+      clean = clean
+        .replace(/<svg/g, '<Svg')
+        .replace(/</svg>/g, '</Svg>')
+        .replace(/<path/g, '<Path')
+        .replace(/</path>/g, '</Path>')
+        .replace(/<rect/g, '<Rect')
+        .replace(/</rect>/g, '</Rect>')
+        .replace(/<circle/g, '<Circle')
+        .replace(/</circle>/g, '</Circle>')
+        .replace(/<ellipse/g, '<Ellipse')
+        .replace(/</ellipse>/g, '</Ellipse>')
+        .replace(/<line/g, '<Line')
+        .replace(/</line>/g, '</Line>')
+        .replace(/<polyline/g, '<Polyline')
+        .replace(/</polyline>/g, '</Polyline>')
+        .replace(/<polygon/g, '<Polygon')
+        .replace(/</polygon>/g, '</Polygon>')
+        .replace(/<g/g, '<G')
+        .replace(/</g>/g, '</G>')
+        .replace(/<defs/g, '<Defs')
+        .replace(/</defs>/g, '</Defs>')
+        .replace(/<linearGradient/g, '<LinearGradient')
+        .replace(/</linearGradient>/g, '</LinearGradient>')
+        .replace(/<stop/g, '<Stop')
+        .replace(/</stop>/g, '</Stop>')
+        .replace(/stroke-width=/g, 'strokeWidth=')
+        .replace(/stroke-linecap=/g, 'strokeLinecap=')
+        .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+        .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
+        .replace(/fill-rule=/g, 'fillRule=')
+        .replace(/clip-rule=/g, 'clipRule=')
+        .replace(/stop-color=/g, 'stopColor=')
+        .replace(/stop-opacity=/g, 'stopOpacity=');
+      return clean;
+    }
+
+    async function copyCardReactNative(name, card) {
+      const svg = await getSvgStringFromCard(card, name);
+      if (!svg) return;
+      const rnSnippet = svgToReactNative(svg);
+      navigator.clipboard.writeText(rnSnippet).then(() => {
+        showToast('Copied React Native <Svg> to clipboard!');
+      });
+    }
 
     function changeIconSize(size, btn) {
       currentSize = size;
@@ -748,21 +872,6 @@
       const svgEl = card.querySelector('.icon-preview svg');
       if (svgEl) {
         return svgEl.outerHTML;
-      }
-      // If it is an external icon loaded as img, fetch its raw SVG text
-      const imgEl = card.querySelector('.icon-preview img');
-      if (imgEl && imgEl.src) {
-        if (svgCache.has(imgEl.src)) {
-          return svgCache.get(imgEl.src);
-        }
-        try {
-          const res = await fetch(imgEl.src);
-          const raw = await res.text();
-          svgCache.set(imgEl.src, raw);
-          return raw;
-        } catch (e) {
-          return imgEl.outerHTML;
-        }
       }
       return '';
     }

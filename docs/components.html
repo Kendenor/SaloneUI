@@ -346,6 +346,13 @@
         </div>
       </div>
 
+      <!-- Command Palette Trigger Button -->
+      <button class="nav-control-btn hide-mobile" onclick="openCommandPalette()" title="Search Components & Pages (Ctrl+K)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="font-size:0.75rem; color:var(--salone-text-muted);">Search</span>
+        <kbd class="kbd" style="font-size: 0.65rem; height: 18px; min-width: 18px; padding: 0 0.25rem;">⌘K</kbd>
+      </button>
+
       <!-- GitHub Link Icon (Matching Height and Border) -->
       <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -411,7 +418,7 @@
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="search">
-        <input type="text" id="componentSearch" placeholder="Search 31 components..." onkeyup="filterComponents()">
+        <input type="text" id="componentSearch" placeholder="Search 36 components..." onkeyup="filterComponents()">
       </div>
       <ul class="sidebar-nav" id="sidebarList">
         <li><a href="#button">1. Button</a></li>
@@ -446,6 +453,10 @@
         <li><a href="#divider">30. Divider</a></li>
         <li><a href="#status">31. Status</a></li>
         <li><a href="#icons">32. Icons</a></li>
+        <li><a href="#pricing">33. Pricing</a></li>
+        <li><a href="#timeline">34. Timeline</a></li>
+        <li><a href="#dropzone">35. Dropzone</a></li>
+        <li><a href="#rating-kbd">36. Rating &amp; Keys</a></li>
       </ul>
     </aside>
 
@@ -456,7 +467,7 @@
                 <button class="mobile-comp-trigger" onclick="toggleMobileCompDrawer()" id="mobileCompTrigger" type="button">
           <div style="display:flex; align-items:center; gap:0.5rem;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            <span>Jump to Component (32 available)...</span>
+            <span>Jump to Component (36 available)...</span>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </button>
@@ -493,11 +504,15 @@
           <a href="#divider" onclick="toggleMobileCompDrawer()">30. Divider</a>
           <a href="#status" onclick="toggleMobileCompDrawer()">31. Status</a>
           <a href="#icons" onclick="toggleMobileCompDrawer()">32. Icons</a>
+          <a href="#pricing" onclick="toggleMobileCompDrawer()">33. Pricing</a>
+          <a href="#timeline" onclick="toggleMobileCompDrawer()">34. Timeline</a>
+          <a href="#dropzone" onclick="toggleMobileCompDrawer()">35. Dropzone</a>
+          <a href="#rating-kbd" onclick="toggleMobileCompDrawer()">36. Rating &amp; Keys</a>
         </div>
       </div>
 
       <div style="margin-bottom: 2.5rem;">
-        <span class="badge green">32 Core Components</span>
+        <span class="badge green">36 Core Components</span>
         <h1 style="margin-top: 0.5rem;">All Components</h1>
         <p style="color: var(--salone-text-muted);">
           Every component in SaloneUI uses simple, plain English words. No cryptic acronyms. Click any copy button to immediately paste into your code.
@@ -1528,6 +1543,264 @@ setTimeout(() => toast.classList.remove('show'), 3500);
 &lt;button class="button icon-only outline"&gt;
   &lt;svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;...&lt;/svg&gt;
 &lt;/button&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 33. PRICING CARDS -->
+      <section class="component-card" id="pricing">
+        <div class="component-header">
+          <h2>33. SaaS Pricing Cards</h2>
+          <span class="badge green">New</span>
+        </div>
+        <p class="component-desc">High-conversion pricing tables with highlighted popular tier, price counters, feature checklist, and call-to-action buttons.</p>
+
+        <div class="demo-box">
+          <div class="demo-preview">
+            <div class="grid 3 gap-md" style="align-items: stretch;">
+              <!-- Starter -->
+              <div class="card pricing">
+                <div class="pricing-header">
+                  <div class="pricing-title">Starter</div>
+                  <div class="pricing-desc">For side projects &amp; individuals</div>
+                  <div class="pricing-price-wrap">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">0</span>
+                    <span class="pricing-period">/mo</span>
+                  </div>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Up to 3 projects
+                  </li>
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Community support
+                  </li>
+                  <li class="disabled">
+                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    Custom domains
+                  </li>
+                </ul>
+                <button class="button outline" style="width: 100%;">Get Started</button>
+              </div>
+
+              <!-- Pro (Popular) -->
+              <div class="card pricing popular">
+                <span class="pricing-badge">Most Popular</span>
+                <div class="pricing-header">
+                  <div class="pricing-title">Professional</div>
+                  <div class="pricing-desc">For growing startups &amp; teams</div>
+                  <div class="pricing-price-wrap">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">29</span>
+                    <span class="pricing-period">/mo</span>
+                  </div>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Unlimited projects
+                  </li>
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Priority email support
+                  </li>
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Custom domains &amp; analytics
+                  </li>
+                </ul>
+                <button class="button green" style="width: 100%;">Upgrade to Pro</button>
+              </div>
+
+              <!-- Enterprise -->
+              <div class="card pricing">
+                <div class="pricing-header">
+                  <div class="pricing-title">Enterprise</div>
+                  <div class="pricing-desc">For enterprise organizations</div>
+                  <div class="pricing-price-wrap">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">99</span>
+                    <span class="pricing-period">/mo</span>
+                  </div>
+                </div>
+                <ul class="pricing-features">
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Dedicated server cluster
+                  </li>
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    24/7 Phone &amp; Slack support
+                  </li>
+                  <li>
+                    <svg class="icon green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Custom SLA &amp; Security audits
+                  </li>
+                </ul>
+                <button class="button outline" style="width: 100%;">Contact Sales</button>
+              </div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-pricing')">Copy</button>
+            <pre><code id="c-pricing">&lt;!-- Featured / Popular Tier --&gt;
+&lt;div class="card pricing popular"&gt;
+  &lt;span class="pricing-badge"&gt;Most Popular&lt;/span&gt;
+  &lt;div class="pricing-header"&gt;
+    &lt;div class="pricing-title"&gt;Professional&lt;/div&gt;
+    &lt;div class="pricing-price-wrap"&gt;
+      &lt;span class="pricing-currency"&gt;$&lt;/span&gt;
+      &lt;span class="pricing-amount"&gt;29&lt;/span&gt;
+      &lt;span class="pricing-period"&gt;/mo&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;ul class="pricing-features"&gt;
+    &lt;li&gt;Unlimited projects&lt;/li&gt;
+    &lt;li&gt;Priority email support&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;button class="button green" style="width:100%;"&gt;Upgrade to Pro&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 34. TIMELINE -->
+      <section class="component-card" id="timeline">
+        <div class="component-header">
+          <h2>34. Vertical Timeline</h2>
+          <span class="badge blue">New</span>
+        </div>
+        <p class="component-desc">Milestone timeline with colored status dots for order tracking, changelogs, and activity feeds.</p>
+
+        <div class="demo-box">
+          <div class="demo-preview">
+            <div class="timeline" style="max-width: 500px;">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Today, 2:30 PM</div>
+                <div class="timeline-title">Order Delivered</div>
+                <div class="timeline-body">Package signed and received by customer at front desk.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot blue"></div>
+                <div class="timeline-time">Yesterday, 9:15 AM</div>
+                <div class="timeline-title">Out for Delivery</div>
+                <div class="timeline-body">Courier vehicle dispatched from regional distribution center.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot gray"></div>
+                <div class="timeline-time">Nov 18, 2026</div>
+                <div class="timeline-title">Order Confirmed &amp; Packed</div>
+                <div class="timeline-body">Payment verified via Stripe and items packaged safely.</div>
+              </div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-timeline')">Copy</button>
+            <pre><code id="c-timeline">&lt;div class="timeline"&gt;
+  &lt;div class="timeline-item"&gt;
+    &lt;div class="timeline-dot"&gt;&lt;/div&gt;
+    &lt;div class="timeline-time"&gt;Today, 2:30 PM&lt;/div&gt;
+    &lt;div class="timeline-title"&gt;Order Delivered&lt;/div&gt;
+    &lt;div class="timeline-body"&gt;Package signed and received.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="timeline-item"&gt;
+    &lt;div class="timeline-dot blue"&gt;&lt;/div&gt;
+    &lt;div class="timeline-time"&gt;Yesterday, 9:15 AM&lt;/div&gt;
+    &lt;div class="timeline-title"&gt;Out for Delivery&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 35. DROPZONE (FILE UPLOAD) -->
+      <section class="component-card" id="dropzone">
+        <div class="component-header">
+          <h2>35. Dropzone File Upload</h2>
+          <span class="badge green">New</span>
+        </div>
+        <p class="component-desc">Drag-and-drop file upload zone with responsive hover highlight, upload icon, and file type guide.</p>
+
+        <div class="demo-box">
+          <div class="demo-preview">
+            <div class="dropzone" id="demoDropzone" style="max-width: 540px; margin: 0 auto;">
+              <input type="file" id="dropzoneInput" onchange="const t=document.getElementById('dropzoneTitle'); if(t&&this.files&&this.files[0]) t.innerText='Selected: '+this.files[0].name;">
+              <div class="dropzone-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+              </div>
+              <div class="dropzone-title" id="dropzoneTitle">Drag &amp; drop files here or click to browse</div>
+              <div class="dropzone-desc">Supports PNG, JPG, SVG, and PDF up to 10MB</div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-dropzone')">Copy</button>
+            <pre><code id="c-dropzone">&lt;div class="dropzone"&gt;
+  &lt;input type="file"&gt;
+  &lt;div class="dropzone-icon"&gt;
+    &lt;svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;
+      &lt;path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/&gt;
+      &lt;polyline points="17 8 12 3 7 8"/&gt;
+      &lt;line x1="12" x2="12" y1="3" y2="15"/&gt;
+    &lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div class="dropzone-title"&gt;Drag &amp; drop files here or click to browse&lt;/div&gt;
+  &lt;div class="dropzone-desc"&gt;PNG, JPG, or PDF up to 10MB&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 36. RATING & KEYBOARD SHORTCUTS -->
+      <section class="component-card" id="rating-kbd">
+        <div class="component-header">
+          <h2>36. Star Rating &amp; Keyboard Shortcuts</h2>
+          <span class="badge green">New</span>
+        </div>
+        <p class="component-desc">Interactive 5-star ratings for reviews and testimonials, plus polished &lt;kbd&gt; keycaps for shortcuts.</p>
+
+        <div class="demo-box">
+          <div class="demo-preview">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--salone-text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Star Ratings</div>
+                <div class="row gap-md" style="flex-wrap: wrap; align-items: center;">
+                  <div class="rating medium">
+                    <span class="star active"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <span class="star active"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <span class="star active"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <span class="star active"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <span class="star"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+                    <span class="rating-value">4.0 / 5.0 (128 reviews)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--salone-text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Keyboard Shortcut Badges</div>
+                <div class="row gap-md" style="flex-wrap: wrap; align-items: center;">
+                  <p style="margin: 0;">Press <kbd class="kbd">⌘</kbd> + <kbd class="kbd">K</kbd> to open Command Palette</p>
+                  <p style="margin: 0;">Copy with <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">C</kbd></p>
+                  <p style="margin: 0;">Close with <kbd class="kbd">ESC</kbd></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-box-small">
+            <button class="button small green copy-code-btn" onclick="copyFromEl(this, 'c-kbd')">Copy</button>
+            <pre><code id="c-kbd">&lt;!-- 5-Star Rating --&gt;
+&lt;div class="rating medium"&gt;
+  &lt;span class="star active"&gt;&lt;svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"&gt;&lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class="rating-value"&gt;5.0 / 5.0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Keyboard Shortcut Keys --&gt;
+&lt;kbd class="kbd"&gt;⌘&lt;/kbd&gt; + &lt;kbd class="kbd"&gt;K&lt;/kbd&gt;
+&lt;kbd class="kbd"&gt;Ctrl&lt;/kbd&gt; + &lt;kbd class="kbd"&gt;C&lt;/kbd&gt;
+&lt;kbd class="kbd"&gt;ESC&lt;/kbd&gt;</code></pre>
           </div>
         </div>
       </section>
