@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * SaloneUI build: copy src -> dist, then minify to dist/salone-ui.min.css.
+ * SaloneUI build: copy src -> dist & docs/dist, then minify.
  * Pure Node, no dependencies. Run: npm run build
  */
 const fs = require('fs');
@@ -9,6 +9,7 @@ const path = require('path');
 const root = path.join(__dirname, '..');
 const src = path.join(root, 'src', 'salone-ui.css');
 const distDir = path.join(root, 'dist');
+const docsDistDir = path.join(root, 'docs', 'dist');
 const out = path.join(distDir, 'salone-ui.css');
 const outMin = path.join(distDir, 'salone-ui.min.css');
 
@@ -63,8 +64,18 @@ while (i < out2.length) {
   result += c;
   i++;
 }
-minified = result;
+const minified = result;
 
 fs.writeFileSync(outMin, minified);
-console.log(`dist/salone-ui.css     ${css.length} bytes`);
-console.log(`dist/salone-ui.min.css ${minified.length} bytes`);
+
+// Also sync to docs/dist if present for local docs / GitHub Pages preview
+if (fs.existsSync(docsDistDir)) {
+  fs.writeFileSync(path.join(docsDistDir, 'salone-ui.css'), css);
+  fs.writeFileSync(path.join(docsDistDir, 'salone-ui.min.css'), minified);
+}
+
+console.log(`dist/salone-ui.css      ${css.length} bytes`);
+console.log(`dist/salone-ui.min.css  ${minified.length} bytes`);
+if (fs.existsSync(docsDistDir)) {
+  console.log(`docs/dist/salone-ui.css ${css.length} bytes (synced)`);
+}
