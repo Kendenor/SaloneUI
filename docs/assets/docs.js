@@ -81,14 +81,16 @@ document.addEventListener('click', function(e) {
 const SALONE_CMD_ITEMS = [
   // Pages
   { title: 'Home', category: 'Pages', url: 'index.html', desc: 'Landing page & quick start guide' },
-  { title: 'Components', category: 'Pages', url: 'components.html', desc: 'Browse all 36 components' },
+  { title: 'Docs', category: 'Pages', url: 'docs.html', desc: 'What is SaloneUI, why use it & how it works' },
+  { title: 'Installation', category: 'Pages', url: 'installation.html', desc: 'Step-by-step setup in 2 minutes, CDN & starter template' },
+  { title: 'Components', category: 'Pages', url: 'components.html', desc: 'Browse all 37 production-ready components' },
   { title: 'Icons Explorer', category: 'Pages', url: 'icons.html', desc: '200,000+ vector icons & brand logos' },
   { title: 'Cheat Sheet', category: 'Pages', url: 'cheatsheet.html', desc: 'Fast class & syntax lookup' },
   { title: 'Playground', category: 'Pages', url: 'playground.html', desc: 'Live HTML/CSS interactive editor' },
   { title: 'Examples & Templates', category: 'Pages', url: 'examples.html', desc: 'SaaS, Portfolio & Dashboard layouts' },
   { title: 'Download & CDN', category: 'Pages', url: 'download.html', desc: 'Get CSS bundles & install guide' },
   
-  // Components (36)
+  // Components (37)
   { title: 'Buttons & Brand Buttons', category: 'Components', url: 'components.html#buttons', desc: 'Colors, sizes, outlines, SaloneUI, GitHub, Google' },
   { title: 'Inputs & Form Controls', category: 'Components', url: 'components.html#inputs', desc: 'Text, email, selects, checkboxes, radios' },
   { title: 'Typography', category: 'Components', url: 'components.html#typography', desc: 'Headings, lead paragraphs, blockquotes' },
@@ -96,6 +98,7 @@ const SALONE_CMD_ITEMS = [
   { title: 'Cards & Containers', category: 'Components', url: 'components.html#cards', desc: 'Basic, elevated, bordered, hoverable cards' },
   { title: 'Navbar & Navigation', category: 'Components', url: 'components.html#navbar', desc: 'Responsive header with brand & links' },
   { title: 'Modals & Dialogs', category: 'Components', url: 'components.html#modals', desc: 'Accessible dialog windows & backdrops' },
+  { title: 'Notice (Native Dialog)', category: 'Components', url: 'components.html#notice', desc: 'HTML5 native modal alert notices with backdrop' },
   { title: 'Badges & Tags', category: 'Components', url: 'components.html#badges', desc: 'Status indicators, counters, pill badges' },
   { title: 'Alerts & Messages', category: 'Components', url: 'components.html#alerts', desc: 'Success, info, warning, error notifications' },
   { title: 'Tables', category: 'Components', url: 'components.html#tables', desc: 'Striped, bordered, hoverable data tables' },
@@ -300,5 +303,22 @@ document.addEventListener('click', (e) => {
                    e.clientY >= r.top  && e.clientY <= r.bottom;
 
     if (!inside) e.target.close();
+  }
+});
+
+// Normalize root-relative navigation links if running from local file:// protocol
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.protocol === 'file:') {
+    document.querySelectorAll('a[href^="/"]').forEach(a => {
+      const href = a.getAttribute('href');
+      if (href === '/') {
+        a.setAttribute('href', 'index.html');
+      } else if (href.startsWith('/') && !href.startsWith('//')) {
+        const clean = href.replace(/^\/+/, '').split('#');
+        const page = clean[0] ? clean[0] + '.html' : 'index.html';
+        const hash = clean[1] ? '#' + clean[1] : '';
+        a.setAttribute('href', page + hash);
+      }
+    });
   }
 });

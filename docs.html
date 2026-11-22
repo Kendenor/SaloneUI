@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaloneUI Docs - Plain-English CSS Framework</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="SaloneUI Docs - Plain-English CSS Framework">
+  <meta name="description" content="Official documentation for SaloneUI. Learn what SaloneUI is, why to use it, the plain-English syntax, modifier rules, auto-responsive grids, and architecture. Under 25KB, zero configuration.">
+  <meta name="keywords" content="SaloneUI docs, CSS documentation, plain English CSS framework, lightweight CSS, zero config CSS, modern UI, frontend framework, beginner friendly CSS, fintech UI, Tailwind alternative, Bootstrap alternative">
+  <meta name="author" content="SaloneUI Team">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#00A651">
+  <link rel="canonical" href="https://saloneui.dev/docs">
+
+  <!-- Open Graph / Facebook / LinkedIn / Discord -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://saloneui.dev/docs">
+  <meta property="og:title" content="SaloneUI Docs - Plain-English CSS Framework">
+  <meta property="og:description" content="Official documentation for SaloneUI. Learn what SaloneUI is, why to use it, the plain-English syntax, modifier rules, auto-responsive grids, and architecture. Under 25KB, zero configuration.">
+  <meta property="og:image" content="https://saloneui.dev/assets/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SaloneUI Docs — The Plain-English CSS Framework">
+  <meta property="og:site_name" content="SaloneUI">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://saloneui.dev/docs">
+  <meta name="twitter:title" content="SaloneUI Docs - Plain-English CSS Framework">
+  <meta name="twitter:description" content="Official documentation for SaloneUI. Learn what SaloneUI is, why to use it, the plain-English syntax, modifier rules, auto-responsive grids, and architecture. Under 25KB, zero configuration.">
+  <meta name="twitter:image" content="https://saloneui.dev/assets/og-image.svg">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="dist/salone-ui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <script src="assets/docs.js" defer></script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "SaloneUI Docs - Plain-English CSS Framework",
+        "url": "https://saloneui.dev/docs",
+        "description": "Comprehensive guide to SaloneUI's core concepts, plain-English classes, architecture, and live examples.",
+        "inLanguage": "en",
+        "author": {
+          "@type": "Organization",
+          "name": "SaloneUI",
+          "url": "https://saloneui.dev/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://saloneui.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Docs",
+            "item": "https://saloneui.dev/docs"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="/" class="nav-brand">
+      <img src="assets/logo.svg" alt="SaloneUI" height="34">
+    </a>
+    <ul class="nav-links hide-mobile">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs" class="active">Docs</a></li>
+      <li><a href="/installation">Installation</a></li>
+      <li><a href="/components">Components</a></li>
+      <li><a href="/icons">Icons</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- Theme Switcher -->
+      <div class="theme-dropdown-wrap">
+        <button class="nav-control-btn theme-trigger" onclick="toggleThemeDropdown(event)" id="themeTriggerBtn" aria-label="Select Theme" title="Switch Theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+          </svg>
+          <span class="nav-text hide-mobile" id="navThemeText">Theme</span>
+          <svg class="nav-arrow" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="theme-dropdown-menu" id="themeDropdownMenu">
+          <button class="theme-option" onclick="setTheme('')"><span class="color-dot" style="background:#00A651;"></span> Emerald (Default)</button>
+          <button class="theme-option" onclick="setTheme('theme-fintech')"><span class="color-dot" style="background:#10B981;"></span> Fintech</button>
+          <button class="theme-option" onclick="setTheme('theme-shop')"><span class="color-dot" style="background:#EA580C;"></span> Shop</button>
+          <button class="theme-option" onclick="setTheme('theme-school')"><span class="color-dot" style="background:#2563EB;"></span> School</button>
+          <button class="theme-option" onclick="setTheme('dark')"><span class="color-dot" style="background:#0F172A; border:1px solid #94A3B8;"></span> Dark Mode</button>
+        </div>
+      </div>
+
+      <!-- Command Palette Trigger Button -->
+      <button class="nav-control-btn hide-mobile" onclick="openCommandPalette()" title="Search Components & Pages (Ctrl+K)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="font-size:0.75rem; color:var(--salone-text-muted);">Search</span>
+        <kbd class="kbd" style="font-size: 0.65rem; height: 18px; min-width: 18px; padding: 0 0.25rem;">⌘K</kbd>
+      </button>
+
+      <!-- GitHub Link -->
+      <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="nav-control-btn" title="GitHub" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="nav-control-btn mobile-menu-btn" onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+        <svg class="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="close-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="closeMobileDrawerOnBackdrop(event)">
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-links">
+        <a href="/" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Home</span>
+        </a>
+        <a href="/docs" class="mobile-nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10M6 14h6"/></svg>
+          <span>Docs</span>
+        </a>
+        <a href="/installation" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Installation</span>
+        </a>
+        <a href="/components" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Components (37)</span>
+        </a>
+        <a href="/icons" class="mobile-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 16 12 12 8"/></svg>
+          <span>Icons Explorer</span>
+        </a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="https://github.com/Kendenor/SaloneUI" target="_blank" class="button outline small" style="width: 100%; justify-content: center; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub Repository
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <header class="hero" style="padding: 3.5rem 1.5rem 2.5rem;">
+    <div class="container center column">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" style="margin-bottom: 1rem;">
+        <span style="font-size: 0.85rem; color: var(--salone-text-muted);">
+          <a href="/" style="color: var(--salone-text-muted); text-decoration: none;">Home</a>
+          <span style="margin: 0 0.4rem;">/</span>
+          <span style="color: var(--salone-primary); font-weight: 600;">Documentation</span>
+        </span>
+      </nav>
+
+      <div class="badge green" style="margin-bottom: 0.75rem;">Version 1.2.0 • Zero Configuration</div>
+      <h1 style="max-width: 820px; margin-bottom: 0.75rem; text-align: center;">SaloneUI Documentation</h1>
+      <p style="max-width: 680px; text-align: center; color: var(--salone-text-muted); font-size: 1.1rem; line-height: 1.6;">
+        A plain-English, ultra-lightweight (&lt;25KB) CSS framework with zero configuration. Build modern, accessible, and high-performance websites with intuitive classes instead of confusing abbreviations.
+      </p>
+
+      <!-- Quick Jump Navigation Pills -->
+      <div class="row gap-xs center" style="margin-top: 1.25rem; flex-wrap: wrap;">
+        <a href="#what-is-saloneui" class="button small outline">What is SaloneUI?</a>
+        <a href="#why-use-it" class="button small outline">Why Use It?</a>
+        <a href="#how-it-works" class="button small outline">How It Works</a>
+        <a href="#quick-example" class="button small outline">Quick Example</a>
+        <a href="#next-steps" class="button small outline">Next Steps</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="container" style="max-width: 960px; padding: 2rem 1.5rem 5rem;">
+
+    <!-- 1. WHAT IS SALONEUI? -->
+    <section id="what-is-saloneui" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
+      <div class="row gap-sm" style="align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge blue">Overview</span>
+        <h2 style="margin: 0;">1. What is SaloneUI?</h2>
+      </div>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--salone-text);">
+        <strong>SaloneUI</strong> is an open-source CSS framework engineered around one radical principle: <em>your code should read like plain English</em>.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.7; color: var(--salone-text-muted);">
+        Modern web styling has become plagued by endless utility chains — classes like <code>bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg shadow-sm transition-all duration-200</code>. While powerful, they turn your HTML into an unreadable soup, demand extensive cheat sheet lookups, and require Node.js build pipelines just to see a styled button.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.7; color: var(--salone-text-muted);">
+        In SaloneUI, that same button is simply:
+      </p>
+
+      <div class="code-box" style="margin: 1rem 0;">
+        <button class="button small green copy-btn" onclick="copySnippet(this, 'code-btn-comparison')">Copy</button>
+        <code id="code-btn-comparison">&lt;!-- SaloneUI: Clean, readable, and human-first --&gt;
+&lt;button class="button green"&gt;Confirm Transfer&lt;/button&gt;</code>
+      </div>
+
+      <div class="grid 3" style="margin-top: 1.75rem;">
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="color: var(--salone-green); margin: 0 0 0.25rem;">&lt; 25 KB</h3>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--salone-text-muted);">Minified &amp; lightning fast on any 3G/4G network.</p>
+        </div>
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="color: var(--salone-blue); margin: 0 0 0.25rem;">0 Config</h3>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--salone-text-muted);">No Node.js, Webpack, PostCSS, or config files required.</p>
+        </div>
+        <div class="card center column" style="padding: 1.25rem;">
+          <h3 style="color: var(--salone-orange); margin: 0 0 0.25rem;">37+ Components</h3>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--salone-text-muted);">Buttons, cards, dialogs, auto-grids, and fintech widgets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHY USE IT? -->
+    <section id="why-use-it" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
+      <div class="row gap-sm" style="align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge green">Philosophy</span>
+        <h2 style="margin: 0;">2. Why Use SaloneUI?</h2>
+      </div>
+      <p style="font-size: 1rem; color: var(--salone-text-muted); margin-bottom: 2rem;">
+        SaloneUI was crafted to solve the real frustrations developers, beginners, and teams face every day:
+      </p>
+
+      <div class="grid 2" style="gap: 1.5rem;">
+        <!-- Card 1 -->
+        <div class="card elevated" style="padding: 1.75rem;">
+          <div class="avatar" style="background-color: var(--salone-green-light); color: var(--salone-green); margin-bottom: 1rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3 style="margin-top: 0;">Natural English Syntax</h3>
+          <p style="font-size: 0.92rem; color: var(--salone-text-muted); line-height: 1.6;">
+            Classes are intuitive plain English words: <code>card elevated</code>, <code>button green small</code>, <code>grid 3</code>, <code>alert success</code>. Junior developers, designers, and experienced engineers instantly understand the markup without reading documentation.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card elevated" style="padding: 1.75rem;">
+          <div class="avatar" style="background-color: var(--salone-blue-light); color: var(--salone-blue); margin-bottom: 1rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 style="margin-top: 0;">Zero Build Step</h3>
+          <p style="font-size: 0.92rem; color: var(--salone-text-muted); line-height: 1.6;">
+            No waiting for compilers, no 500MB <code>node_modules</code> folder, and no broken bundler configs. Link the stylesheet from CDN or local file, open your browser, and build immediately.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card elevated" style="padding: 1.75rem;">
+          <div class="avatar" style="background-color: var(--salone-orange-light); color: var(--salone-orange); margin-bottom: 1rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 style="margin-top: 0;">Fintech &amp; Real-World Ready</h3>
+          <p style="font-size: 0.92rem; color: var(--salone-text-muted); line-height: 1.6;">
+            Engineered with built-in financial primitives: <code>.money-card</code> balance displays, transaction ledger items, and 4-digit mobile money <code>.pin-box</code> widgets tailored for modern apps.
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card elevated" style="padding: 1.75rem;">
+          <div class="avatar" style="background-color: var(--salone-green-light); color: var(--salone-green); margin-bottom: 1rem;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 style="margin-top: 0;">AI Coding Assistant Friendly</h3>
+          <p style="font-size: 0.92rem; color: var(--salone-text-muted); line-height: 1.6;">
+            Because SaloneUI uses natural language, AI models like Claude, ChatGPT, and Gemini write flawless SaloneUI code on the first try without guessing cryptic utility names.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS -->
+    <section id="how-it-works" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
+      <div class="row gap-sm" style="align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge orange">Architecture</span>
+        <h2 style="margin: 0;">3. How It Works</h2>
+      </div>
+      <p style="font-size: 1rem; color: var(--salone-text-muted); margin-bottom: 1.75rem;">
+        SaloneUI follows three straightforward syntax rules that apply across all 37 components:
+      </p>
+
+      <!-- Rule 1 -->
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <h4 style="margin: 0 0 0.5rem; color: var(--salone-blue);">Rule 1: Component Name First</h4>
+        <p style="margin: 0; font-size: 0.92rem; color: var(--salone-text-muted);">
+          Every element begins with its base component noun: <code>button</code>, <code>card</code>, <code>input</code>, <code>badge</code>, <code>alert</code>, <code>grid</code>, <code>notice</code>.
+        </p>
+      </div>
+
+      <!-- Rule 2 -->
+      <div class="card" style="margin-bottom: 1.25rem;">
+        <h4 style="margin: 0 0 0.5rem; color: var(--salone-green);">Rule 2: Plain Adjectives for Modifiers</h4>
+        <p style="margin: 0 0 0.75rem; font-size: 0.92rem; color: var(--salone-text-muted);">
+          Add natural adjectives to change colors, sizes, or borders. Combine them in any order:
+        </p>
+        <ul style="font-size: 0.9rem; color: var(--salone-text-muted); margin: 0 0 0.5rem; padding-left: 1.25rem;">
+          <li><strong>Colors:</strong> <code>green</code>, <code>blue</code>, <code>orange</code>, <code>red</code>, <code>black</code>, <code>white</code></li>
+          <li><strong>Styles:</strong> <code>outline</code>, <code>elevated</code>, <code>pill</code>, <code>striped</code></li>
+          <li><strong>Sizes:</strong> <code>small</code>, <code>big</code></li>
+        </ul>
+      </div>
+
+      <!-- Rule 3 -->
+      <div class="card" style="margin-bottom: 1.75rem;">
+        <h4 style="margin: 0 0 0.5rem; color: var(--salone-orange);">Rule 3: Auto-Responsive Grid</h4>
+        <p style="margin: 0; font-size: 0.92rem; color: var(--salone-text-muted);">
+          Layouts are set with <code>class="grid 2"</code>, <code>class="grid 3"</code>, or <code>class="grid 4"</code>. They automatically collapse to a single clean column on mobile phones without needing media query utility prefixes.
+        </p>
+      </div>
+
+      <!-- 1-Word Themes & Dark Mode -->
+      <div class="card elevated" style="background: linear-gradient(135deg, var(--salone-bg-subtle) 0%, var(--salone-surface) 100%);">
+        <h3 style="margin-top: 0;">1-Word Theming &amp; Dark Mode</h3>
+        <p style="font-size: 0.92rem; color: var(--salone-text-muted); line-height: 1.6;">
+          Theme your entire application instantly by adding a single class to the <code>&lt;body&gt;</code> tag:
+        </p>
+        <div class="code-box">
+          <button class="button small green copy-btn" onclick="copySnippet(this, 'code-theming')">Copy</button>
+          <code id="code-theming">&lt;!-- Instant Dark Mode --&gt;
+&lt;body class="dark"&gt;
+
+&lt;!-- Or 1-Word Themes --&gt;
+&lt;body class="theme-fintech"&gt;
+&lt;body class="theme-shop"&gt;
+&lt;body class="theme-school"&gt;</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. QUICK EXAMPLE -->
+    <section id="quick-example" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
+      <div class="row gap-sm" style="align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge blue">Live Preview</span>
+        <h2 style="margin: 0;">4. Quick Example</h2>
+      </div>
+      <p style="font-size: 1rem; color: var(--salone-text-muted); margin-bottom: 1.5rem;">
+        Here is what real SaloneUI code looks like in action. A modern card with status badge, responsive grid metrics, and action buttons:
+      </p>
+
+      <div class="demo-box" style="border: 1px solid var(--salone-surface-border); border-radius: var(--salone-radius); overflow: hidden; background: var(--salone-surface);">
+        <!-- Live rendered demo -->
+        <div class="demo-preview" style="padding: 2.5rem 1.5rem; background: var(--salone-bg-subtle); display: flex; justify-content: center;">
+          <div class="card elevated" style="max-width: 420px; width: 100%; border: 1px solid var(--salone-surface-border);">
+            <div class="row space-between" style="align-items: center; margin-bottom: 1rem;">
+              <span class="badge green">Active Account</span>
+              <span style="font-size: 0.8rem; color: var(--salone-text-muted);">ID: #SL-2409</span>
+            </div>
+            <h3 style="margin: 0 0 0.35rem;">Aminata Kamara</h3>
+            <p style="margin: 0 0 1.25rem; font-size: 0.9rem; color: var(--salone-text-muted);">Freetown, Sierra Leone • Business Tier</p>
+            
+            <div class="grid 2" style="gap: 0.75rem; margin-bottom: 1.25rem;">
+              <div class="card" style="padding: 0.85rem; background: var(--salone-bg-subtle); border: 1px solid var(--salone-surface-border);">
+                <span style="font-size: 0.75rem; color: var(--salone-text-muted); display: block;">Balance</span>
+                <strong style="color: var(--salone-green); font-size: 1.1rem;">SLE 45,200</strong>
+              </div>
+              <div class="card" style="padding: 0.85rem; background: var(--salone-bg-subtle); border: 1px solid var(--salone-surface-border);">
+                <span style="font-size: 0.75rem; color: var(--salone-text-muted); display: block;">Points</span>
+                <strong style="color: var(--salone-blue); font-size: 1.1rem;">1,420 pts</strong>
+              </div>
+            </div>
+
+            <div class="row gap-xs" style="flex-wrap: wrap;">
+              <button class="button green small" style="flex: 1;">Send Money</button>
+              <button class="button outline small" style="flex: 1;">Statement</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyable Code snippet -->
+        <div class="code-box-small" style="padding: 1.25rem; background: #0f172a; position: relative;">
+          <button class="button small green copy-code-btn" onclick="copySnippet(this, 'c-quick-sample')">Copy Code</button>
+          <pre style="margin: 0; color: #f8fafc; font-size: 0.88rem; overflow-x: auto;"><code id="c-quick-sample">&lt;div class="card elevated"&gt;
+  &lt;div class="row space-between"&gt;
+    &lt;span class="badge green"&gt;Active Account&lt;/span&gt;
+    &lt;span class="text-muted"&gt;ID: #SL-2409&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;h3&gt;Aminata Kamara&lt;/h3&gt;
+  &lt;p&gt;Freetown, Sierra Leone • Business Tier&lt;/p&gt;
+
+  &lt;div class="grid 2"&gt;
+    &lt;div class="card"&gt;
+      &lt;span&gt;Balance&lt;/span&gt;
+      &lt;strong class="text-green"&gt;SLE 45,200&lt;/strong&gt;
+    &lt;/div&gt;
+    &lt;div class="card"&gt;
+      &lt;span&gt;Points&lt;/span&gt;
+      &lt;strong class="text-blue"&gt;1,420 pts&lt;/strong&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="row gap-xs"&gt;
+    &lt;button class="button green small"&gt;Send Money&lt;/button&gt;
+    &lt;button class="button outline small"&gt;Statement&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. NEXT STEPS & INTERNAL LINKS -->
+    <section id="next-steps" style="margin-bottom: 2rem; scroll-margin-top: 5rem;">
+      <div class="row gap-sm" style="align-items: center; margin-bottom: 0.75rem;">
+        <span class="badge green">Explore Next</span>
+        <h2 style="margin: 0;">5. Where to Go Next?</h2>
+      </div>
+      <p style="font-size: 1rem; color: var(--salone-text-muted); margin-bottom: 1.75rem;">
+        Continue building with SaloneUI:
+      </p>
+
+      <div class="grid 3" style="gap: 1.25rem;">
+        <!-- Card: Installation -->
+        <div class="card elevated center column" style="padding: 1.75rem; text-align: center;">
+          <div class="avatar" style="background-color: var(--salone-green-light); color: var(--salone-green); margin-bottom: 1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.2rem;">Installation Guide</h3>
+          <p style="font-size: 0.88rem; color: var(--salone-text-muted); margin-bottom: 1.25rem;">
+            Install in 2 minutes via CDN, NPM, PNPM, Bun, or copy the full HTML starter boilerplate.
+          </p>
+          <a href="/installation" class="button green small" style="width: 100%; justify-content: center;">Go to Installation &rarr;</a>
+        </div>
+
+        <!-- Card: Components -->
+        <div class="card elevated center column" style="padding: 1.75rem; text-align: center;">
+          <div class="avatar" style="background-color: var(--salone-blue-light); color: var(--salone-blue); margin-bottom: 1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.2rem;">37 Components</h3>
+          <p style="font-size: 0.88rem; color: var(--salone-text-muted); margin-bottom: 1.25rem;">
+            Browse live interactive demos for buttons, forms, modals, native dialog notices, and tables.
+          </p>
+          <a href="/components" class="button blue small" style="width: 100%; justify-content: center;">Browse Components &rarr;</a>
+        </div>
+
+        <!-- Card: Icons -->
+        <div class="card elevated center column" style="padding: 1.75rem; text-align: center;">
+          <div class="avatar" style="background-color: var(--salone-orange-light); color: var(--salone-orange); margin-bottom: 1rem;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="12 8 8 12 12 16 16 12 12 8"/></svg>
+          </div>
+          <h3 style="margin: 0 0 0.5rem; font-size: 1.2rem;">Universal Icons</h3>
+          <p style="font-size: 0.88rem; color: var(--salone-text-muted); margin-bottom: 1.25rem;">
+            Explore 200,000+ vector SVG icons and brand logos with zero broken images and instant copy.
+          </p>
+          <a href="/icons" class="button orange small" style="width: 100%; justify-content: center;">Explore Icons &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid 4 footer-grid" style="margin-bottom: 2.5rem;">
+        <div>
+          <a href="/" style="display: inline-block; margin-bottom: 1rem;">
+            <img src="assets/logo.svg" alt="SaloneUI" height="32">
+          </a>
+          <p style="font-size: 0.85rem; color: var(--salone-text-muted); line-height: 1.6;">
+            The plain-English CSS framework for modern, accessible web interfaces. Under 25KB, zero configuration.
+          </p>
+          <p style="font-size: 0.85rem; color: var(--salone-text-muted); margin-top: 0.5rem;">
+            Official website: <a href="https://saloneui.dev" style="color: var(--salone-primary); font-weight: 600;">saloneui.dev</a>
+          </p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Navigation</h4>
+          <p><a href="/">Home</a></p>
+          <p><a href="/docs">Docs</a></p>
+          <p><a href="/installation">Installation</a></p>
+          <p><a href="/components">Components</a></p>
+          <p><a href="/icons">Icons Explorer</a></p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Resources</h4>
+          <p><a href="cheatsheet.html">Cheat Sheet</a></p>
+          <p><a href="playground.html">Playground</a></p>
+          <p><a href="examples.html">Examples &amp; Templates</a></p>
+          <p><a href="download.html">Download CSS</a></p>
+        </div>
+        <div>
+          <h4 style="font-size: 1rem; margin-bottom: 0.75rem;">Community &amp; Code</h4>
+          <p><a href="https://github.com/Kendenor/SaloneUI" target="_blank">GitHub Repository</a></p>
+          <p><a href="https://github.com/Kendenor/SaloneUI/discussions" target="_blank">GitHub Discussions</a></p>
+          <p><a href="https://github.com/Kendenor/SaloneUI/blob/main/CONTRIBUTING.md" target="_blank">Contributing Guide</a></p>
+          <p><a href="llms.txt" target="_blank">llms.txt (AI Reference)</a></p>
+          <p><a href="https://github.com/Kendenor/SaloneUI/blob/main/LICENSE" target="_blank">MIT License</a></p>
+        </div>
+      </div>
+      <div class="space-between footer-bottom" style="border-top: 1px solid var(--salone-surface-border); padding-top: 1.5rem; font-size: 0.85rem;">
+        <span>&copy; 2026 SaloneUI. MIT License.</span>
+        <span>Hosted on <a href="https://saloneui.dev" style="color: var(--salone-primary); text-decoration: none;">saloneui.dev</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR COPY BUTTONS -->
+  <script>
+    function copySnippet(btn, elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      const text = el.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'Copied!';
+        btn.classList.remove('green');
+        btn.classList.add('orange');
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.classList.remove('orange');
+          btn.classList.add('green');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
