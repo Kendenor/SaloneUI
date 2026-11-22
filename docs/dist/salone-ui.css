@@ -2271,3 +2271,191 @@ kbd,
   color: var(--salone-text-muted);
   background: var(--salone-bg-subtle);
 }
+
+
+/* ==========================================================================
+   37. NOTICE (NATIVE DIALOG)
+   ========================================================================== */
+
+dialog.notice {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(92vw, 380px);
+  max-width: 380px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2rem 1.75rem 1.5rem;
+  border: 1px solid var(--salone-surface-border);
+  border-radius: var(--salone-radius-lg);
+  background: var(--salone-surface);
+  color: var(--salone-text);
+  text-align: center;
+  box-shadow: var(--salone-shadow-xl);
+  overscroll-behavior: contain;
+}
+
+dialog.notice[open] {
+  display: flex;
+  animation: saloneNoticeEnter 0.22s ease-out;
+}
+
+dialog.notice::backdrop {
+  background: rgba(15, 23, 42, 0.5);
+  animation: saloneNoticeBackdrop 0.2s ease-out;
+}
+
+@supports ((backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px))) {
+  dialog.notice::backdrop {
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+}
+
+/* NOTICE ICON */
+dialog.notice .notice-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border-radius: var(--salone-radius-full);
+}
+
+dialog.notice .notice-icon svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+/* NOTICE VARIANTS */
+dialog.notice.success .notice-icon {
+  color: var(--salone-green);
+  background: var(--salone-green-light);
+}
+
+dialog.notice.error .notice-icon {
+  color: var(--salone-red);
+  background: var(--salone-red-light);
+}
+
+dialog.notice.warning .notice-icon {
+  color: var(--salone-orange);
+  background: var(--salone-orange-light);
+}
+
+dialog.notice.info .notice-icon {
+  color: var(--salone-blue);
+  background: var(--salone-blue-light);
+}
+
+/* NOTICE TITLE */
+dialog.notice .notice-title {
+  margin: 0 0 0.4rem;
+  color: var(--salone-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* NOTICE DESCRIPTION */
+dialog.notice .notice-text {
+  margin: 0 0 1.35rem;
+  color: var(--salone-text-muted);
+  font-size: 0.925rem;
+  line-height: 1.55;
+}
+
+/* NOTICE ACTIONS */
+dialog.notice .notice-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+dialog.notice .notice-actions .button {
+  min-width: 110px;
+  justify-content: center;
+}
+
+/* NOTICE CLOSE BUTTON */
+dialog.notice .notice-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--salone-radius-full);
+  background: transparent;
+  color: var(--salone-text-muted);
+  cursor: pointer;
+}
+
+dialog.notice .notice-close:hover {
+  background: var(--salone-surface-hover);
+  color: var(--salone-text);
+}
+
+dialog.notice .notice-close:focus-visible {
+  outline: 2px solid var(--salone-primary);
+  outline-offset: 2px;
+}
+
+dialog.notice .notice-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* NOTICE ANIMATIONS */
+@keyframes saloneNoticeEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes saloneNoticeBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  dialog.notice {
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
+
+  dialog.notice .notice-actions .button {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  dialog.notice[open],
+  dialog.notice::backdrop {
+    animation: none;
+  }
+}

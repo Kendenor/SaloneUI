@@ -290,3 +290,15 @@ document.addEventListener('keydown', function(e) {
     }
   }
 });
+
+
+// Close Notice dialogs when the backdrop is clicked
+document.addEventListener('click', (e) => {
+  if (e.target.matches('dialog.notice')) {
+    const r = e.target.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right &&
+                   e.clientY >= r.top  && e.clientY <= r.bottom;
+
+    if (!inside) e.target.close();
+  }
+});
