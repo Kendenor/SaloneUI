@@ -56,7 +56,7 @@
         "url": "https://saloneui.dev/",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "All",
-        "softwareVersion": "1.1.1",
+        "softwareVersion": "1.2.0",
         "description": "A plain-English, ultra-lightweight (<25KB) CSS framework for rapidly building modern, accessible user interfaces without configuration.",
         "offers": {
           "@type": "Offer",
@@ -334,7 +334,7 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="container center column">
-      <div class="badge green" style="margin-bottom: 1rem;">Plain-English CSS Framework • Version 1.2</div>
+      <div class="badge green" style="margin-bottom: 1rem;">Plain-English CSS Framework • Version 1.2.0</div>
       <h1 style="max-width: 820px;"><span style="color: var(--salone-blue);">Salone</span><span style="color: var(--salone-green);">UI</span> — Build Beautiful Websites With Plain English.</h1>
       <p>No cryptic abbreviations. No complex build tools. Just plain words like <code>button green</code>, <code>card</code>, and <code>grid 3</code>. Under 25KB, beginner-proof, and lightning fast.</p>
       
@@ -464,10 +464,10 @@
           </p>
           <div class="code-box">
             <button class="button small green copy-btn" onclick="copySnippet(this, 'cdn-code')">Copy</button>
-            <code id="cdn-code">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.css"&gt;</code>
+            <code id="cdn-code">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.2.0/dist/salone-ui.css"&gt;</code>
           </div>
           <p style="font-size: 0.85rem; color: var(--salone-text-muted); margin-top: 0.75rem;">
-            Minified CDN link: <code>https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.min.css</code>
+            Minified CDN link: <code>https://cdn.jsdelivr.net/npm/salone-ui@1.2.0/dist/salone-ui.min.css</code>
           </p>
         </div>
 
@@ -597,7 +597,7 @@ import 'salone-ui/dist/salone-ui.min.css';</code>
   &lt;meta charset="utf-8"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
   &lt;title&gt;{{ config('app.name') }}&lt;/title&gt;
-  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.min.css"&gt;
+  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.2.0/dist/salone-ui.min.css"&gt;
 &lt;/head&gt;</code>
           </div>
         </div>
@@ -727,8 +727,8 @@ import 'salone-ui/dist/salone-ui.min.css';</code>
         Start building clean, high-performance web applications in minutes. Completely open source and free forever.
       </p>
       <div class="row center cta-actions">
-        <a href="components.html" class="button big">Browse All 25 Components</a>
-        <a href="download.html" class="button big outline">Download v1.1.0</a>
+        <a href="/components" class="button big">Browse All 37 Components</a>
+        <a href="/installation" class="button big outline">Install v1.2.0</a>
       </div>
     </div>
   </section>
@@ -804,7 +804,7 @@ import 'salone-ui/dist/salone-ui.min.css';</code>
     }
 
     function copyHeroCdn() {
-      const cdn = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.1.0/dist/salone-ui.css">';
+      const cdn = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@1.2.0/dist/salone-ui.min.css">';
       navigator.clipboard.writeText(cdn).then(() => {
         alert('CDN Link copied to clipboard:\n' + cdn);
       });
