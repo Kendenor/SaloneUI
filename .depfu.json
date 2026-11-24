@@ -1,0 +1,7 @@
+{
+  "package_managers": ["npm"],
+  "auto_merge": false,
+  "strategy": "grouped",
+  "reviewers": [],
+  "assignees": []
+}

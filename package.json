@@ -28,6 +28,12 @@
   "scripts": {
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "prepare": "node scripts/build.js"
+    "prepare": "node scripts/build.js",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "node scripts/build.js && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3"
   }
 }

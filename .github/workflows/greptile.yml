@@ -1,0 +1,46 @@
+name: Greptile PR Review
+
+# Greptile is an AI agent that reviews pull requests with full context of your codebase.
+# It can catch hidden bugs, security vulnerabilities, and anti-patterns.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  greptile:
+    name: Greptile AI Code Review
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for GREPTILE_API_KEY
+        id: check_key
+        env:
+          GREPTILE_API_KEY: ${{ secrets.GREPTILE_API_KEY }}
+        run: |
+          if [ -z "$GREPTILE_API_KEY" ]; then
+            echo "has_key=false" >> $GITHUB_OUTPUT
+            echo "::notice ::GREPTILE_API_KEY secret is not set. Greptile PR review will run once GREPTILE_API_KEY is configured in repository secrets."
+          else
+            echo "has_key=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Greptile Review
+        if: steps.check_key.outputs.has_key == 'true'
+        uses: greptileai/greptile-action@v1
+        continue-on-error: true
+        with:
+          greptile-api-key: ${{ secrets.GREPTILE_API_KEY }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
