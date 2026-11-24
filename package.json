@@ -27,6 +27,7 @@
   "homepage": "https://saloneui.dev",
   "scripts": {
     "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
     "prepare": "node scripts/build.js"
   }
 }

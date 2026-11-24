@@ -1,0 +1,16 @@
+# Configuration for actions/labeler
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.md', 'llms.txt', 'docs/llms.txt']
+
+component:
+  - changed-files:
+      - any-glob-to-any-file: ['src/**/*.css', 'dist/**/*.css', '**/*.css']
+
+icons:
+  - changed-files:
+      - any-glob-to-any-file: ['*icon*', '**/*icon*/**', 'docs/icons.html', 'docs/assets/salone-icons.js', 'scripts/*icon*']
+
+website:
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.html', 'docs/**']

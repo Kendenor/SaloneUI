@@ -1,0 +1,59 @@
+name: Welcome First-Time Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome New Issue Contributor
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const creator = context.payload.issue.user.login;
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              creator: creator,
+              state: 'all'
+            });
+
+            if (issues.data.length === 1) {
+              const msg = `👋 Welcome @${creator}! Thank you for opening your first issue in **SaloneUI**. Our maintainers will review your request soon. Feel free to join our discussions or explore the documentation at [saloneui.dev](https://saloneui.dev).`;
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                body: msg
+              });
+            }
+
+      - name: Welcome New PR Contributor
+        if: github.event_name == 'pull_request_target'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const creator = context.payload.pull_request.user.login;
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all',
+              head: `${creator}:`
+            });
+
+            const msg = `🎉 Thank you for contributing to **SaloneUI**, @${creator}! Your pull request has been received. Our automated checks are running to verify plain-English styling and zero-emoji compliance. We appreciate your support for open-source development!`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: msg
+            });

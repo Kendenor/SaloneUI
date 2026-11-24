@@ -1,0 +1,53 @@
+name: Claude Code Assistant
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  claude-assist:
+    name: Claude Assistant
+    if: contains(github.event.comment.body, '@claude')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check for ANTHROPIC_API_KEY
+        id: check-key
+        run: |
+          if [ -z "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "has_key=false" >> $GITHUB_OUTPUT
+            echo "Notice: ANTHROPIC_API_KEY secret is not configured. Skipping step."
+          else
+            echo "has_key=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Inform Maintainer if Key is Missing
+        if: steps.check-key.outputs.has_key == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = "ℹ️ **Claude Assistant:** To enable automated Claude responses, please configure the `ANTHROPIC_API_KEY` secret under **Settings > Secrets and variables > Actions** in this repository.";
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+
+      - name: Run Claude Assistant
+        if: steps.check-key.outputs.has_key == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: ${{ github.event.comment.body }}

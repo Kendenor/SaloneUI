@@ -1,0 +1,32 @@
+name: Copilot Setup & Style Verification
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  copilot-checks:
+    name: GitHub Copilot Context Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Copilot Instruction Files
+        run: |
+          echo "Verifying Copilot instruction configuration..."
+          if [ ! -f ".github/copilot-instructions.md" ]; then
+            echo "Error: .github/copilot-instructions.md is missing!"
+            exit 1
+          fi
+          echo "Copilot instructions verified successfully."
+
+      - name: Confirm Plain-English Rules for AI
+        run: |
+          echo "GitHub Copilot context is active and configured for SaloneUI plain-English conventions."

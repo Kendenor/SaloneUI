@@ -1,0 +1,86 @@
+name: Prepare Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. v1.2.0)'
+        required: true
+        default: 'v1.2.0'
+
+permissions:
+  contents: write
+
+jobs:
+  draft-release:
+    name: Prepare Draft Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Determine Tag Name
+        id: vars
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Generate Changelog Notes
+        id: changelog
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          echo "Previous tag: $PREV_TAG"
+          if [ -n "$PREV_TAG" ]; then
+            CHANGES=$(git log ${PREV_TAG}..HEAD --oneline --no-merges)
+          else
+            CHANGES=$(git log -n 15 --oneline --no-merges)
+          fi
+
+          cat << 'EOF' > release_notes.md
+          ## What's Changed in SaloneUI ${{ steps.vars.outputs.tag }}
+
+          EOF
+
+          echo "$CHANGES" | sed 's/^/* /' >> release_notes.md
+
+          cat << 'EOF' >> release_notes.md
+
+          ### CDN Usage:
+          ```html
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/salone-ui@${{ steps.vars.outputs.tag }}/dist/salone-ui.min.css">
+          ```
+
+          ### Package Manager:
+          ```bash
+          npm install salone-ui@${{ steps.vars.outputs.tag }}
+          ```
+          EOF
+
+      - name: Create Draft GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.vars.outputs.tag }}
+          name: SaloneUI ${{ steps.vars.outputs.tag }}
+          body_path: release_notes.md
+          draft: true
+          prerelease: false
+          files: |
+            dist/salone-ui.css
+            dist/salone-ui.min.css
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

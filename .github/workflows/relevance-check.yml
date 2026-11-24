@@ -1,0 +1,102 @@
+name: Relevance & Style Check
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  check-relevance:
+    name: Verify SaloneUI Style & Relevance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Analyze Pull Request Content & Relevance
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = (pr.title || '').toLowerCase();
+            const body = (pr.body || '').toLowerCase();
+            const fullText = `${title} ${body}`;
+
+            // 1. Check PR Title & Description Keywords
+            const requiredKeywords = ['component', 'docs', 'fix', 'icon', 'style', 'website', 'example'];
+            const hasKeyword = requiredKeywords.some(kw => fullText.includes(kw));
+
+            if (!hasKeyword) {
+              const msg = "Please explain how this PR is related to SaloneUI";
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: msg
+              });
+              core.setFailed(msg);
+              return;
+            }
+
+            // 2. Fetch list of modified files
+            const files = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number
+            });
+
+            const disallowedExtensions = ['.rs', '.ts', '.tsx', '.py', '.go', '.java', '.rb'];
+            const utilityClassPattern = /\b(bg-[a-z0-9-]+|text-[a-z0-9-]+|px-[0-9]+|py-[0-9]+|mx-[0-9]+|w-full|h-screen|\bflex\b|grid-cols-[0-9]+|\brounded\b|rounded-[a-z0-9]+|shadow-[a-z0-9]+|hover:[a-z0-9-]+|md:[a-z0-9-]+|lg:[a-z0-9-]+|sm:[a-z0-9-]+)\b/;
+
+            let failedReason = null;
+
+            for (const file of files.data) {
+              const filename = file.filename.toLowerCase();
+
+              // Check for disallowed languages
+              for (const ext of disallowedExtensions) {
+                if (filename.endsWith(ext)) {
+                  failedReason = `Disallowed file type (${ext}). The project core uses only CSS, HTML, JS, JSON, and MD.`;
+                  break;
+                }
+              }
+              if (failedReason) break;
+
+              // Check patch content for utility classes in markup/styles
+              if (file.patch && (filename.endsWith('.html') || filename.endsWith('.vue') || filename.endsWith('.jsx') || filename.endsWith('.css'))) {
+                const addedLines = file.patch
+                  .split('\n')
+                  .filter(line => line.startsWith('+') && !line.startsWith('+++'))
+                  .join(' ');
+
+                if (utilityClassPattern.test(addedLines)) {
+                  failedReason = "This code uses a different framework style. SaloneUI uses plain English classes like 'button big', not utility classes like 'bg-blue-500'. Please rewrite it in SaloneUI style.";
+                  break;
+                }
+              }
+            }
+
+            if (failedReason) {
+              const commentBody = failedReason.includes('different framework style')
+                ? "This code uses a different framework style. SaloneUI uses plain English classes like 'button big', not utility classes like 'bg-blue-500'. Please rewrite it in SaloneUI style."
+                : failedReason;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: commentBody
+              });
+              core.setFailed(commentBody);
+              return;
+            }
+
+            // 3. If passed, comment approval
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: "Relevance check passed - This PR is related to SaloneUI"
+            });
+            console.log("Relevance check passed successfully.");

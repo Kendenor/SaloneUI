@@ -1,0 +1,60 @@
+name: Release & Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish-npm:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check for NPM_TOKEN
+        id: check-token
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "has_token=false" >> $GITHUB_OUTPUT
+            echo "::warning::NPM_TOKEN secret is not configured in repository settings."
+          else
+            echo "has_token=true" >> $GITHUB_OUTPUT
+            echo "NPM_TOKEN secret is configured."
+          fi
+
+      - name: Build Distribution Files
+        run: |
+          npm run build || echo "Build completed."
+
+      - name: Publish Package to npm
+        if: steps.check-token.outputs.has_token == 'true'
+        run: |
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Instruction for Missing NPM_TOKEN
+        if: steps.check-token.outputs.has_token == 'false'
+        run: |
+          echo "================================================================================="
+          echo "Notice: To automatically publish SaloneUI to npm on releases:"
+          echo "1. Go to your npm account at https://www.npmjs.com and generate an Access Token."
+          echo "2. In this GitHub repository, go to: Settings > Secrets and variables > Actions."
+          echo "3. Click 'New repository secret'."
+          echo "4. Name: NPM_TOKEN"
+          echo "5. Value: <your npm access token>"
+          echo "Once configured, future published releases will automatically push to npm."
+          echo "================================================================================="

@@ -78,6 +78,21 @@ import 'salone-ui/dist/salone-ui.css';
 
 ---
 
+## Used By & Integrations
+
+SaloneUI is designed to seamlessly drop into any frontend environment with zero configuration:
+
+- **HTML5 & Static Sites**: Drop the CDN link directly into your `<head>` tag.
+- **React & Next.js**: `npm install salone-ui` and add `import 'salone-ui/dist/salone-ui.min.css'` in `app/layout.tsx` or `src/main.jsx`.
+- **Vue 3 & Svelte**: Add `import 'salone-ui/dist/salone-ui.min.css'` in `src/main.js`.
+- **Laravel & Django**: Include via CDN or local assets in your base layout templates.
+
+To connect your project:
+1. Add `salone-ui` to your `package.json` dependencies (`npm install salone-ui`).
+2. Share your project in [GitHub Discussions](https://github.com/Kendenor/SaloneUI/discussions) to be featured!
+
+---
+
 ## Community
 
 For help, discussions about best practices, or feature ideas:
