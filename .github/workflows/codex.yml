@@ -33,7 +33,7 @@ jobs:
 
       - name: Inform Maintainer if Key is Missing
         if: steps.check-key.outputs.has_key == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const comment = "ℹ️ **Codex / ChatGPT Assistant:** To enable automated Codex responses, please add `OPENAI_API_KEY` under **Settings > Secrets and variables > Actions**.";
@@ -46,7 +46,7 @@ jobs:
 
       - name: Process with OpenAI Codex
         if: steps.check-key.outputs.has_key == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const commentBody = context.payload.comment.body;
